@@ -18,6 +18,12 @@ const getContactHref = (name: string, contact: string) => {
     case 'email':
       href = `mailto:${contact}`;
       break;
+    case 'linkedIn':
+      href = `https://linkedin.com/in/${contact}`;
+      break;
+    case 'instagram':
+      href = `https://instagram.com/${contact}`;
+      break;
     default:
       href = contact;
       break;

@@ -28,9 +28,8 @@ module.exports = {
     bio: 'Developer, seeking opportunities',
     contacts: {
       email: 'jasonkang14@gmail.com',
-      instagram: 'jkang14',
       github: 'jasonkang14',
-      linkedin: 'byeongjinkang'
+      linkedIn: 'byeongjinkang'
     }
   }
 };
