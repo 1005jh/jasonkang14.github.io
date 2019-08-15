@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/JWT-Token-returned-upon-login"
 category: "JWT"
 tags:
-  - "WeCode"
   - "bcrypt"
   - "python"
   - "django"

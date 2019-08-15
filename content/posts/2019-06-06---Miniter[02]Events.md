@@ -6,8 +6,6 @@ draft: false
 slug: "/posts/Miniter-Events/"
 category: "DOM"
 tags:
-  - "WeCode"
-  - "DOM"
   - "event"
   - "javascript"
   - "html"

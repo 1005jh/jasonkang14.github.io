@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/Minitor-Flexbox"
 category: "CSS"
 tags:
-  - "WeCode"
   - "html"
   - "css"
   - "flex"

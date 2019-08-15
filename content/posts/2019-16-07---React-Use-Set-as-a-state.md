@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/react/using-set-as-a-state"
 category: "React"
 tags:
-  - "WeCode"
   - "react"
   - "set"
   - "array"

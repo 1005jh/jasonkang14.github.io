@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/React-Native-Header-Right-Button"
 category: "React Native"
 tags:
-  - "WeCode"
   - "reactnative"
   - "navigation"
   - "setparam"

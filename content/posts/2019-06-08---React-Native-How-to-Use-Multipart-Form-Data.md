@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/React-Native-Multipart-Form-Data-to-API"
 category: "React Native"
 tags:
-  - "WeCode"
   - "reactnative"
   - "multipart/form-data"
   - "aws"

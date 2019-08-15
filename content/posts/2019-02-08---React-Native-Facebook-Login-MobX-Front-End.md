@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/Request-to-Server-using-MobX"
 category: "MobX"
 tags:
-  - "WeCode"
   - "reactnative"
   - "facebook"
   - "socialogin"

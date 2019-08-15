@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/How-to-import-local-mysql-databases-to-AWS-mysql databases"
 category: "mysql"
 tags:
-  - "WeCode"
   - "mysql"
   - "aws"
   - "database"

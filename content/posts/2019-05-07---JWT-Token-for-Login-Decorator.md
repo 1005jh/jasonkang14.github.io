@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/JWT-Token-for-a-login-decorator"
 category: "JWT"
 tags:
-  - "WeCode"
   - "bcrypt"
   - "python"
   - "django"

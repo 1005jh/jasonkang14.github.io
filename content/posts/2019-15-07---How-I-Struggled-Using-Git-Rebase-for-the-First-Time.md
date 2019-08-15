@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/git-rebase"
 category: "GIT"
 tags:
-  - "WeCode"
   - "git"
   - "rebase"
   - "gitrebase"

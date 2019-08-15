@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/Minitor-form-element-autocomplete/"
 category: "HTML"
 tags:
-  - "WeCode"
   - "html"
   - "form"
   - "autocomplete"

@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/Minitor-Position-Background/"
 category: "CSS"
 tags:
-  - "WeCode"
   - "css"
   - "position"
   - "background"

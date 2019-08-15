@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/Bcrypt-Login-using-checkpw"
 category: "Brcypt"
 tags:
-  - "WeCode"
   - "bcrypt"
   - "python"
   - "django"

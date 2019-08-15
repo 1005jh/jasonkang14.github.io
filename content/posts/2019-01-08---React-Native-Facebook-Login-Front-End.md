@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/React-Native-Facebook-Login-Front-End"
 category: "React Native"
 tags:
-  - "WeCode"
   - "reactnative"
   - "facebook"
   - "sociallogin"

@@ -6,12 +6,11 @@ draft: false
 slug: "/posts/react-life-cycle-get-derived-state-from-props-with-mobx"
 category: "React"
 tags:
-  - "WeCode"
   - "react"
   - "reactnative"
   - "lifecycle"
   - "mobx"
-  - "getDerivedStateFromProps"
+  - "getderivedstatefromprops"
 description: "How to use getDerivedStateFromProps instead of componentDidUpdate"
 ---
 

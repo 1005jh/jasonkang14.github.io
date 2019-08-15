@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/reactnative/basic-setup"
 category: "React Native"
 tags:
-  - "WeCode"
   - "reactnative"
   - "setup"
   - "mobx"

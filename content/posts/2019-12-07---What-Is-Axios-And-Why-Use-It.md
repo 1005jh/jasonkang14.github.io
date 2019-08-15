@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/Axios-explained"
 category: "Axios"
 tags:
-  - "WeCode"
   - "axios"
   - "http"
   - "request"
