@@ -4,7 +4,7 @@ date: "2019-08-14T14:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/react-life-cycle-get-derived-state-from-props-with-mobx"
-category: "React"
+category: "React Native"
 tags:
   - "react"
   - "reactnative"
