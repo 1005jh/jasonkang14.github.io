@@ -9,7 +9,6 @@ tags:
   - "reactnative"
   - "multipart/form-data"
   - "aws"
-  - "s3"
 description: "How to send an image file to an API to have it uploaded to AWS S3"
 ---
 
