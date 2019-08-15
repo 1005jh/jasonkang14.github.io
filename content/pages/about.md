@@ -3,10 +3,9 @@ title: "About me"
 template: "page"
 ---
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+<img src="https://scontent-hkg3-1.xx.fbcdn.net/v/t1.0-9/18447664_10212840096658128_7122613457993630186_n.jpg?_nc_cat=105&_nc_oc=AQnL6nJVZaTRwyZAAAVwOZqozuSkx4yCqKuc2wM5O5G_AaFw0509goJevrHE2zScItk&_nc_ht=scontent-hkg3-1.xx&oh=25ecd591e4a0e4651ce9a870ce8a5e7b&oe=5D93CCEA" style="width:400px;height:500px;margin:20px auto">
 
-![Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.](/media/image-2.jpg)
-
-*Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.*
-
-Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+I graduated from University of Illinois with a bachelor's degree in chemical engineering. <br>
+After working as a process engineer at a refinery in South Korea, I decided to pivot my career to web development. <br><br>
+In June 2019, I joined WeCode, which is a coding bootcamp based in Seoul, South Korea. I will be acquiring necessary skill sets to work as a web developer after three months. <br><br>
+Check out my blog to see what I have learned and what I am capable of. <br> Feel free to reach out if you would like to get to know more about me or discuss possible opportunities.
