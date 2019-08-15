@@ -2,49 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://jasonkang14.github.io/tags</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/categories</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/pages/contacts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/pages/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/React-Native-Facebook-Login-Front-End</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/React-Hooks-avoid-infinite-loops</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/React-Native-Facebook-Login-Front-End</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/pages/contacts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Bcrypt-Signup-Function-using-hashpw</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/Request-to-Server-using-MobX</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/webrtc-explained</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Bcrypt-Login-using-checkpw</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/JWT-Token-returned-upon-login</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/Request-to-Server-using-MobX</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Minitor-Position-Background/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/React-Native-Header-Right-Button</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/JWT-Token-returned-upon-login</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/JWT-Token-for-a-login-decorator</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/webrtc-explained</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/React-Native-Header-Right-Button</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/React-Native-Multipart-Form-Data-to-API</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/Minitor-form-element-autocomplete/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Miniter-Events/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/Minitor-form-element-autocomplete/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Minitor-Flexbox</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/React-Hooks-useEffect-update-when-you-want</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/How-to-import-local-mysql-databases-to-AWS-mysql databases</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/Django-upload-image-to-aws-s3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/How-to-implement-a-login-decorator</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/Axios-explained</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/react-life-cycle-get-derived-state-from-props-with-mobx</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/How-to-import-local-mysql-databases-to-AWS-mysql databases</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/git-rebase</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/Axios-explained</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/react/using-set-as-a-state</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/Miniter-API-sign-up</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Miniter-Link-API-to-HTML</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Miniter-Sending-Get-Post-Requests</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/DataAnalysis-Scrapy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-one</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/Miniter-API-sign-up</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/react-life-cycle-get-derived-state-from-props-with-mobx</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-two</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-four</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-one</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-three</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/posts/React Remaking-Miniter-Using-React-part-five</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-four</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/DataAnalysis-Scrapy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/React-Remaking-Miniter-Using-React-part-six</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/Advanced-CSS-Change-Font-Mousemove</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/posts/React Remaking-Miniter-Using-React-part-five</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/reactnative/basic-setup</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/posts/AdvancedCSS/Animating Underlines</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/dom</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/we-code</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/we-code/page/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/we-code/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/we-code/page/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/we-code/page/4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/we-code/page/5</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/api</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/array</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/autocomplete</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -52,6 +46,7 @@
 <url> <loc>https://jasonkang14.github.io/tag/axios</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/background</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/bcrypt</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/tag/boto-3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/click</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/cors</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/csrf</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -67,7 +62,7 @@
 <url> <loc>https://jasonkang14.github.io/tag/facebook</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/flex</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/form</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://jasonkang14.github.io/tag/get-derived-state-from-props</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/tag/getderivedstatefromprops</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/git</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/gitrebase</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/tag/hasing</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -123,6 +118,7 @@
 <url> <loc>https://jasonkang14.github.io/category/react/page/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/category/react/page/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/category/react-native</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://jasonkang14.github.io/category/react-native/page/1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/category/sass</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/category/mysql</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://jasonkang14.github.io/category/scrapy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
