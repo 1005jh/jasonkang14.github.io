@@ -3,15 +3,13 @@ title: Git Rebase - How I struggled using it for the first time
 date: "2019-07-15T23:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/git rebase"
+slug: "/posts/git-rebase"
 category: "GIT"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
   - "git"
   - "rebase"
-  - "git rebase"
-
+  - "gitrebase"
 description: "How I overcame my confusion using git rebase"
 ---
 

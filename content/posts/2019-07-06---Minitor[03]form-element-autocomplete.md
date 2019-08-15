@@ -3,12 +3,11 @@ title: Miniter[03] <form>, autocomplete
 date: "2019-06-07T18:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/Minitor form-element-autocomplete/"
+slug: "/posts/Minitor-form-element-autocomplete/"
 category: "HTML"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "HTML"
+  - "html"
   - "form"
   - "autocomplete"
 description: "Use of the <form> element and autocomplete in attempt to make a mini-version of Twitter."

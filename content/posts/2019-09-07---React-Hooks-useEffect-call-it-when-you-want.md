@@ -3,13 +3,12 @@ title: React Hooks [useEffect()] how to update when you want
 date: "2019-07-09T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/React Hooks useEffect update when you want"
+slug: "/posts/React-Hooks-useEffect-update-when-you-want"
 category: "React"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "React"
-  - "Hooks"
+  - "react"
+  - "reacthooks"
 description: "How to use `useEffect()` instead of `componentDidUpdate()`"
 ---
 

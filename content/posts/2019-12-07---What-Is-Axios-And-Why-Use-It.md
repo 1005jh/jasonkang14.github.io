@@ -3,11 +3,10 @@ title: What Is Axios and Why Do You Use it?
 date: "2019-07-12T14:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/Axios explained"
+slug: "/posts/Axios-explained"
 category: "Axios"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
   - "axios"
   - "http"
   - "request"

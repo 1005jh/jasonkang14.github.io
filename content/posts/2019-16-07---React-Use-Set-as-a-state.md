@@ -3,14 +3,13 @@ title: React - Using Set as a State
 date: "2019-07-16T17:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/using set as a state"
+slug: "/posts/react/using-set-as-a-state"
 category: "React"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "REACT"
-  - "Set"
-  - "Array"
+  - "react"
+  - "set"
+  - "array"
 
 description: "How to use a 'set' as a state and update the state"
 ---

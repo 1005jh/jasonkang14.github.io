@@ -3,12 +3,12 @@ title: Advanced CSS [01] Changing Font Color/Weight/Size upon Mousemove
 date: "2019-06-28T20:56:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/Advanced CSS Change Font Mousemove"
+slug: "/posts/Advanced-CSS-Change-Font-Mousemove"
 category: "CSS"
 tags:
-  - "jQuery"
-  - "CSS"
-  - "JavaScript"
+  - "jquery"
+  - "css"
+  - "javascript"
 description: "Practicing Advanced CSS using jQuery"
 ---
 

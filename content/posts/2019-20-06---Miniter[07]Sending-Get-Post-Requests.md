@@ -3,13 +3,13 @@ title: Miniter[07]Sending Get/Post Requests
 date: "2019-06-20T21:56:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/Miniter Sending Get Post Requests"
+slug: "/posts/Miniter-Sending-Get-Post-Requests"
 category: "JavaScript"
 tags:
-  - "JavaScript"
-  - "Django"
-  - "API"
-  - "HTML"
+  - "javascript"
+  - "django"
+  - "api"
+  - "html"
 description: "Sending a post request to a locally created API to build log-in, sign-up, and making tweets."
 ---
 

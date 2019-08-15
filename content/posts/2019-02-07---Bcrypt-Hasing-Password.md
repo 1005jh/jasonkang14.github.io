@@ -7,10 +7,10 @@ slug: "/posts/Bcrypt-Signup-Function-using-hashpw"
 category: "Brcypt"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "Bcrypt"
-  - "Python"
-  - "Django"
+  - "bcrypt"
+  - "python"
+  - "django"
+  - "hasing"
 description: "Implementing Signup using Django and Bcrypt"
 ---
 

@@ -3,19 +3,18 @@ title: Miniter[02] Events
 date: "2019-06-06T11:50:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/Miniter Events/"
+slug: "/posts/Miniter-Events/"
 category: "DOM"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
   - "DOM"
   - "event"
-  - "JavaScript"
-  - "HTML/CSS"
+  - "javascript"
+  - "html"
+  - "css"
   - "keyup"
   - "onclick"
   - "click"
-  - "event.stopPropagation"
 description: "How to set events in attempt to make a mini-version of Twitter."
 ---
 

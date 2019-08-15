@@ -7,11 +7,10 @@ slug: "/posts/JWT-Token-returned-upon-login"
 category: "JWT"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "Bcrypt"
-  - "Python"
-  - "Django"
-  - "JWT"
+  - "bcrypt"
+  - "python"
+  - "django"
+  - "jwt"
 description: "Implementing Authentication using JWT"
 ---
 

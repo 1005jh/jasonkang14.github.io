@@ -3,15 +3,14 @@ title: JWT Token for a Login Decorator
 date: "2019-07-05T19:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/JWT Token for a login decorator"
+slug: "/posts/JWT-Token-for-a-login-decorator"
 category: "JWT"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "Bcrypt"
-  - "Python"
-  - "Django"
-  - "JWT"
+  - "bcrypt"
+  - "python"
+  - "django"
+  - "jwt"
   - "decorator"
 description: "Implementing Authentication using JWT"
 ---

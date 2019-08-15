@@ -3,12 +3,12 @@ title: React[04]Remaking Miniter Using React IV - Handling Events
 date: "2019-06-25T17:56:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/React Remaking Miniter Using React"
+slug: "/posts/React-Remaking-Miniter-Using-React-part-four"
 category: "React"
 tags:
-  - "React"
-  - "CSS"
-  - "JavaScript"
+  - "react"
+  - "css"
+  - "javascript"
 description: "Remaking Miniter Using React"
 ---
 

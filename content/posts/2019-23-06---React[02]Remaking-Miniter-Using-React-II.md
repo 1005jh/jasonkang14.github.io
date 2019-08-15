@@ -3,12 +3,12 @@ title: React[02] Remaking Miniter Using React II - Components and Props
 date: "2019-06-23T14:56:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/React Remaking Miniter Using React"
+slug: "/posts/React-Remaking-Miniter-Using-React-part-two"
 category: "React"
 tags:
-  - "React"
-  - "CSS"
-  - "JavaScript"
+  - "react"
+  - "css"
+  - "javascript"
 description: "Remaking Miniter Using React"
 ---
 

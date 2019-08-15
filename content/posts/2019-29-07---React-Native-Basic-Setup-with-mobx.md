@@ -3,14 +3,13 @@ title: React Native - Basic Setup with MobX
 date: "2019-07-29T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/reactnative/basic setup"
+slug: "/posts/reactnative/basic-setup"
 category: "React Native"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "React Native"
-  - "Setup"
-  - "MobX"
+  - "reactnative"
+  - "setup"
+  - "mobx"
 
 description: "How to set up a React Native project with MobX"
 ---

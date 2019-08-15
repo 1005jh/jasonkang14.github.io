@@ -3,13 +3,12 @@ title: How to import local mysql databases to AWS mysql databases
 date: "2019-07-10T15:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/How to import local mysql databases to AWS mysql databases"
+slug: "/posts/How-to-import-local-mysql-databases-to-AWS-mysql databases"
 category: "mysql"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
   - "mysql"
-  - "AWS"
+  - "aws"
   - "database"
 description: "How to import local mysql databases to AWS mysql databases"
 ---

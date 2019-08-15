@@ -7,8 +7,8 @@ slug: "/posts/React-Hooks-avoid-infinite-loops"
 category: "React"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "React"
+  - "react"
+  - "reacthooks"
 description: "How to avoid potential infinite loops of while using useEffect."
 ---
 

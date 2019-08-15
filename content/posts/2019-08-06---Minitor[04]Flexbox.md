@@ -3,13 +3,12 @@ title: Miniter[04] Flexbox
 date: "2019-06-08T20:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/Minitor Flexbox"
+slug: "/posts/Minitor-Flexbox"
 category: "CSS"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "HTML"
-  - "CSS"
+  - "html"
+  - "css"
   - "flex"
 description: "Use of flexbox in attempt to make a mini-version of Twitter."
 ---

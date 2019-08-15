@@ -7,10 +7,10 @@ slug: "/posts/React-Native-Facebook-Login-Front-End"
 category: "React Native"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "React Native"
-  - "Facebook"
-  - "Social Login"
+  - "reactnative"
+  - "facebook"
+  - "sociallogin"
+  - "ios"
 description: "How to implement Facebook Login using React Native."
 ---
 

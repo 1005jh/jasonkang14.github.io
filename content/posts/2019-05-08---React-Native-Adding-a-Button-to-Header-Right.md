@@ -3,14 +3,13 @@ title: React Native - Header Right Button
 date: "2019-08-05T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/React Native Header Right Button"
+slug: "/posts/React-Native-Header-Right-Button"
 category: "React Native"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "React Native"
-  - "Button"
-  - "Header"
+  - "reactnative"
+  - "navigation"
+  - "setparam"
 description: "How to use a header right button in React Native"
 ---
 

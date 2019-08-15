@@ -3,12 +3,12 @@ title: Miniter[05]Making an API Using Django without REST framework I
 date: "2019-06-18T22:36:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/Miniter API sign up"
+slug: "/posts/Miniter-API-sign-up"
 category: "Django"
 tags:
-  - "Python"
-  - "Django"
-  - "API"
+  - "python"
+  - "django"
+  - "api"
 description: "Making an API for the Miniter project with Django without using the REST framework."
 ---
 

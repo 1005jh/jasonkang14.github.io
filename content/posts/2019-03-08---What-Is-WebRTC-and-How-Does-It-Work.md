@@ -7,8 +7,7 @@ slug: "/posts/webrtc-explained"
 category: "webrtc"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "WebRTC"
+  - "webrtc"
 description: "Basics of WebRTC Explained"
 ---
 

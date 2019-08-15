@@ -7,11 +7,10 @@ slug: "/posts/Request-to-Server-using-MobX"
 category: "MobX"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "React Native"
-  - "Facebook"
-  - "Social Login"
-  - "MobX"
+  - "reactnative"
+  - "facebook"
+  - "socialogin"
+  - "mobx"
 description: "How to send a request to the server via MobX"
 ---
 

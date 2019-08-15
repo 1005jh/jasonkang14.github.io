@@ -6,10 +6,10 @@ draft: false
 slug: "/posts/AdvancedCSS/Animating Underlines"
 category: "SASS"
 tags:
-  - "SASS"
-  - "CSS"
-  - "JavaScript"
-  - "React"
+  - "sass"
+  - "css"
+  - "javascript"
+  - "react"
 description: "Practicing Advanced CSS using SASS"
 ---
 

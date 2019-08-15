@@ -3,12 +3,11 @@ title: Login Decorator
 date: "2019-07-11T20:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/How to implement a login decorator"
+slug: "/posts/How-to-implement-a-login-decorator"
 category: "Python"
 tags:
   - "WeCode"
-  - "Coding Bootcamp"
-  - "login decorator"
+  - "login"
   - "decorator"
 description: "How to implement a login decorator"
 ---

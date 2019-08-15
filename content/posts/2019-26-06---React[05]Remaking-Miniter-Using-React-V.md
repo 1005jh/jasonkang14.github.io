@@ -3,12 +3,12 @@ title: React[05]Remaking Miniter Using React V - List and Keys
 date: "2019-06-26T20:56:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/React Remaking Miniter Using React"
+slug: "/posts/React Remaking-Miniter-Using-React-part-five"
 category: "React"
 tags:
-  - "React"
-  - "CSS"
-  - "JavaScript"
+  - "react"
+  - "css"
+  - "javascript"
 description: "Remaking Miniter Using React"
 ---
 

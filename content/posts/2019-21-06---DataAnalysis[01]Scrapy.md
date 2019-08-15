@@ -1,14 +1,14 @@
 ---
-title: Data Analysis[01] Data Crawling Using Scrapy
+title: Data Crawling Using Scrapy
 date: "2019-06-21T19:56:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/DataAnalysis Scrapy"
-category: "Python"
+slug: "/posts/DataAnalysis-Scrapy"
+category: "scrapy"
 tags:
-  - "Python"
-  - "Scrapy"
-  - "Data Analysis"
+  - "python"
+  - "scrapy"
+  - "dataanalysis"
 description: "Data Analysis project using Scrapy and Luigi"
 ---
 
