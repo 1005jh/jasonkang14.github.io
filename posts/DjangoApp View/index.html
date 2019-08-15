@@ -50,79 +50,79 @@
 
         gtag('config', 'UA-73379983-2', {"send_page_view":false});
       }
-      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><title data-react-helmet="true">Django App[04] View - Byeongjin Jason Kang</title><meta data-react-helmet="true" name="description" content="Following a Django tutorial on djangoproject.com to create a django app."/><meta data-react-helmet="true" property="og:site_name" content="Django App[04] View - Byeongjin Jason Kang"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Django App[04] View - Byeongjin Jason Kang"/><link as="script" rel="preload" href="/webpack-runtime-a6a28a99d1618dd6e9c1.js"/><link as="script" rel="preload" href="/app-0c3a8af63108b10198fd.js"/><link as="script" rel="preload" href="/styles-8b171e1c6e031467de64.js"/><link as="script" rel="preload" href="/1-555dcff30d49353f436a.js"/><link as="script" rel="preload" href="/2-9da65bbaa5aeb83094b6.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-bbdb97108426ff0637b8.js"/><link as="fetch" rel="preload" href="/page-data/posts/DjangoApp View/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">Django App[04] View</h1><div class="Content-module--content__body--2TrQ-"><h4 id="view--a-type-of-web-page-in-a-django-application-that-generally-servers-a-specific-function-and-a-specific-template"><a href="#view--a-type-of-web-page-in-a-django-application-that-generally-servers-a-specific-function-and-a-specific-template" aria-label="view  a type of web page in a django application that generally servers a specific function and a specific template permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>view : a type of Web page in a Django application that generally servers a specific function and a specific template.</h4>
-<h1 id="1-writing-a-view"><a href="#1-writing-a-view" aria-label="1 writing a view permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Writing a View</h1>
-<ul>
-<li>web pages and other content are delivered by views</li>
-<li>each view is represented by a simple Python function: Django chooses a view by examining the URL that’s requested.</li>
-<li>but it doesn’t examine the entire URL, it looks for just enough information to display the requested web page</li>
-</ul>
-<h4 id="example-request-polls34"><a href="#example-request-polls34" aria-label="example request polls34 permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example: request /polls/34</h4>
-<ol>
-<li>loads <code class="language-text">mysite.urls.py</code></li>
-<li>finds the variable named <code class="language-text">urlpatterns</code></li>
-<li>traverses the patterns in order</li>
-<li>finds the match at <code class="language-text">polls/</code></li>
-<li>strips off the matching text and sends the remianing text to the “polls.urls”</li>
-<li>matches <code class="language-text">&lt;int:question_id&gt;/</code></li>
-<li>results in a call to the <code class="language-text">detail()</code> like below</li>
-</ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">deetail(request=&lt;HttpRequest object&gt;, question_id=34)</code></pre></div>
-<ul>
-<li>using angle brakets captures part of the URL and sends it as a keyword argument to the view function</li>
-<li><code class="language-text">:question_id&gt;</code> part of the string defines the name that will be used to idenfity the matched pattern</li>
-<li><code class="language-text">&lt;int:</code> part is a converter that determines what patterns should match this part of the URL path</li>
-</ul>
-<h1 id="2-writing-a-view-that-does-something"><a href="#2-writing-a-view-that-does-something" aria-label="2 writing a view that does something permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Writing a View That Does Something</h1>
-<h4 id="each-view-is-responsible-for-doing-one-of-two-things"><a href="#each-view-is-responsible-for-doing-one-of-two-things" aria-label="each view is responsible for doing one of two things permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Each view is responsible for doing one of two things</h4>
-<ol>
-<li>returning an <code class="language-text">HttpResponse</code> object containing the content for the requested page</li>
-<li>raising an exception such as <code class="language-text">Http404</code></li>
-</ol>
-<h5 id="a-shortcut-render"><a href="#a-shortcut-render" aria-label="a shortcut render permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A shortcut: <code class="language-text">render()</code></h5>
-<p>no need to import <code class="language-text">loader</code> and <code class="language-text">HttpResponse</code></p>
-<ul>
-<li>the <code class="language-text">render()</code> function takes the request object as its first argument, a template name as its second argument and a dictionary as its optional argument</li>
-</ul>
-<h1 id="3-raising-a-404-error"><a href="#3-raising-a-404-error" aria-label="3 raising a 404 error permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Raising a 404 Error</h1>
-<ul>
-<li>raises an exception if a requested id does not exist.</li>
-<li>use <code class="language-text">get()</code> and raise <code class="language-text">Http404</code> if the object does not exist. —the object created in detail.html, which means that there is no question made</li>
-<li><code class="language-text">The get_object_or_404()</code> function</li>
-<li>takes a Django model as its first argument and an arbitrary number of keyword arguments</li>
-<li>passes to the get() function of the model’s manager.</li>
-<li>raises Http404 if the object doesn’t exist.</li>
-</ul>
-<h1 id="4-use-the-template-system"><a href="#4-use-the-template-system" aria-label="4 use the template system permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Use the template system</h1>
-<ul>
-<li>The template system uses dot-lookup syntax to access variable attributes.</li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">## template/detail.html
+      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><title data-react-helmet="true">Django App[05] Form - Byeongjin Jason Kang</title><meta data-react-helmet="true" name="description" content="Following a Django tutorial on djangoproject.com to create a django app."/><meta data-react-helmet="true" property="og:site_name" content="Django App[05] Form - Byeongjin Jason Kang"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Django App[05] Form - Byeongjin Jason Kang"/><link as="script" rel="preload" href="/webpack-runtime-2814dc4bb18931e290ba.js"/><link as="script" rel="preload" href="/app-7910741993c343d4f46e.js"/><link as="script" rel="preload" href="/styles-3ae1e6b6e64083b869fd.js"/><link as="script" rel="preload" href="/1-555dcff30d49353f436a.js"/><link as="script" rel="preload" href="/2-9da65bbaa5aeb83094b6.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-6d2563126ccd96d0fabc.js"/><link as="fetch" rel="preload" href="/page-data/posts/DjangoApp View/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">Django App[05] Form</h1><div class="Content-module--content__body--2TrQ-"><h1 id="1-writing-a-simple-form"><a href="#1-writing-a-simple-form" aria-label="1 writing a simple form permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Writing a simple form</h1>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
 
-&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
-&lt;ul&gt;
+{% if error_message %}&lt;p&gt;&lt;strong&gt;{{ error_message }}&lt;/strong&gt;&lt;/p&gt;{% endif %}
+
+&lt;form action=&quot;{% url &#39;polls:vote&#39; question.id %}&quot; method=&quot;post&quot;&gt;
+{% csrf_token %}
 {% for choice in question.choice_set.all %}
-    &lt;li&gt;{{ choice.choice_text }}&lt;/li&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;choice&quot; id=&quot;choice{{ forloop.counter }}&quot; value=&quot;{{ choice.id }}&quot;&gt;
+    &lt;label for=&quot;choice{{ forloop.counter }}&quot;&gt;{{ choice.choice_text }}&lt;/label&gt;&lt;br&gt;
 {% endfor %}
-&lt;/ul&gt;</code></pre></div>
+&lt;input type=&quot;submit&quot; value=&quot;Vote&quot;&gt;
+&lt;/form&gt;</code></pre></div>
+<ol>
+<li>each question <code class="language-text">choice</code> displays a radio button</li>
+<li>the <code class="language-text">value</code> of each radio button is the associated question choice’s ID</li>
+<li>the <code class="language-text">name</code> of each radio button is <code class="language-text">choice</code></li>
+<li>when somebody selects one of the radio buttons to submit a form, it will send the <code class="language-text">POST</code> data <code class="language-text">choice=#</code> where # is the ID of the selected choice</li>
+</ol>
+<p>Using <code class="language-text">method=&quot;post&quot;</code> is important because the act of submitting this form will alter data server-side. (make sure not to use <code class="language-text">method=&quot;get&quot;</code>)</p>
 <ul>
-<li>first Django does a dictionary look-up to find the object question, and fails</li>
-<li>then it tries an attribute look-up, then succeeds</li>
-<li>if it fails the attribute look-up, it would try a list-index look-up</li>
+<li>always use <code class="language-text">method=&quot;post&quot;</code> when you create a form that alters data server-side</li>
 </ul>
-<p>Method-calling happens in the {% for %} loop: question.choice<em>set.all is interpreted as the Python code question.choice</em>set.all(), which returns an iterable of Choice objects and is suitable for use in the {% for %} tag.</p>
-<h1 id="5-removing-hardcoded-urls"><a href="#5-removing-hardcoded-urls" aria-label="5 removing hardcoded urls permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. Removing Hardcoded URLs</h1>
-<p><code class="language-text">index.html</code>is originally written as below</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;li&gt;&lt;a href=&quot;/polls/{{ question.id }}/&quot;&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;</code></pre></div>
-<p>However, this would cause a problem if there are many templates to work with because there would be a lot of templates for which you need to hardcode. Since you have defined the name argument in the <code class="language-text">path()</code> functions in the <code class="language-text">polls.urls</code> module, you can change the hard-coded part like below. Using {% url %} template tag</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;li&gt;&lt;a href=&quot;{% url &#39;detail&#39; question.id %}&quot;&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;</code></pre></div>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">## polls/urls.py
+<p><code class="language-text">forloop.counter</code> indicates how many times the <code class="language-text">for</code> tag has gone through the loop</p>
+<p><code class="language-text">{% csrf_token %}</code>: we need to worry about this</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">## views.py
 
-urlpatterns = [
-    path(&#39;&#39;, views.index, name=&#39;index&#39;),
-    path(&#39;&lt;int:question_id/&#39;, views.detail, name=&#39;detail&#39;),
-    path(&#39;&lt;int:question_id&gt;/results/&#39;, views.results, name=&#39;results&#39;),
-    path(&#39;specifics&lt;int:question_id&gt;/vote/&#39;, views.vote, name=&#39;vote&#39;),
-]
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
-## the &#39;name&#39; value as called by the {% url %} template tag</code></pre></div></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->18 Jun 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/python/">Python</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/django/">Django</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/view/">View</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/DjangoApp View";window.webpackCompilationHash="ee771c63184d4e951532";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-0c3a8af63108b10198fd.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-1595fd9bcd9902e26bdf.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-156f5c7d040ee6ef0c70.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-bcda0f092a8394d61934.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-260df0513803a9e2504c.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-bbdb97108426ff0637b8.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-9db083876410534088d9.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-66e93ea3a633a0f66387.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-48f200851f385d41f3db.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-7b19ca01e64d298dc4ef.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-bbdb97108426ff0637b8.js" async=""></script><script src="/2-9da65bbaa5aeb83094b6.js" async=""></script><script src="/1-555dcff30d49353f436a.js" async=""></script><script src="/styles-8b171e1c6e031467de64.js" async=""></script><script src="/app-0c3a8af63108b10198fd.js" async=""></script><script src="/webpack-runtime-a6a28a99d1618dd6e9c1.js" async=""></script></body></html>
+from .models import Choice, Question
+
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get)pk=request.POST[&#39;choice&#39;])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, &#39;polls/detail.html&#39;, {
+            &#39;question&#39;: question,
+            &#39;error_message&#39;: &quot;You didn&#39;t select a choice&quot;,
+        })
+    else:
+        selected_choice:votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse(&#39;polls:results&#39;, args=(question.id,)))</code></pre></div>
+<ol>
+<li><code class="language-text">request.POST</code>: a dictionary-like object that lets you access submitted data by key name</li>
+<li>contains all given HTTP POST parameters</li>
+<li><code class="language-text">request.POST[&#39;choice&#39;]</code> returns the ID of the selected choice as a string</li>
+<li>
+<p>its values are always strings</p>
+<ul>
+<li>Django provides <code class="language-text">request.GET</code> for accessing GET data in the same way</li>
+</ul>
+</li>
+<li><code class="language-text">request.POST[&#39;choice&#39;]</code> will raise <code class="language-text">KeyError</code> if choice wasn’t provided in POST data.</li>
+<li>checks for <code class="language-text">KeyError</code> and redisplays the question form with an error message</li>
+<li>
+<p>choice returns <code class="language-text">HttpReponseRedirect</code>, which takes a single argument: the URL to which the user will be redirected.</p>
+<ul>
+<li>always return <code class="language-text">HttpResponseRedirect</code> after successfully dealing with POST data</li>
+</ul>
+</li>
+<li>using the <code class="language-text">reverse()</code> function in the <code class="language-text">HttpResponseRedirect</code> constructor, which helps avoid having to hardcode a URL in the view function.</li>
+</ol>
+<h1 id="2-amend-views"><a href="#2-amend-views" aria-label="2 amend views permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Amend Views</h1>
+<ul>
+<li>the shorter the code, the better it is</li>
+</ul>
+<p><code class="language-text">ListView</code> and <code class="language-text">Detail View</code> to abstract the concepts of “display a list of objects” and “display a detail page for a particular type of object”</p>
+<ul>
+<li>each generic view needs to know what model it will be acting upon. this is provided using the <code class="language-text">model</code> attribute</li>
+<li>the <code class="language-text">DetailView</code> generic view expects the primary key value captured from the URL to be called <code class="language-text">pk</code>, so <code class="language-text">question_id</code> has been changed to <code class="language-text">pk</code></li>
+</ul>
+<p><code class="language-text">DetailView</code> and <code class="language-text">ListView</code> generic views use a default template called <code class="language-text">&lt;app name&gt;/&lt;model name&gt;_list.html</code> like <code class="language-text">polls/index.html</code></p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->18 Jun 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/python/">Python</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/django/">Django</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/form/">form</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/DjangoApp View";window.webpackCompilationHash="fb14c02cc419766af900";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-7910741993c343d4f46e.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-1595fd9bcd9902e26bdf.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-481e230f64ecc0ceedb0.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-bcda0f092a8394d61934.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-260df0513803a9e2504c.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-d03e19b106d2f9a6c33c.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-6d2563126ccd96d0fabc.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-b3da9c3d2d23faba6532.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-6a4d24b9b55822e8dde3.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-81fa824af786f348acf9.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-6d2563126ccd96d0fabc.js" async=""></script><script src="/2-9da65bbaa5aeb83094b6.js" async=""></script><script src="/1-555dcff30d49353f436a.js" async=""></script><script src="/styles-3ae1e6b6e64083b869fd.js" async=""></script><script src="/app-7910741993c343d4f46e.js" async=""></script><script src="/webpack-runtime-2814dc4bb18931e290ba.js" async=""></script></body></html>
