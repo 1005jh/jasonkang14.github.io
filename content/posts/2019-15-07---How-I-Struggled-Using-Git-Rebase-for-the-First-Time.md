@@ -7,8 +7,6 @@ slug: "/posts/git-rebase"
 category: "GIT"
 tags:
   - "git"
-  - "rebase"
-  - "gitrebase"
 description: "How I overcame my confusion using git rebase"
 ---
 
