@@ -22,12 +22,12 @@ const Sidebar = ({ isIndex }: Props) => {
         <Author author={author} isIndex={isIndex} />
         <Menu menu={menu} />
         <Contacts contacts={author.contacts} />
-        <Copyright copyright={copyright} />
         <Tags
           tags={tags.map((tag) => tag.fieldValue)}
           tagSlugs={tags.map((tag) => `/tag/${tag.fieldValue}`)}
           inSidebar
         />
+        <Copyright copyright={copyright} />
       </div>
     </div>
   );
