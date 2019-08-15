@@ -4,7 +4,7 @@ date: "2019-07-29T22:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/reactnative/basic setup"
-category: "REACTNATIVE"
+category: "React Native"
 tags:
   - "WeCode"
   - "Coding Bootcamp"
