@@ -60,7 +60,7 @@ According to the official React docs, <code class="language-text">Context</code>
 </ul>
 </li>
 </ol>
-<p>so <code class="language-text">Context</code> can be used instead of <code class="language-text">Redux</code> or <code class="language-text">MobX</code> unless you are familiar with them or you choose to use an outside library.</p>
+<p>so <code class="language-text">Context</code> can be used instead of <code class="language-text">Redux</code> or <code class="language-text">MobX</code> unless you are familiar with them or you choose to use an outside library. I am familiar with <code class="language-text">MobX</code>, so I tried my best to compare the two, so hope that helps.</p>
 <p>If you don’t use <code class="language-text">Context</code> when you pass down <code class="language-text">props</code> to a deeply nexted component, you can just create a separate component for the specific <code class="language-text">props</code> instead. So make sure that using <code class="language-text">Context</code> is more efficient than any other methods that you can think of.</p>
 <ol start="2">
 <li>
@@ -68,6 +68,7 @@ According to the official React docs, <code class="language-text">Context</code>
 <code class="language-text">const MyContext = React.createContext(defaultValue);</code></p>
 <ul>
 <li>This creates a <code class="language-text">Context</code> object. And when React renders, the object will read the current context value from the closest matching <code class="language-text">Provider</code> above it in the tree.</li>
+<li>This is like an <code class="language-text">observable</code> in <code class="language-text">MobX</code>. The value/props that could be changed depending on events and its changes should be monitored globally.</li>
 <li>The <code class="language-text">defaultValue</code> argument is only used when a component does not have a matching <code class="language-text">Provider</code> above it in the tree. So <code class="language-text">defaultValue</code> does not have to be set/determined all the time.</li>
 </ul>
 <p><code class="language-text">&lt;MyContext.Provider value={/* some value */}&gt;</code></p>
@@ -79,11 +80,13 @@ According to the official React docs, <code class="language-text">Context</code>
 <p><code class="language-text">Class.contextType</code></p>
 <ul>
 <li>lets you consume the nearest current value of that Context type using this.context.</li>
+<li>in <code class="language-text">MobX</code>, you can determine the type of <code class="language-text">observable</code> when you declare it for the first time. I think this is similar to that.</li>
 <li>this is associated with <code class="language-text">lifecycle</code> methods, but not to sure how to use it. I think I would have to use it myself in my code to fully understand it.</li>
 </ul>
 <p><code class="language-text">Context.Consumer</code></p>
 <ul>
 <li>A React component that subscribes to context changes. This lets you subscribe to a context within a function component.</li>
+<li>this is like an <code class="language-text">observer</code> in <code class="language-text">MobX</code>. <code class="language-text">Consumer</code> pretty much represents a component</li>
 <li><code class="language-text">Consumer</code> detects change of <code class="language-text">props</code> in <code class="language-text">Provider</code> and have <code class="language-text">React</code> render again.</li>
 </ul>
 </li>
