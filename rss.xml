@@ -1,4 +1,177 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 16 Aug 2019 03:02:01 GMT</lastBuildDate><item><title><![CDATA[React Lifecycle - Using getDerivedStateFromProps with React Native and MobX]]></title><description><![CDATA[How to use getDerivedStateFromProps instead of componentDidUpdate]]></description><link>https://jasonkang14.github.io/posts/react-life-cycle-get-derived-state-from-props-with-mobx</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react-life-cycle-get-derived-state-from-props-with-mobx</guid><pubDate>Wed, 14 Aug 2019 14:27:37 GMT</pubDate><content:encoded>&lt;p&gt;I am sure someone out there—or maybe you who are reading this post—has/have experienced infinite loop while trying to use &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate()&lt;/code&gt;. Or you might have experienced that &lt;code class=&quot;language-text&quot;&gt;this.props&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;prevProps&lt;/code&gt; turned out to be same, so your &lt;code class=&quot;language-text&quot;&gt;setState&lt;/code&gt; inside &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate()&lt;/code&gt; won’t trigger.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 28 Aug 2019 15:21:55 GMT</lastBuildDate><item><title><![CDATA[React - Context Explained]]></title><description><![CDATA[React Context Explained]]></description><link>https://jasonkang14.github.io/posts/react/react-advanced-guide-context-explained</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react/react-advanced-guide-context-explained</guid><pubDate>Tue, 27 Aug 2019 22:27:37 GMT</pubDate><content:encoded>&lt;h2 id=&quot;this-post-is-a-summarized-version-of-react-doc&quot;&gt;&lt;a href=&quot;#this-post-is-a-summarized-version-of-react-doc&quot; aria-label=&quot;this post is a summarized version of react doc permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;This post is a summarized version of &lt;a href=&quot;https://reactjs.org/docs/context.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;react doc&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;When to use it
+According to the official React docs, &lt;code class=&quot;language-text&quot;&gt;Context&lt;/code&gt; is designed to share data that can be considered “global” for a tree of React components.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you use &lt;code class=&quot;language-text&quot;&gt;Context&lt;/code&gt; when you have to pass &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; to a grandchild-of-a-grandchild-of-a-grandchild component&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;so &lt;code class=&quot;language-text&quot;&gt;Context&lt;/code&gt; can be used instead of &lt;code class=&quot;language-text&quot;&gt;Redux&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;MobX&lt;/code&gt; unless you are familiar with them or you choose to use an outside library.&lt;/p&gt;
+&lt;p&gt;If you don’t use &lt;code class=&quot;language-text&quot;&gt;Context&lt;/code&gt; when you pass down &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; to a deeply nexted component, you can just create a separate component for the specific &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; instead. So make sure that using &lt;code class=&quot;language-text&quot;&gt;Context&lt;/code&gt; is more efficient than any other methods that you can think of.&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;How to use it
+&lt;code class=&quot;language-text&quot;&gt;const MyContext = React.createContext(defaultValue);&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This creates a &lt;code class=&quot;language-text&quot;&gt;Context&lt;/code&gt; object. And when React renders, the object will read the current context value from the closest matching &lt;code class=&quot;language-text&quot;&gt;Provider&lt;/code&gt; above it in the tree.&lt;/li&gt;
+&lt;li&gt;The &lt;code class=&quot;language-text&quot;&gt;defaultValue&lt;/code&gt; argument is only used when a component does not have a matching &lt;code class=&quot;language-text&quot;&gt;Provider&lt;/code&gt; above it in the tree. So &lt;code class=&quot;language-text&quot;&gt;defaultValue&lt;/code&gt; does not have to be set/determined all the time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;MyContext.Provider value={/* some value */}&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.&lt;/li&gt;
+&lt;li&gt;so I think &lt;code class=&quot;language-text&quot;&gt;Provider&lt;/code&gt; is something like a &lt;code class=&quot;language-text&quot;&gt;Redux&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;MobX&lt;/code&gt; store that handles events associated with such changes.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Provider&lt;/code&gt; accepts a &lt;code class=&quot;language-text&quot;&gt;value&lt;/code&gt; props and can provide such values to many consumers. This is similar to how many components can access change of &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;states&lt;/code&gt; in a &lt;code class=&quot;language-text&quot;&gt;Redux/MobX&lt;/code&gt; store.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Class.contextType&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;lets you consume the nearest current value of that Context type using this.context.&lt;/li&gt;
+&lt;li&gt;this is associated with &lt;code class=&quot;language-text&quot;&gt;lifecycle&lt;/code&gt; methods, but not to sure how to use it. I think I would have to use it myself in my code to fully understand it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Context.Consumer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A React component that subscribes to context changes. This lets you subscribe to a context within a function component.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Consumer&lt;/code&gt; detects change of &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; in &lt;code class=&quot;language-text&quot;&gt;Provider&lt;/code&gt; and have &lt;code class=&quot;language-text&quot;&gt;React&lt;/code&gt; render again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[WebRTC[03] - Mediasoup Flow Explained]]></title><description><![CDATA[Mediasoup Flow explained]]></description><link>https://jasonkang14.github.io/posts/react/webrtc-Mediasoup-flow-explained</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react/webrtc-Mediasoup-flow-explained</guid><pubDate>Tue, 20 Aug 2019 22:27:37 GMT</pubDate><content:encoded>&lt;h3 id=&quot;mediasoup-is-an-sfuselective-forwarding-unit-which-receives-audio-and-video-streams-from-endpoints-and-relays-them-to-everyone-else&quot;&gt;&lt;a href=&quot;#mediasoup-is-an-sfuselective-forwarding-unit-which-receives-audio-and-video-streams-from-endpoints-and-relays-them-to-everyone-else&quot; aria-label=&quot;mediasoup is an sfuselective forwarding unit which receives audio and video streams from endpoints and relays them to everyone else permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Mediasoup is an SFU(Selective Forwarding Unit) which receives audio and video streams from endpoints and relays them to everyone else&lt;/h3&gt;
+&lt;h4 id=&quot;some-of-code-examples-are-mine-and-others-are-from-mediasoup-demo&quot;&gt;&lt;a href=&quot;#some-of-code-examples-are-mine-and-others-are-from-mediasoup-demo&quot; aria-label=&quot;some of code examples are mine and others are from mediasoup demo permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Some of code examples are mine, and others are from &lt;a href=&quot;https://https://github.com/versatica/mediasoup-demo&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;mediasoup-demo&lt;/a&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Device Loading&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;device loading requires routerRtpCapabilities, which must be retrieved via a Mediasoup server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;//server.js
+
+const rtpCapabilities = mediasoup.getSupportedRtpCapabilities();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;or it could be like below according to a demo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;//server.js
+
+return mediasoupRouter.rtpCapabilities&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;//client.js
+
+    device = new mediasoupClient.Device({ Handler: &amp;quot;ReactNative&amp;quot; });
+        await device.load({ routerRtpCapabilities });
+        console.log(&amp;quot;device loaded: &amp;quot;, device);
+
+        if (device.canProduce(&amp;quot;audio&amp;quot;)) {
+            this.produce();
+        }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is what a device looks like when it’s succesfully loaded
+&lt;img src=&quot;https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/69357284_10219663912889269_8411179144062173184_o.jpg?_nc_cat=108&amp;#x26;_nc_oc=AQnCgsV5iFz3uHOq6rw8QZ33wdk0mDWECQieZm_SYbv2mbIq6HKivgQChGidEGcDiHU&amp;#x26;_nc_ht=scontent-icn1-1.xx&amp;#x26;oh=6f04e6fc083582a0c1aeca5edce97100&amp;#x26;oe=5DCCFBF9&quot; alt=&quot;loaded device&quot;&gt;&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Creating Transports&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you gotta create a &lt;code class=&quot;language-text&quot;&gt;sendTransport&lt;/code&gt; and a &lt;code class=&quot;language-text&quot;&gt;recvTransport&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;transports are used to send/receive media. and they are created before wishing to send/receive media&lt;/li&gt;
+&lt;li&gt;first you create a &lt;code class=&quot;language-text&quot;&gt;sendTransport&lt;/code&gt; to send media
+&lt;code class=&quot;language-text&quot;&gt;createWebRtcTransport { forceTcp: false, producing: true, consuming: false }&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const transportInfo = await this._protoo.request(
+     &amp;#39;createWebRtcTransport&amp;#39;,
+     {
+       forceTcp: this._forceTcp,
+       producing: true,
+       consuming: false,
+       sctpCapabilities: this._useDataChannel
+         ? this._mediasoupDevice.sctpCapabilities
+         : undefined,
+     },
+   );
+
+const {
+   id,
+   iceParameters,
+   iceCandidates,
+   dtlsParameters,
+   sctpParameters,
+} = transportInfo;
+
+this._sendTransport = this._mediasoupDevice.createSendTransport(
+   {
+    id,
+    iceParameters,
+    iceCandidates,
+    dtlsParameters,
+    sctpParameters,
+   },
+);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;set up &lt;code class=&quot;language-text&quot;&gt;connect&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;produce&lt;/code&gt; events for &lt;code class=&quot;language-text&quot;&gt;sendTransport&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;this.sendTransport.on(&amp;quot;connect&amp;quot;, ({ dtlsParameters })  =&amp;gt; {
+                console.log(&amp;quot;send connect triggered&amp;quot;);
+                socket.emit(&amp;quot;connectWebRTCTransport&amp;quot;, {
+                    transportId: sendTransport.id,
+                    dtlsParameters: dtlsParameters
+                })
+            })
+
+            this.sendTransport.on(&amp;quot;produce&amp;quot;, async ({ producer}) =&amp;gt; {
+                console.log(&amp;quot;send produce triggered&amp;quot;);
+                socket.emit(&amp;quot;produce&amp;quot;, {
+                    transportId: sendTransport.id,
+                    kind: &amp;quot;audio&amp;quot;,
+                    rtpParameters: producer.rtpParameters,
+                    appData: producer.appData
+                })
+            })&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;you don’t have to wait for a signal from another producer before creating a &lt;code class=&quot;language-text&quot;&gt;recvTransport&lt;/code&gt;. just do it right away.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;createWebRtcTransport { forceTcp: false, producing: false, consuming: true }&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const transportInfo = await this._protoo.request(
+       &amp;#39;createWebRtcTransport&amp;#39;,
+       {
+         forceTcp: this._forceTcp,
+         producing: false,
+         consuming: true,
+         sctpCapabilities: this._useDataChannel
+           ? this._mediasoupDevice.sctpCapabilities
+           : undefined,
+       },
+     );
+
+     const {
+       id,
+       iceParameters,
+       iceCandidates,
+       dtlsParameters,
+       sctpParameters,
+     } = transportInfo;
+
+     this._recvTransport = this._mediasoupDevice.createRecvTransport(
+       {
+         id,
+         iceParameters,
+         iceCandidates,
+         dtlsParameters,
+         sctpParameters,
+       },
+     );&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[WebRTC[02] - SDP]]></title><description><![CDATA[SDP explained]]></description><link>https://jasonkang14.github.io/posts/react/webrtc-SDP-explained</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react/webrtc-SDP-explained</guid><pubDate>Mon, 19 Aug 2019 22:27:37 GMT</pubDate><content:encoded>&lt;h2 id=&quot;sdp-stands-for-session-description-protocol&quot;&gt;&lt;a href=&quot;#sdp-stands-for-session-description-protocol&quot; aria-label=&quot;sdp stands for session description protocol permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;SDP stands for Session Description Protocol.&lt;/h2&gt;
+&lt;p&gt;SDP is information created via &lt;code class=&quot;language-text&quot;&gt;createOffer()&lt;/code&gt; and/or &lt;code class=&quot;language-text&quot;&gt;createAnswer()&lt;/code&gt;. SDP is used to provide a callee with information about caller and vice versa.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;describes multimedia sessions, which can contain audio, video, whiteboard, fax, modem, and other streams.&lt;/li&gt;
+&lt;li&gt;Provides a general purpose, standard representation to describe various aspects of multimedia session such as media capabilities, transport addresses and related matadata in a transport manner&lt;/li&gt;
+&lt;li&gt;Used for session announcement, session invitation and parameter negotiation&lt;/li&gt;
+&lt;li&gt;Used in the context of Session Initiation Protocol, Rea-time Transport Protocol, and Real-time Streaming Protocol applications.&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[WebRTC Flow[01] - createOffer() and createAnswer()]]></title><description><![CDATA[WebRTC flow explained]]></description><link>https://jasonkang14.github.io/posts/react/webrtc-create-offer-create-answer</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react/webrtc-create-offer-create-answer</guid><pubDate>Fri, 16 Aug 2019 17:27:37 GMT</pubDate><content:encoded>&lt;h2 id=&quot;this-post-is-about-using-webrtc-in-react-native&quot;&gt;&lt;a href=&quot;#this-post-is-about-using-webrtc-in-react-native&quot; aria-label=&quot;this post is about using webrtc in react native permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;This post is about using WebRTC in React Native.&lt;/h2&gt;
+&lt;p&gt;make sure to install &lt;code class=&quot;language-text&quot;&gt;react-native-webrtc&lt;/code&gt; versions 1.75 or above &lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;npm install --save react-native-webrtc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And then you have to import. &lt;br&gt;
+&lt;code class=&quot;language-text&quot;&gt;import { RTCPeerConnection } from &amp;#39;react-native-webrtc&amp;#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now create a caller/callee&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;const caller = new RTCPeerConnection({ offerOptions })&lt;/code&gt;
+&lt;code class=&quot;language-text&quot;&gt;offerOptions&lt;/code&gt; represent which source of data you are going to offer: either audio or video, or could be both.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React Lifecycle - Using getDerivedStateFromProps with React Native and MobX]]></title><description><![CDATA[How to use getDerivedStateFromProps instead of componentDidUpdate]]></description><link>https://jasonkang14.github.io/posts/react-life-cycle-get-derived-state-from-props-with-mobx</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react-life-cycle-get-derived-state-from-props-with-mobx</guid><pubDate>Wed, 14 Aug 2019 14:27:37 GMT</pubDate><content:encoded>&lt;p&gt;I am sure someone out there—or maybe you who are reading this post—has/have experienced infinite loop while trying to use &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate()&lt;/code&gt;. Or you might have experienced that &lt;code class=&quot;language-text&quot;&gt;this.props&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;prevProps&lt;/code&gt; turned out to be same, so your &lt;code class=&quot;language-text&quot;&gt;setState&lt;/code&gt; inside &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate()&lt;/code&gt; won’t trigger.&lt;/p&gt;
 &lt;p&gt;I personally struggled a lot with &lt;code class=&quot;language-text&quot;&gt;this.props&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;prevProps&lt;/code&gt; being equal, but couldn’t solve the problem. Adn the worst part was that it would work in some screens, but won’t in others.&lt;/p&gt;
 &lt;p&gt;The solution that I have found is using &lt;code class=&quot;language-text&quot;&gt;getDerivedStateFromProps()&lt;/code&gt;. While &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate()&lt;/code&gt; compares &lt;code class=&quot;language-text&quot;&gt;this.props&lt;/code&gt; with &lt;code class=&quot;language-text&quot;&gt;prevProps&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;this.state&lt;/code&gt; with &lt;code class=&quot;language-text&quot;&gt;prevState&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;getDerivedStateFromProps()&lt;/code&gt; compares &lt;code class=&quot;language-text&quot;&gt;this.props&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;this.state&lt;/code&gt; which are written as &lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt; respectively.&lt;/p&gt;
 &lt;p&gt;Look at my code below&lt;/p&gt;
