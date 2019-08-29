@@ -16,11 +16,12 @@ description: "React Context Explained"
 
 1. When to use it
    According to the official React docs, `Context` is designed to share data that can be considered “global” for a tree of React components.
+
    - you use `Context` when you have to pass `props` to a grandchild-of-a-grandchild-of-a-grandchild component
 
-so `Context` can be used instead of `Redux` or `MobX` unless you are familiar with them or you choose to use an outside library. I am familiar with `MobX`, so I tried my best to compare the two, so hope that helps.
+   - so `Context` can be used instead of `Redux` or `MobX` unless you are familiar with them or you choose to use an outside library. I am familiar with `MobX`, so I tried my best to compare the two, so hope that helps.
 
-If you don't use `Context` when you pass down `props` to a deeply nexted component, you can just create a separate component for the specific `props` instead. So make sure that using `Context` is more efficient than any other methods that you can think of.
+   - If you don't use `Context` when you pass down `props` to a deeply nexted component, you can just create a separate component for the specific `props` instead. So make sure that using `Context` is more efficient than any other methods that you can think of.
 
 2. How to use it
    `const MyContext = React.createContext(defaultValue);`
