@@ -3,7 +3,7 @@ title: WebRTC[02] - SDP
 date: "2019-08-19T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/webrtc-SDP-explained"
+slug: "/posts/webrtc/webrtc-SDP-explained"
 category: "webrtc"
 tags:
   - "webrtc"

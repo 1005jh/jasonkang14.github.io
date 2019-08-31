@@ -3,7 +3,7 @@ title: WebRTC Flow[01] - createOffer() and createAnswer()
 date: "2019-08-16T17:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/webrtc-create-offer-create-answer"
+slug: "/posts/webrtc/webrtc-create-offer-create-answer"
 category: "webrtc"
 tags:
   - "webrtc"

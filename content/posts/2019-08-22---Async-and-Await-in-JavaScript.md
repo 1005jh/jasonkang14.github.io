@@ -3,7 +3,7 @@ title: Async/Await in JavaScript
 date: "2019-08-22T18:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/Async-and-Await-in-JavaScript"
+slug: "/posts/javascript/Async-and-Await-in-JavaScript"
 category: "javascript"
 tags:
   - "javascript"

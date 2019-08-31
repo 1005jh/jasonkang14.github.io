@@ -3,7 +3,7 @@ title: WebRTC[03] - Mediasoup Flow Explained
 date: "2019-08-20T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/webrtc-Mediasoup-flow-explained"
+slug: "/posts/webrtc/webrtc-Mediasoup-flow-explained"
 category: "webrtc"
 tags:
   - "webrtc"

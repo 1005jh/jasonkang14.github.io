@@ -3,7 +3,7 @@ title: Asynchronous Programming in JavaScript
 date: "2019-08-21T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/Asynchronous-Programming-in-JavaScript"
+slug: "/posts/javascript/Asynchronous-Programming-in-JavaScript"
 category: "javascript"
 tags:
   - "javascript"

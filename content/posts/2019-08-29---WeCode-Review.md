@@ -3,7 +3,7 @@ title: 위코드 코딩 부트캠프 후기
 date: "2019-08-29T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/react/WeCode-Main-Course-Review"
+slug: "/posts/wecode/WeCode-Main-Course-Review"
 category: "wecode"
 tags:
   - "wecode"
