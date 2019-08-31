@@ -50,126 +50,47 @@
 
         gtag('config', 'UA-73379983-2', {"send_page_view":false});
       }
-      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><title data-react-helmet="true">WebRTC[03] - Mediasoup Flow Explained - Byeongjin Jason Kang</title><meta data-react-helmet="true" name="description" content="Mediasoup Flow explained"/><meta data-react-helmet="true" property="og:site_name" content="WebRTC[03] - Mediasoup Flow Explained - Byeongjin Jason Kang"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="WebRTC[03] - Mediasoup Flow Explained - Byeongjin Jason Kang"/><link as="script" rel="preload" href="/webpack-runtime-2d952c35983b9632af9c.js"/><link as="script" rel="preload" href="/app-b03fa7bdfd1620fabd73.js"/><link as="script" rel="preload" href="/styles-3d6f22b2b06d998bbd14.js"/><link as="script" rel="preload" href="/1-5c9d331f9ee981892385.js"/><link as="script" rel="preload" href="/2-27148cca0ecaa34c873d.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-a3626e06eca3293da074.js"/><link as="fetch" rel="preload" href="/page-data/posts/react/webrtc-Mediasoup-flow-explained/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">WebRTC[03] - Mediasoup Flow Explained</h1><div class="Content-module--content__body--2TrQ-"><h3 id="mediasoup-is-an-sfuselective-forwarding-unit-which-receives-audio-and-video-streams-from-endpoints-and-relays-them-to-everyone-else"><a href="#mediasoup-is-an-sfuselective-forwarding-unit-which-receives-audio-and-video-streams-from-endpoints-and-relays-them-to-everyone-else" aria-label="mediasoup is an sfuselective forwarding unit which receives audio and video streams from endpoints and relays them to everyone else permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mediasoup is an SFU(Selective Forwarding Unit) which receives audio and video streams from endpoints and relays them to everyone else</h3>
-<h4 id="some-of-code-examples-are-mine-and-others-are-from-mediasoup-demo"><a href="#some-of-code-examples-are-mine-and-others-are-from-mediasoup-demo" aria-label="some of code examples are mine and others are from mediasoup demo permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Some of code examples are mine, and others are from <a href="https://https://github.com/versatica/mediasoup-demo" target="_blank" rel="nofollow noopener noreferrer">mediasoup-demo</a></h4>
+      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=c7357e4eae704709bed9bb23f7ac9c00"/><title data-react-helmet="true">WebRTC[03] - Mediasoup Flow Explained - Byeongjin Jason Kang</title><meta data-react-helmet="true" name="description" content="Mediasoup Flow explained"/><meta data-react-helmet="true" property="og:site_name" content="WebRTC[03] - Mediasoup Flow Explained - Byeongjin Jason Kang"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="WebRTC[03] - Mediasoup Flow Explained - Byeongjin Jason Kang"/><link as="script" rel="preload" href="/webpack-runtime-353ce0e9fc59673651a6.js"/><link as="script" rel="preload" href="/app-4e94794d7a681d471755.js"/><link as="script" rel="preload" href="/styles-7e120d11eb55bc447d23.js"/><link as="script" rel="preload" href="/1-5c9d331f9ee981892385.js"/><link as="script" rel="preload" href="/2-27148cca0ecaa34c873d.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-2476c058b4801556eb8b.js"/><link as="fetch" rel="preload" href="/page-data/posts/react/webrtc-Mediasoup-flow-explained/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">WebRTC[03] - Mediasoup Flow Explained</h1><div class="Content-module--content__body--2TrQ-"><h3 id="mediasoup-is-an-sfuselective-forwarding-unit-which-receives-audio-and-video-streams-from-endpoints-and-relays-them-to-everyone-else"><a href="#mediasoup-is-an-sfuselective-forwarding-unit-which-receives-audio-and-video-streams-from-endpoints-and-relays-them-to-everyone-else" aria-label="mediasoup is an sfuselective forwarding unit which receives audio and video streams from endpoints and relays them to everyone else permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mediasoup is an SFU(Selective Forwarding Unit) which receives audio and video streams from endpoints and relays them to everyone else</h3>
 <ol>
 <li>
 <p>Device Loading</p>
 <ul>
-<li>device loading requires routerRtpCapabilities, which must be retrieved via a Mediasoup server</li>
+<li>retrieve the <code class="language-text">rtpCapabilities</code> of a router from the server and uses the information to load device</li>
 </ul>
 </li>
-</ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">//server.js
-
-const rtpCapabilities = mediasoupRouter.rtpCapabilities();</code></pre></div>
-<ul>
-<li>or it could be like below according to a demo.</li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">//server.js
-
-return mediasoupRouter.rtpCapabilities</code></pre></div>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">//client.js
-
-    device = new mediasoupClient.Device({ Handler: &quot;ReactNative&quot; });
-        await device.load({ routerRtpCapabilities });
-        console.log(&quot;device loaded: &quot;, device);
-
-        if (device.canProduce(&quot;audio&quot;)) {
-            this.produce();
-        }</code></pre></div>
-<ul>
-<li>This is what a device looks like when it’s succesfully loaded
-<img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/69357284_10219663912889269_8411179144062173184_o.jpg?_nc_cat=108&#x26;_nc_oc=AQnCgsV5iFz3uHOq6rw8QZ33wdk0mDWECQieZm_SYbv2mbIq6HKivgQChGidEGcDiHU&#x26;_nc_ht=scontent-icn1-1.xx&#x26;oh=6f04e6fc083582a0c1aeca5edce97100&#x26;oe=5DCCFBF9" alt="loaded device"></li>
 <li>
-<p>Creating Transports</p>
+<p>Create WebRTCTransport</p>
 <ul>
-<li>you gotta create a <code class="language-text">sendTransport</code> and a <code class="language-text">recvTransport</code></li>
-<li>transports are used to send/receive media. and they are created before wishing to send/receive media</li>
-<li>first you create a <code class="language-text">sendTransport</code> to send media
-<code class="language-text">createWebRtcTransport { forceTcp: false, producing: true, consuming: false }</code></li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const transportInfo = await this._protoo.request(
-     &#39;createWebRtcTransport&#39;,
-     {
-       forceTcp: this._forceTcp,
-       producing: true,
-       consuming: false,
-       sctpCapabilities: this._useDataChannel
-         ? this._mediasoupDevice.sctpCapabilities
-         : undefined,
-     },
-   );
-
-const {
-   id,
-   iceParameters,
-   iceCandidates,
-   dtlsParameters,
-   sctpParameters,
-} = transportInfo;
-
-this._sendTransport = this._mediasoupDevice.createSendTransport(
-   {
-    id,
-    iceParameters,
-    iceCandidates,
-    dtlsParameters,
-    sctpParameters,
-   },
-);</code></pre></div>
-<ul>
-<li>set up <code class="language-text">connect</code> and <code class="language-text">produce</code> events for <code class="language-text">sendTransport</code></li>
+<li>create a <code class="language-text">sendTransport</code> and a <code class="language-text">localTransport</code></li>
+<li><code class="language-text">transports</code> must be created both in the client-side and the server-side</li>
 </ul>
 </li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">this.sendTransport.on(&quot;connect&quot;, ({ dtlsParameters })  =&gt; {
-                console.log(&quot;send connect triggered&quot;);
-                socket.emit(&quot;connectWebRTCTransport&quot;, {
-                    transportId: sendTransport.id,
-                    dtlsParameters: dtlsParameters
-                })
-            })
-
-            this.sendTransport.on(&quot;produce&quot;, async ({ producer}) =&gt; {
-                console.log(&quot;send produce triggered&quot;);
-                socket.emit(&quot;produce&quot;, {
-                    transportId: sendTransport.id,
-                    kind: &quot;audio&quot;,
-                    rtpParameters: producer.rtpParameters,
-                    appData: producer.appData
-                })
-            })</code></pre></div>
+<li>
+<p>Connect WebRTCTransport</p>
 <ul>
-<li>you don’t have to wait for a signal from another producer before creating a <code class="language-text">recvTransport</code>. just do it right away.</li>
+<li>this is done by calling <code class="language-text">sendTransport.produce()</code> or <code class="language-text">recvTransport.consume()</code> in the client side.</li>
+<li>you have to connect the transport created in the server-side with the <code class="language-text">dtlsParameter</code> of the device used to make a WebRTC connection.</li>
 </ul>
-<p><code class="language-text">createWebRtcTransport { forceTcp: false, producing: false, consuming: true }</code></p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const transportInfo = await this._protoo.request(
-       &#39;createWebRtcTransport&#39;,
-       {
-         forceTcp: this._forceTcp,
-         producing: false,
-         consuming: true,
-         sctpCapabilities: this._useDataChannel
-           ? this._mediasoupDevice.sctpCapabilities
-           : undefined,
-       },
-     );
-
-     const {
-       id,
-       iceParameters,
-       iceCandidates,
-       dtlsParameters,
-       sctpParameters,
-     } = transportInfo;
-
-     this._recvTransport = this._mediasoupDevice.createRecvTransport(
-       {
-         id,
-         iceParameters,
-         iceCandidates,
-         dtlsParameters,
-         sctpParameters,
-       },
-     );</code></pre></div></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->21 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/webrtc/">webrtc</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/mediasoup/">mediasoup</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/react/webrtc-Mediasoup-flow-explained";window.webpackCompilationHash="a20ee411f975cd09bb96";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-b03fa7bdfd1620fabd73.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-66669b5001ad697b9924.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-a3626e06eca3293da074.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-42664830080e31e274df.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-4fd0cbf4547997f62f18.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-6b2027f749d2fc7c79df.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-bec5e4e2b9dc9944f714.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-a3626e06eca3293da074.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-3d6f22b2b06d998bbd14.js" async=""></script><script src="/app-b03fa7bdfd1620fabd73.js" async=""></script><script src="/webpack-runtime-2d952c35983b9632af9c.js" async=""></script></body></html>
+</li>
+<li>
+<p>Produce</p>
+<ul>
+<li>When you call <code class="language-text">sendTransport.produce()</code> in the client-side, <code class="language-text">sendTransport.on(&quot;connect&quot;)</code> event is fired.</li>
+<li>If the connection is successful, <code class="language-text">sendTransport.on(&quot;produce&quot;)</code> event is fired, which creates a producer in the server-side.</li>
+</ul>
+</li>
+<li>
+<p>Consume</p>
+<ul>
+<li>When there is a new <code class="language-text">producer</code>, participants must <code class="language-text">consume</code> the other’s <code class="language-text">producer</code>.</li>
+<li>Create a <code class="language-text">consumer</code> in the server-side first, and then use <code class="language-text">socket.io</code> to let the client-side know that there is a new <code class="language-text">consumer</code> created in the server-side</li>
+<li>The client-side then creates a <code class="language-text">consumer</code> using the information from the server-side</li>
+</ul>
+</li>
+<li>
+<p>General</p>
+<ul>
+<li>When you build a WebRTC connection using <code class="language-text">mediasoup</code>, <code class="language-text">transports</code>, <code class="language-text">producer</code>, and <code class="language-text">consumer</code> must be created both in the client-side and the server-side. And the client-side and the server-side must create the three components using the same information.</li>
+</ul>
+</li>
+</ol></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->21 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/webrtc/">webrtc</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/mediasoup/">mediasoup</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/react/webrtc-Mediasoup-flow-explained";window.webpackCompilationHash="990088a467561384169d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-66669b5001ad697b9924.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-8d6c67764f0138ef1720.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-2476c058b4801556eb8b.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-4fd0cbf4547997f62f18.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-6b2027f749d2fc7c79df.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-bec5e4e2b9dc9944f714.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-2476c058b4801556eb8b.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-353ce0e9fc59673651a6.js" async=""></script></body></html>
