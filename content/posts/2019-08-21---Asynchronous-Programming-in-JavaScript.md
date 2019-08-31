@@ -34,7 +34,7 @@ description: "Asynchronous Programming in JavaScript explained"
 
 ### 2. Promise
 
-- `Promise` was first created in order to cover disadvantages of using `callbacks`. `Promise` does not replace a `callback` since `promise` also uses a `callback`, but a `promise` allows use to use a `callback` in a predictable way.
+- Every async function returns a `promise`
 - `Promise` solves the problem of `callbacks` getting called multiple times. because when a `promise` is rejected, it calls an `errback` instead of a `callback`
 - `Promise` can be either `fulfilled` or `rejected`
 - a `promise` can be created like this: below is a code from [mediasoup-client](https://github.com/versatica/mediasoup-client)
@@ -54,6 +54,19 @@ async safeEmitAsPromise(event, ...args)
 - `Promises` can be connected with a chain to return a different `promise` after a `promise` is fulfilled.
 - if you set `timeout` to a `promise`, you can prevent a `promise` from not getting fulfilled or rejected.
   - I used this when I implemented social login. if there is no answer from a social login server, it throws an error to inform that a promise has been rejected instead of waiting forever.
+- `Promise.all` returns a single Promise after multiple promises get resolved. Below example is from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+```
+var promise1 = Promise.resolve(3);
+var promise2 = 42;
+var promise3 = new Promise(function(resolve, reject) {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+  console.log(values);
+});
+```
 
 ### 3. Generator
 
