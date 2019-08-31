@@ -1,9 +1,9 @@
 ---
-title: Asynchronous Programming in JavaScript
+title: Callback and Promise in JavaScript
 date: "2019-08-21T22:27:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/javascript/Asynchronous-Programming-in-JavaScript"
+slug: "/posts/javascript/Callback-and-Promise-in-JavaScript"
 category: "javascript"
 tags:
   - "javascript"
