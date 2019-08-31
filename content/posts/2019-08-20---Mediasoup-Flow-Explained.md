@@ -15,141 +15,30 @@ description: "Mediasoup Flow explained"
 
 ###Mediasoup is an SFU(Selective Forwarding Unit) which receives audio and video streams from endpoints and relays them to everyone else
 
-####Some of code examples are mine, and others are from [mediasoup-demo](https://https://github.com/versatica/mediasoup-demo)
-
 1. Device Loading
 
-   - device loading requires routerRtpCapabilities, which must be retrieved via a Mediasoup server
+   - retrieve the `rtpCapabilities` of a router from the server and uses the information to load device
 
-```
+2. Create WebRTCTransport
 
-//server.js
+   - create a `sendTransport` and a `localTransport`
+   - `transports` must be created both in the client-side and the server-side
 
-const rtpCapabilities = mediasoupRouter.rtpCapabilities();
+3. Connect WebRTCTransport
 
-```
+   - this is done by calling `sendTransport.produce()` or `recvTransport.consume()` in the client side.
+   - you have to connect the transport created in the server-side with the `dtlsParameter` of the device used to make a WebRTC connection.
 
-- or it could be like below according to a demo.
+4. Produce
 
-```
+   - When you call `sendTransport.produce()` in the client-side, `sendTransport.on("connect")` event is fired.
+   - If the connection is successful, `sendTransport.on("produce")` event is fired, which creates a producer in the server-side.
 
-//server.js
+5. Consume
 
-return mediasoupRouter.rtpCapabilities
+   - When there is a new `producer`, participants must `consume` the other's `producer`.
+   - Create a `consumer` in the server-side first, and then use `socket.io` to let the client-side know that there is a new `consumer` created in the server-side
+   - The client-side then creates a `consumer` using the information from the server-side
 
-```
-
-```
-
-//client.js
-
-    device = new mediasoupClient.Device({ Handler: "ReactNative" });
-        await device.load({ routerRtpCapabilities });
-        console.log("device loaded: ", device);
-
-        if (device.canProduce("audio")) {
-            this.produce();
-        }
-
-```
-
-- This is what a device looks like when it's succesfully loaded
-  ![loaded device](https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/69357284_10219663912889269_8411179144062173184_o.jpg?_nc_cat=108&_nc_oc=AQnCgsV5iFz3uHOq6rw8QZ33wdk0mDWECQieZm_SYbv2mbIq6HKivgQChGidEGcDiHU&_nc_ht=scontent-icn1-1.xx&oh=6f04e6fc083582a0c1aeca5edce97100&oe=5DCCFBF9)
-
-2. Creating Transports
-
-   - you gotta create a `sendTransport` and a `recvTransport`
-   - transports are used to send/receive media. and they are created before wishing to send/receive media
-
-   - first you create a `sendTransport` to send media
-     `createWebRtcTransport { forceTcp: false, producing: true, consuming: false }`
-
-   ```
-   const transportInfo = await this._protoo.request(
-         'createWebRtcTransport',
-         {
-           forceTcp: this._forceTcp,
-           producing: true,
-           consuming: false,
-           sctpCapabilities: this._useDataChannel
-             ? this._mediasoupDevice.sctpCapabilities
-             : undefined,
-         },
-       );
-
-   const {
-       id,
-       iceParameters,
-       iceCandidates,
-       dtlsParameters,
-       sctpParameters,
-   } = transportInfo;
-
-   this._sendTransport = this._mediasoupDevice.createSendTransport(
-       {
-        id,
-        iceParameters,
-        iceCandidates,
-        dtlsParameters,
-        sctpParameters,
-       },
-   );
-   ```
-
-   - set up `connect` and `produce` events for `sendTransport`
-
-```
-this.sendTransport.on("connect", ({ dtlsParameters })  => {
-                console.log("send connect triggered");
-                socket.emit("connectWebRTCTransport", {
-                    transportId: sendTransport.id,
-                    dtlsParameters: dtlsParameters
-                })
-            })
-
-            this.sendTransport.on("produce", async ({ producer}) => {
-                console.log("send produce triggered");
-                socket.emit("produce", {
-                    transportId: sendTransport.id,
-                    kind: "audio",
-                    rtpParameters: producer.rtpParameters,
-                    appData: producer.appData
-                })
-            })
-```
-
-- you don't have to wait for a signal from another producer before creating a `recvTransport`. just do it right away.
-
-`createWebRtcTransport { forceTcp: false, producing: false, consuming: true }`
-
-```
-const transportInfo = await this._protoo.request(
-       'createWebRtcTransport',
-       {
-         forceTcp: this._forceTcp,
-         producing: false,
-         consuming: true,
-         sctpCapabilities: this._useDataChannel
-           ? this._mediasoupDevice.sctpCapabilities
-           : undefined,
-       },
-     );
-
-     const {
-       id,
-       iceParameters,
-       iceCandidates,
-       dtlsParameters,
-       sctpParameters,
-     } = transportInfo;
-
-     this._recvTransport = this._mediasoupDevice.createRecvTransport(
-       {
-         id,
-         iceParameters,
-         iceCandidates,
-         dtlsParameters,
-         sctpParameters,
-       },
-     );
-```
+6. General
+   - When you build a WebRTC connection using `mediasoup`, `transports`, `producer`, and `consumer` must be created both in the client-side and the server-side. And the client-side and the server-side must create the three components using the same information.
