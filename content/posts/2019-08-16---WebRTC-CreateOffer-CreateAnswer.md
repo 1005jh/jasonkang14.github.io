@@ -43,8 +43,8 @@ caller.createOffer(offerOptions)
     await caller.setLocalDescription(desc);
 ```
 
-Then the caller sends this `localDescription` to a callee. <br>
-`const caller = new RTCPeerConnection()`<br>
+Then the caller sends this `localDescription` to a callee, which is another `RTCPeerConnection`. <br>
+`const callee = new RTCPeerConnection()`<br>
 
 Then the callee uses the `localDescription` from the caller to set the callee's `remoteDescription`. After setting the `remoteDescription`, the callee now `createAnswer()` and uses the answer to set the callee's `localDescription`.
 
