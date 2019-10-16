@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 07 Oct 2019 07:54:31 GMT</lastBuildDate><item><title><![CDATA[WebRTC[05] Concluding ICE via Nomination]]></title><description><![CDATA[Concluding ICE via nomination]]></description><link>https://jasonkang14.github.io/posts/webrtc/concluding-ice-via-nomination</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/webrtc/concluding-ice-via-nomination</guid><pubDate>Tue, 10 Sep 2019 16:27:37 GMT</pubDate><content:encoded>&lt;p&gt;After making a candidate pair, the two peers must decide whether to continue or conclude ICE.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 16 Oct 2019 15:06:11 GMT</lastBuildDate><item><title><![CDATA[React Hooks - Rewriting Class Component Using React Hooks]]></title><description><![CDATA[React.js class component and hooks: ]]></description><link>https://jasonkang14.github.io/posts/react/class-component-and-hooks</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react/class-component-and-hooks</guid><pubDate>Wed, 16 Oct 2019 23:27:37 GMT</pubDate><content:encoded>&lt;p&gt;I have already written about how &lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate&lt;/code&gt; could be replaced with &lt;code class=&quot;language-text&quot;&gt;useEffect()&lt;/code&gt; in React Hooks in this &lt;a href=&quot;https://jasonkang14.github.io/posts/React-Hooks-useEffect-update-when-you-want&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And instead of declaring &lt;code class=&quot;language-text&quot;&gt;this.state&lt;/code&gt; inside &lt;code class=&quot;language-text&quot;&gt;constructor()&lt;/code&gt;, you can just use &lt;code class=&quot;language-text&quot;&gt;useState()&lt;/code&gt;, which is supposed to be faster as explained in this &lt;a href=&quot;https://jasonkang14.github.io/posts/react/react-hooks-useState-explained-with-examples&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is another hook called &lt;code class=&quot;language-text&quot;&gt;useRef&lt;/code&gt;, which can be used to ensure that a certain function is called only when the component is called for the first time. &lt;code class=&quot;language-text&quot;&gt;useRef&lt;/code&gt; hook is used to remember/store the initial value.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const Profile = () =&amp;gt; {
+    const [name, setName] = useState(&amp;quot;jason&amp;quot;);
+    const isFirstRef = useRef(true);
+    if (isFirstRef.current) {
+        isFirstRef.current = false;
+        callApi();
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In the function above, &lt;code class=&quot;language-text&quot;&gt;isFirstRef&lt;/code&gt; is initially set &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;, which is why the if clause works, and then the function &lt;code class=&quot;language-text&quot;&gt;callApi()&lt;/code&gt; gets called when the Profile component is called for the first time. However, after calling &lt;code class=&quot;language-text&quot;&gt;callApi()&lt;/code&gt;, the value of &lt;code class=&quot;language-text&quot;&gt;isFirstRef&lt;/code&gt; changes to &lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;, therefore, the if clause does not work if the component gets called again.&lt;/p&gt;
+&lt;p&gt;If you need to use the same logic in different components, you can create a custom hook like below.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// useOnFirstRender.js
+const useOnFirstRender = (func) =&amp;gt; {
+    const isFirstRef = useRef(true);
+    if (isFirstRef.current) {
+        isFirstRef.current = false;
+        func();
+    }
+}
+
+// Profile.js
+
+import useOnFirstRender from &amp;#39;path&amp;#39;;
+
+const Profile = () =&amp;gt; {
+    const [name, setName] = useState(&amp;quot;jason&amp;quot;);
+    useOnFirstRender(callApi);
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Changing &lt;code class=&quot;language-text&quot;&gt;getDerivedStateFromProps&lt;/code&gt; is interesting. I posted about &lt;code class=&quot;language-text&quot;&gt;getDerivedStateFromProps&lt;/code&gt; &lt;a href=&quot;https://jasonkang14.github.io/posts/react/react-life-cycle-get-derived-state-from-props-with-mobx&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;here&lt;/a&gt;. Instead of comparing a newly received props and a previously stored state as you would do in a class component, you can easily do it using &lt;code class=&quot;language-text&quot;&gt;useState()&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const SpeedIndicator = ({ speed }) =&amp;gt; {
+    const [isFaster, setIsFaster] = useState(false);
+    const [prevSpeed, setPrevSpeed] = useState(0);
+
+    if (speed !== prevSpeed) {
+        setIsFaster(speed &amp;gt; prevSpeed);
+        setPrevSpeed(speed);
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The values of &lt;code class=&quot;language-text&quot;&gt;isFaster&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;prevSpeed&lt;/code&gt; changes right away as the state changes. Apprently this is slightly less efficient than using 1&lt;code class=&quot;language-text&quot;&gt;getDerivedStateFromProps&lt;/code&gt;, but it shouldn’t be too bad since it happens before forming DOM.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;useDebounce&lt;/code&gt; provides a debounce, which is a higher-order function that returns another function. To be honest, I am not sure why you would use this.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const useDebounce = ({ callback, ms, args }) =&amp;gt; {
+    useEffect(() =&amp;gt; {
+        const id = setTimeout(callback, ms);
+        return () =&amp;gt; clearTimeout(id);
+    }, args)
+}
+
+const Profile = () =&amp;gt; {
+    let [name, setName] = useState(&amp;quot;&amp;quot;);
+    let [nameTemp, setNameTemp] = useState(&amp;quot;&amp;quot;);
+    useDebounce({
+        callback: () =&amp;gt; setName(nameTemp),
+        ms: 1000,
+        args: [nameTemp],
+    });
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It looks like, after a second, the &lt;code class=&quot;language-text&quot;&gt;useDebounce&lt;/code&gt; hook &lt;code class=&quot;language-text&quot;&gt;setName&lt;/code&gt; the &lt;code class=&quot;language-text&quot;&gt;name&lt;/code&gt; state as &lt;code class=&quot;language-text&quot;&gt;nameTemp&lt;/code&gt;. I feel like a custom hook is just creating a separate function that you might use in different components. Personally, I don’t see a point of using a &lt;code class=&quot;language-text&quot;&gt;hook&lt;/code&gt; called &lt;code class=&quot;language-text&quot;&gt;useDebounce&lt;/code&gt; when you can just create a simple function that has &lt;code class=&quot;language-text&quot;&gt;setTimeout&lt;/code&gt;. If I get to think otherwise later on, I will post about it as well.&lt;/p&gt;
+&lt;p&gt;According to &lt;code class=&quot;language-text&quot;&gt;usehooks.com&lt;/code&gt;: When used in conjunction with useEffect, as we do in the recipe below, you can easily ensure that expensive operations like API calls are not executed too frequently.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;useHasMounted&lt;/code&gt; seems useless. and it is not found anywhere.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[WebRTC[05] Concluding ICE via Nomination]]></title><description><![CDATA[Concluding ICE via nomination]]></description><link>https://jasonkang14.github.io/posts/webrtc/concluding-ice-via-nomination</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/webrtc/concluding-ice-via-nomination</guid><pubDate>Tue, 10 Sep 2019 16:27:37 GMT</pubDate><content:encoded>&lt;p&gt;After making a candidate pair, the two peers must decide whether to continue or conclude ICE.&lt;/p&gt;
 &lt;p&gt;This is done through a process called nomination, which is literally nominating a particular candidate pair as the nominee for a WebRTC communication.&lt;/p&gt;
 &lt;p&gt;There are two different types of nomination: regular and aggressive.&lt;/p&gt;
 &lt;p&gt;But before talking about nomination, you must know that ICE assigns one of the peers in the role of the controlling agent and the other a controlled agent.&lt;/p&gt;
