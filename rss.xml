@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 30 Oct 2019 12:56:47 GMT</lastBuildDate><item><title><![CDATA[Babel - How to Make a Babel Plugin]]></title><description><![CDATA[How to make a babel plugin]]></description><link>https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</guid><pubDate>Sun, 20 Oct 2019 17:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Babel provides APIs so that anyone can create a preset and plugin of their own.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 30 Oct 2019 14:01:07 GMT</lastBuildDate><item><title><![CDATA[Webpack - Basics]]></title><description><![CDATA[Webpack basics]]></description><link>https://jasonkang14.github.io/posts/webpack/basics</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/webpack/basics</guid><pubDate>Mon, 21 Oct 2019 21:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Webpack is a module bundler— a tool that takes pieces of JavaScript and their dependencies and bundles them into a single file.&lt;/p&gt;
+&lt;p&gt;Module represents each resource file, and a bundle represents the final product after running webpack. One bundle is made of many modules.&lt;/p&gt;
+&lt;p&gt;Webpack is required since a single-page-application uses a single HTML file which consists of a lot of JavaScript files. Those modules are bundled into a bundle using webpack.&lt;/p&gt;
+&lt;p&gt;you can found the full code on &lt;a href=&quot;https://github.com/jasonkang14/babel_practice/tree/master/test-babel-custom-plugin&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Running Webpack
+When you run Webpack, a &lt;code class=&quot;language-text&quot;&gt;dist&lt;/code&gt; directory is created where a &lt;code class=&quot;language-text&quot;&gt;main.js&lt;/code&gt; bundle file is created. Below is the basic structure of the bundle&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the entire bundle file is an IIFE(Immediately Invoked Function Expression)&lt;/li&gt;
+&lt;li&gt;runtime code is what takes care of modules. If you use multiple &lt;code class=&quot;language-text&quot;&gt;entry&lt;/code&gt; files in &lt;code class=&quot;language-text&quot;&gt;webpack.config.js&lt;/code&gt;, a bundle file created by each &lt;code class=&quot;language-text&quot;&gt;entry&lt;/code&gt; file has a webpack runtime code.&lt;/li&gt;
+&lt;li&gt;code that I wrote is used as a parameter of the IIFE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Using a Loader
+A loader is a function that takes a module as an imput and transforms it into a format that you desire. Image files, CSS files, CSV files, or any other files can be modules.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;there are different types of loaders like &lt;code class=&quot;language-text&quot;&gt;babel-loader&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;file-loader&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;style-loader&lt;/code&gt; and so on. You have to choose the right type of loaders to deal with the file that you are trying to use.&lt;/li&gt;
+&lt;li&gt;if you add an image file to a bundle, you can reduce the number of times that a browser requests for the file by using &lt;code class=&quot;language-text&quot;&gt;url-loader&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;url-loader&lt;/code&gt; provides a fallback option which allows other loaders to take care of the file if the file is smaller than its limit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Using Plugins&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;html-webpack-plugin&lt;/code&gt; is used to update the HTML file automatically when contents are updated.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;clean-webpack-plugin&lt;/code&gt; cleans the &lt;code class=&quot;language-text&quot;&gt;dist&lt;/code&gt; directory each time webpack is ran.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;DefinePlugin&lt;/code&gt; is used to replace strings in modules.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;ProvidePlugin&lt;/code&gt; automatically adds previously configured modules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Babel - How to Make a Babel Plugin]]></title><description><![CDATA[How to make a babel plugin]]></description><link>https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</guid><pubDate>Sun, 20 Oct 2019 17:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Babel provides APIs so that anyone can create a preset and plugin of their own.&lt;/p&gt;
 &lt;p&gt;Babel plugin changes a code based on AST(Abstract Syntax Tree). Therefore, you have to know the structure of AST in order to create your own plugin&lt;/p&gt;
 &lt;p&gt;you can found the full code on &lt;a href=&quot;https://github.com/jasonkang14/babel_practice/tree/master/test-babel-custom-plugin&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
 &lt;ol&gt;
