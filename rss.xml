@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 06 Nov 2019 13:18:15 GMT</lastBuildDate><item><title><![CDATA[TypeScript - Different Types of TypeScript]]></title><description><![CDATA[Types that you can declare while using TypeScript]]></description><link>https://jasonkang14.github.io/posts/typescript/different-types-of-typescript</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/different-types-of-typescript</guid><pubDate>Thu, 07 Nov 2019 21:27:37 GMT</pubDate><content:encoded>&lt;ol&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 30 Nov 2019 07:14:22 GMT</lastBuildDate><item><title><![CDATA[JavaScript - this, apply, call, bind, arrow function]]></title><description><![CDATA[Basics of JavaScript: this, apply, call, bind, arrow function]]></description><link>https://jasonkang14.github.io/posts/javascript/this-bind-apply-call</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/javascript/this-bind-apply-call</guid><pubDate>Sat, 30 Nov 2019 12:53:37 GMT</pubDate><content:encoded>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; is defined/determined by how a function is called.&lt;/li&gt;
+&lt;li&gt;Global Context: &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; refers to the global object (&lt;code class=&quot;language-text&quot;&gt;window&lt;/code&gt; in browser, &lt;code class=&quot;language-text&quot;&gt;global&lt;/code&gt; in node.js)&lt;/li&gt;
+&lt;li&gt;Functional Context:&lt;/li&gt;
+&lt;li&gt;if not in &lt;code class=&quot;language-text&quot;&gt;strict mode&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; refers to the global object&lt;/li&gt;
+&lt;li&gt;if in &lt;code class=&quot;language-text&quot;&gt;strict mode&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; is undefined&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function f2() {
+  &amp;#39;use strict&amp;#39;; // see strict mode
+  return this;
+}
+
+f2() === undefined; // true&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;the above is because function &lt;code class=&quot;language-text&quot;&gt;f2&lt;/code&gt; is called directly. not as a method or a property of the &lt;code class=&quot;language-text&quot;&gt;window&lt;/code&gt; object&lt;/li&gt;
+&lt;li&gt;To set the value of this to a particular value when calling a function, use &lt;code class=&quot;language-text&quot;&gt;call()&lt;/code&gt;, or &lt;code class=&quot;language-text&quot;&gt;apply()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;apply&lt;/code&gt; / &lt;code class=&quot;language-text&quot;&gt;call&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var obj = {a: &amp;#39;Custom&amp;#39;};
+
+var a = &amp;#39;Global&amp;#39;;
+
+function whatsThis() {
+  return this.a;
+}
+
+whatsThis();          // &amp;#39;Global&amp;#39;
+whatsThis.call(obj);  // &amp;#39;Custom&amp;#39;
+whatsThis.apply(obj); // &amp;#39;Custom&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;if you call a function without &lt;code class=&quot;language-text&quot;&gt;call&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;apply&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; refers to the &lt;code class=&quot;language-text&quot;&gt;window&lt;/code&gt; object. However, if you call the same function with &lt;code class=&quot;language-text&quot;&gt;call&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;apply&lt;/code&gt;, you set &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; as the &lt;code class=&quot;language-text&quot;&gt;object&lt;/code&gt; with which you are calling the function.&lt;/p&gt;
+&lt;p&gt;if the value you are passing with &lt;code class=&quot;language-text&quot;&gt;call&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;apply&lt;/code&gt; is not an object, the browser will use the internal method &lt;code class=&quot;language-text&quot;&gt;ToObject()&lt;/code&gt; in order to convert it to an object.&lt;/p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;bind&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;if you call a function using bind like &lt;code class=&quot;language-text&quot;&gt;foo.bind(someObject)&lt;/code&gt; this is the &lt;code class=&quot;language-text&quot;&gt;someObject&lt;/code&gt; regardless of how the function is being called.&lt;/li&gt;
+&lt;li&gt;but you cannot &lt;code class=&quot;language-text&quot;&gt;bind&lt;/code&gt; more than once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function f() {
+  return this.a;
+}
+
+var g = f.bind({a: &amp;#39;azerty&amp;#39;});
+console.log(g()); // azerty
+
+var h = g.bind({a: &amp;#39;yoo&amp;#39;}); // bind only works once!
+console.log(h()); // azerty&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;arrow function&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;if you use an arrow function, you don’t have to bind this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[JavaScript - hoisting]]></title><description><![CDATA[JavaScript hoisting]]></description><link>https://jasonkang14.github.io/posts/javascript/hoisting</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/javascript/hoisting</guid><pubDate>Fri, 29 Nov 2019 17:27:37 GMT</pubDate><content:encoded>&lt;p&gt;With JavaScript hoisting, or since JavaScript hoist variables, variables can be used before declaration.&lt;/p&gt;
+&lt;p&gt;So even if you call a function, before it is declared, you can still get the same result as when you call the function after its declaration.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sayHello()   // &amp;quot;hello&amp;quot;
+
+function sayHello() {
+    console.log(&amp;quot;hello&amp;quot;)
+}
+
+sayHello()   // &amp;quot;hello&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So even if you call a function before its declaration, you won’t get undefined.
+JavaScript hoist declartaion, but it won’t hoist initialization.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;a = 3;
+console.log(a);  //  3
+var a;
+
+console.log(b);  // undefined
+var b = 3;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Different Types of TypeScript]]></title><description><![CDATA[Types that you can declare while using TypeScript]]></description><link>https://jasonkang14.github.io/posts/typescript/different-types-of-typescript</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/different-types-of-typescript</guid><pubDate>Thu, 07 Nov 2019 21:27:37 GMT</pubDate><content:encoded>&lt;ol&gt;
 &lt;li&gt;Array&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const values: number[] = [1, 2, 3];
