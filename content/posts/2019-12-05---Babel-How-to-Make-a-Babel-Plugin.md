@@ -1,6 +1,6 @@
 ---
 title: Babel - How to Make a Babel Plugin
-date: "2019-10-20T17:27:37.121Z"
+date: "2019-12-05T17:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/babel/how-to-make-a-babel-plugin"
