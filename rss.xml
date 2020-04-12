@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 12 Apr 2020 06:08:24 GMT</lastBuildDate><item><title><![CDATA[총선2020 앱 개인정보 처리방침]]></title><description><![CDATA[총선2020 앱의 개인정보 처리방침 입니다.]]></description><link>https://jasonkang14.github.io/voting/privacy</link><guid isPermaLink="false">https://jasonkang14.github.io/voting/privacy</guid><pubDate>Sat, 01 Feb 2020 14:53:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;Byeongjin Kang&gt;(’&lt;a href=&quot;https://jasonkang14.github.io/voting/privacy&amp;#x27;%EC%9D%B4%ED%95%98&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jasonkang14.github.io/voting/privacy’이하&lt;/a&gt; ‘Byeongjin Kang’)은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 12 Apr 2020 06:22:25 GMT</lastBuildDate><item><title><![CDATA[How to Use Google SMTP]]></title><description><![CDATA[How to use Google SMPT, which is FREE!!]]></description><link>https://jasonkang14.github.io/server/how-to-use-google-smtp</link><guid isPermaLink="false">https://jasonkang14.github.io/server/how-to-use-google-smtp</guid><pubDate>Sun, 08 Mar 2020 22:53:37 GMT</pubDate><content:encoded>&lt;p&gt;I had to create a feature where uses report certain things to me when they find a bug in my app. Instead of making a list of reports via Google Sheet, I thought it would be easier to make them email the information to me so that I can deal with it as soon as I receive the email.&lt;/p&gt;
+&lt;p&gt;Google lets you use their SMTP(Simple Mail Transfer Protocol) for free. If you are using Python, you can do it like this .&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import smtplib
+import email.mime.text import MIMEText
+
+bug     = &amp;quot;whatever the user has found&amp;quot;
+content = f&amp;quot;I have found a bug == {bug}&amp;quot;
+
+message           = MIMEText(content)
+message[&amp;#39;Subject] = Bug Report
+message[&amp;#39;From&amp;#39;]   = user
+message[&amp;#39;To&amp;#39;]     = service_provider
+
+gmail_address  = &amp;#39;your_gmail_account@gmail.com&amp;#39;
+gmail_password = &amp;#39;your_gmail_password&amp;#39;
+
+smtp_server = smtplib.SMTP_SSL(&amp;quot;smtp.google.com&amp;quot;, 465)
+smtp_server.login(gmail_address, gmail_password)
+smtp_server.sendmail(&amp;#39;user_email&amp;#39;, [&amp;#39;service_provider_email&amp;#39;], message.as_string())
+smtp_server.quit()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Make sure that the receipient email is set in the form of a python list. You can send emails to multiple users by adding items to the list.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[총선2020 앱 개인정보 처리방침]]></title><description><![CDATA[총선2020 앱의 개인정보 처리방침 입니다.]]></description><link>https://jasonkang14.github.io/voting/privacy</link><guid isPermaLink="false">https://jasonkang14.github.io/voting/privacy</guid><pubDate>Sat, 01 Feb 2020 14:53:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;Byeongjin Kang&gt;(’&lt;a href=&quot;https://jasonkang14.github.io/voting/privacy&amp;#x27;%EC%9D%B4%ED%95%98&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jasonkang14.github.io/voting/privacy’이하&lt;/a&gt; ‘Byeongjin Kang’)은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.&lt;/p&gt;
 &lt;p&gt;&lt;Byeongjin Kang&gt;(‘Byeongjin Kang’) 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.&lt;/p&gt;
 &lt;p&gt;○ 본 방침은부터 2020년 2월 1일부터 시행됩니다.&lt;/p&gt;
 &lt;ol&gt;
