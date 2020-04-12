@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 31 Mar 2020 18:40:28 GMT</lastBuildDate><item><title><![CDATA[총선2020 앱 개인정보 처리방침]]></title><description><![CDATA[총선2020 앱의 개인정보 처리방침 입니다.]]></description><link>https://jasonkang14.github.io/voting/privacy</link><guid isPermaLink="false">https://jasonkang14.github.io/voting/privacy</guid><pubDate>Sat, 01 Feb 2020 14:53:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;Byeongjin Kang&gt;(’&lt;a href=&quot;https://jasonkang14.github.io/voting/privacy&amp;#x27;%EC%9D%B4%ED%95%98&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jasonkang14.github.io/voting/privacy’이하&lt;/a&gt; ‘Byeongjin Kang’)은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 12 Apr 2020 06:08:24 GMT</lastBuildDate><item><title><![CDATA[총선2020 앱 개인정보 처리방침]]></title><description><![CDATA[총선2020 앱의 개인정보 처리방침 입니다.]]></description><link>https://jasonkang14.github.io/voting/privacy</link><guid isPermaLink="false">https://jasonkang14.github.io/voting/privacy</guid><pubDate>Sat, 01 Feb 2020 14:53:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;Byeongjin Kang&gt;(’&lt;a href=&quot;https://jasonkang14.github.io/voting/privacy&amp;#x27;%EC%9D%B4%ED%95%98&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jasonkang14.github.io/voting/privacy’이하&lt;/a&gt; ‘Byeongjin Kang’)은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.&lt;/p&gt;
 &lt;p&gt;&lt;Byeongjin Kang&gt;(‘Byeongjin Kang’) 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.&lt;/p&gt;
 &lt;p&gt;○ 본 방침은부터 2020년 2월 1일부터 시행됩니다.&lt;/p&gt;
 &lt;ol&gt;
@@ -79,7 +79,150 @@
 개인정보를 취급하는 직원을 지정하고 담당자에 한정시켜 최소화 하여 개인정보를 관리하는 대책을 시행하고 있습니다.&lt;/li&gt;
 &lt;li&gt;개인정보에 대한 접근 제한
 개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[JavaScript - this, apply, call, bind, arrow function]]></title><description><![CDATA[Basics of JavaScript: this, apply, call, bind, arrow function]]></description><link>https://jasonkang14.github.io/posts/javascript/this-bind-apply-call</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/javascript/this-bind-apply-call</guid><pubDate>Sat, 30 Nov 2019 12:53:37 GMT</pubDate><content:encoded>&lt;ol&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Conditional Types]]></title><description><![CDATA[TypeScript, conditional types explained]]></description><link>https://jasonkang14.github.io/posts/typescript/conditional-types</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/conditional-types</guid><pubDate>Sat, 04 Jan 2020 13:27:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;This is a summary of the &lt;a href=&quot;https://typesriptlang.org&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official document&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Conditional types are very self-explanatory. Depending on its condition, the type can be either one or the other.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;T extends U ? X: Y&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This could be written like below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;interface Foo {
+  propA: boolean;
+  propB: boolean;
+}
+
+declare function f&amp;lt;T&amp;gt;(x: T): T extends Foo ? string : number;
+
+function foo&amp;lt;U&amp;gt;(x: U) {
+  // Has type &amp;#39;U extends Foo ? string : number&amp;#39;
+  let a = f(x);
+
+  // This assignment is allowed though!
+  let b: string | number = a;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In the code above, the variable &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt; has a conditional type.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Mapped Types]]></title><description><![CDATA[TypeScript, mapped types explained]]></description><link>https://jasonkang14.github.io/posts/typescript/mapped-types</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/mapped-types</guid><pubDate>Fri, 03 Jan 2020 13:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Mapped types allow you to map each property in a type in the same way. Think about the &lt;code class=&quot;language-text&quot;&gt;map&lt;/code&gt; function which you can use with a JavaScript array. By using the &lt;code class=&quot;language-text&quot;&gt;map&lt;/code&gt; function, you are doing the same task to each properties—like multiplying all of them by the factor of 3.&lt;/p&gt;
+&lt;p&gt;By &lt;code class=&quot;language-text&quot;&gt;mapping&lt;/code&gt; your type, you can make all propeties of type &lt;code class=&quot;language-text&quot;&gt;readonly&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;optional&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In old format, you would do something like below if you want to make each property optional or readonly;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// optional
+interface CartItem {
+    totalPrice?: number
+    rewardPoints?: number
+    id?: number
+    count?: number
+}
+
+// readonly
+interface CartItem {
+    readonly totalPrice: number
+    readonly rewardPoints: number
+    readonly id: number
+    readonly count: number
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With &lt;strong&gt;mapped types&lt;/strong&gt;, you can do it like below. &lt;code class=&quot;language-text&quot;&gt;T&lt;/code&gt; represents Type/Interface and &lt;code class=&quot;language-text&quot;&gt;P&lt;/code&gt; properties&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;type ReadOnly&amp;lt;T&amp;gt; = {
+    readonly [P in keyof T]: T[P]
+}
+
+type Partial&amp;lt;T&amp;gt; = {
+    [P in keyof T]?: T[P]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And use the mapped type like below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;type CartItemPartial = Partial&amp;lt;CartItem&amp;gt;
+type ReadonlyCartItem = Readonly&amp;lt;CartItem&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can add members using an intersection type and a mapped type together&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;type PartialWithNewMember&amp;lt;T&amp;gt; = {
+    [P in keyof T]&amp;gt; : T[P];
+} &amp;amp; { newMember: boolean}
+
+type Keys = &amp;quot;option1&amp;quot; | &amp;quot;option2&amp;quot;;
+type Flags = { [K in Keys]: boolean };&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Babel - How to Make a Babel Plugin]]></title><description><![CDATA[Using Babel with TypeScript]]></description><link>https://jasonkang14.github.io/posts/babel/babel-with-typescript</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/babel-with-typescript</guid><pubDate>Sat, 07 Dec 2019 23:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Babel 7 supports TypeScript. Since I am pretty new to web development, I did not fully understand why people were struggling to use Babel with TypeScript. According to what I have found online, Babel did not support type check, which is a key feature of TypeScript. And TypeScript itself could do both compiling and type checking. But now Babel 7 allows TypeScript to compile faster by allowsing the TypeScript compiler to only check types wihtout emitting files&lt;/p&gt;
+&lt;p&gt;Install all the necessary plugins:
+&lt;code class=&quot;language-text&quot;&gt;npm install --save-dev @babel/preset-typescript @babel/preset-env @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Set up &lt;code class=&quot;language-text&quot;&gt;.babelrc&lt;/code&gt; like below&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+    &amp;quot;presets&amp;quot;: [
+        &amp;quot;@babel/env&amp;quot;,
+        &amp;quot;@babel/preset-typescript&amp;quot;
+    ],
+    &amp;quot;plugins&amp;quot;: [
+        &amp;quot;@babel/proposal-class-properties&amp;quot;,
+        &amp;quot;@babel/proposal-object-rest-spread&amp;quot;
+    ]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create a &lt;code class=&quot;language-text&quot;&gt;tsconfig.json&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+  &amp;quot;compilerOptions&amp;quot;: {
+    // Target latest version of ECMAScript.
+    &amp;quot;target&amp;quot;: &amp;quot;esnext&amp;quot;,
+    // Search under node_modules for non-relative imports.
+    &amp;quot;moduleResolution&amp;quot;: &amp;quot;node&amp;quot;,
+    // Process &amp;amp; infer types from .js files.
+    &amp;quot;allowJs&amp;quot;: true,
+    // Don&amp;#39;t emit; allow Babel to transform files.
+    &amp;quot;noEmit&amp;quot;: true,
+    // Enable strictest settings like strictNullChecks &amp;amp; noImplicitAny.
+    &amp;quot;strict&amp;quot;: true,
+    // Disallow features that require cross-file information for emit.
+    &amp;quot;isolatedModules&amp;quot;: true,
+    // Import non-ES modules as default imports.
+    &amp;quot;esModuleInterop&amp;quot;: true
+  },
+  &amp;quot;include&amp;quot;: [
+    &amp;quot;src&amp;quot;
+  ]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Babel - How to Make a Babel Plugin]]></title><description><![CDATA[How to make a babel plugin]]></description><link>https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</guid><pubDate>Thu, 05 Dec 2019 17:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Babel provides APIs so that anyone can create a preset and plugin of their own.&lt;/p&gt;
+&lt;p&gt;Babel plugin changes a code based on AST(Abstract Syntax Tree). Therefore, you have to know the structure of AST in order to create your own plugin&lt;/p&gt;
+&lt;p&gt;you can found the full code on &lt;a href=&quot;https://github.com/jasonkang14/babel_practice/tree/master/test-babel-custom-plugin&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Basic structure of a babel plugin&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;exports a function with a &lt;code class=&quot;language-text&quot;&gt;types&lt;/code&gt; parameter&lt;/li&gt;
+&lt;li&gt;uses the &lt;code class=&quot;language-text&quot;&gt;types&lt;/code&gt; parameter to make a node&lt;/li&gt;
+&lt;li&gt;the &lt;code class=&quot;language-text&quot;&gt;types&lt;/code&gt; node is used to check the tyoe of the AST node&lt;/li&gt;
+&lt;li&gt;nothing happens if you return an empty object.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A babel plugin to remove console.log’s&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;this is the structure of the AST of &lt;code class=&quot;language-text&quot;&gt;console.log(&amp;#39;asdf&amp;#39;)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;console.log code starts with an &lt;code class=&quot;language-text&quot;&gt;ExpressionStatement&lt;/code&gt; node&lt;/li&gt;
+&lt;li&gt;a code that calls a function or a method is a &lt;code class=&quot;language-text&quot;&gt;CallExpression&lt;/code&gt; node&lt;/li&gt;
+&lt;li&gt;a &lt;code class=&quot;language-text&quot;&gt;MemberExpression&lt;/code&gt; node inside the &lt;code class=&quot;language-text&quot;&gt;CallExpression&lt;/code&gt; node calls a method&lt;/li&gt;
+&lt;li&gt;the &lt;code class=&quot;language-text&quot;&gt;MemberExpression&lt;/code&gt; node has the information about the object and the method&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A babel plugin to add console.log’s&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;this is the structure of the AST of a simple function&lt;/li&gt;
+&lt;li&gt;a code that declares the function is a &lt;code class=&quot;language-text&quot;&gt;FunctionDeclaration&lt;/code&gt; node&lt;/li&gt;
+&lt;li&gt;the name of the function is the value of &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;all the nodes of the code of the function is inside the body of a &lt;code class=&quot;language-text&quot;&gt;BlockStatement&lt;/code&gt; node&lt;/li&gt;
+&lt;li&gt;We are trying to add a &lt;code class=&quot;language-text&quot;&gt;console.log&lt;/code&gt; at the very beginning of the array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Babel with React?]]></title><description><![CDATA[How Bable works with React]]></description><link>https://jasonkang14.github.io/posts/babel/what-with-react</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/what-with-react</guid><pubDate>Wed, 04 Dec 2019 17:53:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;React&lt;/code&gt; uses &lt;code class=&quot;language-text&quot;&gt;JSX&lt;/code&gt;, which is a &lt;strong&gt;XML-like syntax extension for JavaScript, which allows
+HTML elements to be written in JavaSCript and to be placed in the DOM.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you are used to Vanilla JavaScript, you would write code like below&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const test = document.createElement(&amp;quot;h1&amp;quot;);
+test.innerText = &amp;quot;Hello, World!&amp;quot;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;JSX allows you to change the above code like this&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const test = &amp;lt;h1&amp;gt;Hello, World!&amp;lt;/h1&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Babel allow such transformation by transpiling JSX into standard JavaScript code. The code above that you used in order to declare &lt;code class=&quot;language-text&quot;&gt;test&lt;/code&gt; is actually like below&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;const test = React.createElement(&amp;quot;h1&amp;quot;, null, &amp;quot;Hello, World!&amp;quot;);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;React&lt;/code&gt; incorporates &lt;code class=&quot;language-text&quot;&gt;Babel&lt;/code&gt; using &lt;code class=&quot;language-text&quot;&gt;Webpack&lt;/code&gt;. &lt;code class=&quot;language-text&quot;&gt;Webpack&lt;/code&gt; is &lt;strong&gt;a package bundler for JavaScript which compiles modules into a single source, which is then rendered in the browser&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When you write codes with React, you &lt;code class=&quot;language-text&quot;&gt;export&lt;/code&gt; child components, which then get &lt;code class=&quot;language-text&quot;&gt;imported&lt;/code&gt; in parent components. This is also an ES6 grammar, which needs to be translated using Babel in order to be used in web browsers.&lt;/p&gt;
+&lt;p&gt;When you write components in React, you create separate files for each component. By the hierarchy declared in Webpack, Webpack creates dependency graph, compiles all the files to a single code by removing all the &lt;code class=&quot;language-text&quot;&gt;import&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;export&lt;/code&gt; statements using Babel, and converts JSX into standard JavaScript.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Babel - What is Babel and what does it do?]]></title><description><![CDATA[Basics of Babel and its role in web development]]></description><link>https://jasonkang14.github.io/posts/babel/what-is-babel</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/what-is-babel</guid><pubDate>Tue, 03 Dec 2019 14:53:37 GMT</pubDate><content:encoded>&lt;h1 id=&quot;tldr&quot;&gt;&lt;a href=&quot;#tldr&quot; aria-label=&quot;tldr permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;TL;DR&lt;/h1&gt;
+&lt;p&gt;Babel allows new features of JavaScript to work with old browsers.&lt;/p&gt;
+&lt;h1 id=&quot;explanation&quot;&gt;&lt;a href=&quot;#explanation&quot; aria-label=&quot;explanation permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Explanation&lt;/h1&gt;
+&lt;p&gt;According to the &lt;a href=&quot;https://babeljs.io/docs/en/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official document&lt;/a&gt;, Babel is a &lt;code class=&quot;language-text&quot;&gt;toolchain that is mainly used to convert ECMAScript 2015+&lt;/code&gt; code into a backwards compatible version of JavaScript in current and older browsers or environments.&lt;/p&gt;
+&lt;p&gt;For example, if a developer uses an arrow function, Babel transforms the arrow function to its old format so that the arrow function can be compatible with web browsers&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// ES6
+[1,2,3].map((n) =&amp;gt; n+1);
+
+// ES5 : Babel-transformed version
+[1,2,3].map(function (n) {
+    return n+1;
+})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[JavaScript - this, apply, call, bind, arrow function]]></title><description><![CDATA[Basics of JavaScript: this, apply, call, bind, arrow function]]></description><link>https://jasonkang14.github.io/posts/javascript/this-bind-apply-call</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/javascript/this-bind-apply-call</guid><pubDate>Sat, 30 Nov 2019 12:53:37 GMT</pubDate><content:encoded>&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -387,39 +530,6 @@ A loader is a function that takes a module as an imput and transforms it into a 
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;clean-webpack-plugin&lt;/code&gt; cleans the &lt;code class=&quot;language-text&quot;&gt;dist&lt;/code&gt; directory each time webpack is ran.&lt;/li&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;DefinePlugin&lt;/code&gt; is used to replace strings in modules.&lt;/li&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;ProvidePlugin&lt;/code&gt; automatically adds previously configured modules&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Babel - How to Make a Babel Plugin]]></title><description><![CDATA[How to make a babel plugin]]></description><link>https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/babel/how-to-make-a-babel-plugin</guid><pubDate>Sun, 20 Oct 2019 17:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Babel provides APIs so that anyone can create a preset and plugin of their own.&lt;/p&gt;
-&lt;p&gt;Babel plugin changes a code based on AST(Abstract Syntax Tree). Therefore, you have to know the structure of AST in order to create your own plugin&lt;/p&gt;
-&lt;p&gt;you can found the full code on &lt;a href=&quot;https://github.com/jasonkang14/babel_practice/tree/master/test-babel-custom-plugin&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Basic structure of a babel plugin&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;exports a function with a &lt;code class=&quot;language-text&quot;&gt;types&lt;/code&gt; parameter&lt;/li&gt;
-&lt;li&gt;uses the &lt;code class=&quot;language-text&quot;&gt;types&lt;/code&gt; parameter to make a node&lt;/li&gt;
-&lt;li&gt;the &lt;code class=&quot;language-text&quot;&gt;types&lt;/code&gt; node is used to check the tyoe of the AST node&lt;/li&gt;
-&lt;li&gt;nothing happens if you return an empty object.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;A babel plugin to remove console.log’s&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;this is the structure of the AST of &lt;code class=&quot;language-text&quot;&gt;console.log(&amp;#39;asdf&amp;#39;)&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;console.log code starts with an &lt;code class=&quot;language-text&quot;&gt;ExpressionStatement&lt;/code&gt; node&lt;/li&gt;
-&lt;li&gt;a code that calls a function or a method is a &lt;code class=&quot;language-text&quot;&gt;CallExpression&lt;/code&gt; node&lt;/li&gt;
-&lt;li&gt;a &lt;code class=&quot;language-text&quot;&gt;MemberExpression&lt;/code&gt; node inside the &lt;code class=&quot;language-text&quot;&gt;CallExpression&lt;/code&gt; node calls a method&lt;/li&gt;
-&lt;li&gt;the &lt;code class=&quot;language-text&quot;&gt;MemberExpression&lt;/code&gt; node has the information about the object and the method&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;A babel plugin to add console.log’s&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;this is the structure of the AST of a simple function&lt;/li&gt;
-&lt;li&gt;a code that declares the function is a &lt;code class=&quot;language-text&quot;&gt;FunctionDeclaration&lt;/code&gt; node&lt;/li&gt;
-&lt;li&gt;the name of the function is the value of &lt;code class=&quot;language-text&quot;&gt;id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;all the nodes of the code of the function is inside the body of a &lt;code class=&quot;language-text&quot;&gt;BlockStatement&lt;/code&gt; node&lt;/li&gt;
-&lt;li&gt;We are trying to add a &lt;code class=&quot;language-text&quot;&gt;console.log&lt;/code&gt; at the very beginning of the array&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;</content:encoded></item><item><title><![CDATA[React Hooks - Rewriting Class Component Using React Hooks]]></title><description><![CDATA[React.js class component and hooks: ]]></description><link>https://jasonkang14.github.io/posts/react/class-component-and-hooks</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/react/class-component-and-hooks</guid><pubDate>Wed, 16 Oct 2019 23:27:37 GMT</pubDate><content:encoded>&lt;p&gt;I have already written about how &lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;componentDidUpdate&lt;/code&gt; could be replaced with &lt;code class=&quot;language-text&quot;&gt;useEffect()&lt;/code&gt; in React Hooks in this &lt;a href=&quot;https://jasonkang14.github.io/posts/React-Hooks-useEffect-update-when-you-want&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;post&lt;/a&gt;.&lt;/p&gt;
