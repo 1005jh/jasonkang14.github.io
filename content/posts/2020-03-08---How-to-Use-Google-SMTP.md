@@ -11,7 +11,7 @@ tags:
   - "smtp"
   - "python"
 
-description: "How to use Google SMPT, which is FREE!!"
+description: "How to use Google SMTP, which is FREE!!"
 ---
 
 I had to create a feature where uses report certain things to me when they find a bug in my app. Instead of making a list of reports via Google Sheet, I thought it would be easier to make them email the information to me so that I can deal with it as soon as I receive the email.
