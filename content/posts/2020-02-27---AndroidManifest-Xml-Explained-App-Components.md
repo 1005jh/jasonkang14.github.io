@@ -1,6 +1,6 @@
 ---
 title: React Native - AndroidManifest.xml Explained [2]
-date: "2020-02-20T14:53:37.121Z"
+date: "2020-02-27T14:53:37.121Z"
 template: "post"
 draft: false
 slug: "/react-native/androidmanifest-xml-explained-app-components"
