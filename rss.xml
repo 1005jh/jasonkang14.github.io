@@ -1,4 +1,138 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 26 Apr 2020 14:14:23 GMT</lastBuildDate><item><title><![CDATA[How to Use Google SMTP]]></title><description><![CDATA[How to use Google SMTP, which is FREE!!]]></description><link>https://jasonkang14.github.io/server/how-to-use-google-smtp</link><guid isPermaLink="false">https://jasonkang14.github.io/server/how-to-use-google-smtp</guid><pubDate>Sun, 08 Mar 2020 22:53:37 GMT</pubDate><content:encoded>&lt;p&gt;I had to create a feature where uses report certain things to me when they find a bug in my app. Instead of making a list of reports via Google Sheet, I thought it would be easier to make them email the information to me so that I can deal with it as soon as I receive the email.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 28 Apr 2020 15:06:07 GMT</lastBuildDate><item><title><![CDATA[React Native - How to make an Android native module]]></title><description><![CDATA[How to make an Android native module for a React-Native project]]></description><link>https://jasonkang14.github.io/react-native/how-to-make-an-android-native-module</link><guid isPermaLink="false">https://jasonkang14.github.io/react-native/how-to-make-an-android-native-module</guid><pubDate>Sun, 15 Mar 2020 22:53:37 GMT</pubDate><content:encoded>&lt;h3 id=&quot;this-is-following-an-example-from-the-official-document-with-some-of-my-personal-input&quot;&gt;&lt;a href=&quot;#this-is-following-an-example-from-the-official-document-with-some-of-my-personal-input&quot; aria-label=&quot;this is following an example from the official document with some of my personal input permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;This is following an example from the &lt;a href=&quot;https://reactnative.dev/docs/native-modules-android&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official document&lt;/a&gt; with some of my personal input&lt;/h3&gt;
+&lt;p&gt;Before creating a native module for a react-native project, you have to understand how react-native works for an Android app. A general tree is defined in &lt;code class=&quot;language-text&quot;&gt;AndroidManifest.xml&lt;/code&gt; like I have posted. And how the app actually works or how it is composed is declared in &lt;code class=&quot;language-text&quot;&gt;MainApplication.java&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;There are two default &lt;code class=&quot;language-text&quot;&gt;java&lt;/code&gt; files in a react-native project. One is &lt;code class=&quot;language-text&quot;&gt;MainApplication.java&lt;/code&gt;, which I am going to use in order to add a native module, and the ohter is &lt;code class=&quot;language-text&quot;&gt;MainActivity.java&lt;/code&gt;, which you rarely deal with throughout your project. The only thing declared in &lt;code class=&quot;language-text&quot;&gt;MainActivity.java&lt;/code&gt; is the name of your project like below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;package com.your-app-name;
+
+import com.facebook.react.ReactActivity;
+
+public class MainActivity extends ReactActivity {
+
+  /**
+   * Returns the name of the main component registered from JavaScript. This is used to schedule
+   * rendering of the component.
+   */
+  @Override
+  protected String getMainComponentName() {
+    return &amp;quot;your-app-name&amp;quot;;
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And everything else is declared in &lt;code class=&quot;language-text&quot;&gt;MainApplication.java&lt;/code&gt;. When you create a native module of your own, you have to pay attention to this section right here;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;    @Override
+    protected List&amp;lt;ReactPackage&amp;gt; getPackages() {
+        @SuppressWarnings(&amp;quot;UnnecessaryLocalVariable&amp;quot;)
+        List&amp;lt;ReactPackage&amp;gt; packages = new PackageList(this).getPackages();
+
+        // packages.add(new MyReactNativePackage());  // &amp;lt;-- this is where you are going to add your module
+        return packages;
+    }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Technically, you are not adding a module to &lt;code class=&quot;language-text&quot;&gt;MainApplication.java&lt;/code&gt;. You are adding a &lt;code class=&quot;language-text&quot;&gt;package&lt;/code&gt; which includes a &lt;code class=&quot;language-text&quot;&gt;module&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;MainApplication.java&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;First, you create your module like this. The below example is directly from the &lt;a href=&quot;https://reactnative.dev/docs/native-modules-android&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official website&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// ToastModule.java
+
+package com.your-app-name;
+
+import android.widget.Toast;
+
+import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
+
+import java.util.Map;
+import java.util.HashMap;
+
+public class ToastModule extends ReactContextBaseJavaModule {
+// a native module is a Java class that extends ReactContextBaseJavaModule
+
+  private static ReactApplicationContext reactContext;
+
+  private static final String DURATION_SHORT_KEY = &amp;quot;SHORT&amp;quot;;
+  private static final String DURATION_LONG_KEY = &amp;quot;LONG&amp;quot;;
+
+  ToastModule(ReactApplicationContext context) {
+    super(context);
+    reactContext = context;
+  }
+
+  @Override
+  public String getName() { // a ReactContextBaseJavaModule requires this method to be implemented
+    return &amp;quot;ToastExample&amp;quot;; // this string represents the name of the NativeModule that you are creating
+  }                        // therefore, you can access this module through React.NativeModules.ToastExample
+
+  @Override
+  public Map&amp;lt;String, Object&amp;gt; getConstants() {     // this is optional
+    final Map&amp;lt;String, Object&amp;gt; constants = new HashMap&amp;lt;&amp;gt;();
+    constants.put(DURATION_SHORT_KEY, Toast.LENGTH_SHORT);
+    constants.put(DURATION_LONG_KEY, Toast.LENGTH_LONG);
+    return constants;
+  }
+
+  @ReactMethod   // this decorator allows you to access this Java method with JavaScript. You will see what I mean later
+  public void show(String message, int duration) {
+    Toast.makeText(getReactApplicationContext(), message, duration).show();
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you have to create a &lt;code class=&quot;language-text&quot;&gt;package&lt;/code&gt; to register your &lt;code class=&quot;language-text&quot;&gt;module&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// CustomToastPackage.java
+
+package com.your-app-name;
+
+import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.uimanager.ViewManager;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class CustomToastPackage implements ReactPackage {
+
+  @Override
+  public List&amp;lt;ViewManager&amp;gt; createViewManagers(ReactApplicationContext reactContext) {
+    return Collections.emptyList();
+  }
+
+  @Override
+  public List&amp;lt;NativeModule&amp;gt; createNativeModules(
+                              ReactApplicationContext reactContext) {
+    List&amp;lt;NativeModule&amp;gt; modules = new ArrayList&amp;lt;&amp;gt;();
+
+    modules.add(new ToastModule(reactContext));  // Your module is added right here
+
+    return modules;
+  }
+
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you add the &lt;code class=&quot;language-text&quot;&gt;package&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;MainApplication.java&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;...
+import com.your-app-name.CustomToastPackage; // &amp;lt;-- Add this line with your package name.
+...
+
+protected List&amp;lt;ReactPackage&amp;gt; getPackages() {
+  @SuppressWarnings(&amp;quot;UnnecessaryLocalVariable&amp;quot;)
+  List&amp;lt;ReactPackage&amp;gt; packages = new PackageList(this).getPackages();
+
+  packages.add(new CustomToastPackage()); // &amp;lt;-- Add this line with your package name.
+  return packages;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you create a JavaScript file to wrap the native module you have just created, which is &lt;code class=&quot;language-text&quot;&gt;React.NativeModule.ToastExample&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;//ToastExample.js
+
+import {NativeModules} from &amp;#39;react-native&amp;#39;;
+module.exports = NativeModules.ToastExample;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is not in the official document, but you can also do it like this&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import {NativeModules} from &amp;#39;react-native&amp;#39;;
+
+const {ToastExample} = NativeModules
+
+export default ToastExample&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can all the &lt;code class=&quot;language-text&quot;&gt;show&lt;/code&gt; method which you have decorated with &lt;code class=&quot;language-text&quot;&gt;ReactMethod&lt;/code&gt; in &lt;code class=&quot;language-text&quot;&gt;ToastModule.java&lt;/code&gt; like this&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import ToastExample from &amp;#39;./ToastExample&amp;#39;;
+
+ToastExample.show(&amp;#39;Awesome&amp;#39;, ToastExample.SHORT);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This shows a toast with a text &lt;code class=&quot;language-text&quot;&gt;Awesome&lt;/code&gt; when you launch your Android app&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to Use Google SMTP]]></title><description><![CDATA[How to use Google SMTP, which is FREE!!]]></description><link>https://jasonkang14.github.io/server/how-to-use-google-smtp</link><guid isPermaLink="false">https://jasonkang14.github.io/server/how-to-use-google-smtp</guid><pubDate>Sun, 08 Mar 2020 22:53:37 GMT</pubDate><content:encoded>&lt;p&gt;I had to create a feature where uses report certain things to me when they find a bug in my app. Instead of making a list of reports via Google Sheet, I thought it would be easier to make them email the information to me so that I can deal with it as soon as I receive the email.&lt;/p&gt;
 &lt;p&gt;Google lets you use their SMTP(Simple Mail Transfer Protocol) for free. If you are using Python, you can do it like this .&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import smtplib
 import email.mime.text import MIMEText
