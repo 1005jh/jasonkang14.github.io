@@ -15,6 +15,8 @@ module.exports = {
     author: siteConfig.author
   },
   plugins: [
+    { resolve: 'gatsby-plugin-dark-mode' },
+
     {
       resolve: 'gatsby-source-filesystem',
       options: {
