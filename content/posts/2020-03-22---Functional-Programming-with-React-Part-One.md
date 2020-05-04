@@ -12,7 +12,7 @@ tags:
   - "위코드"
   - "wecode"
 
-description: "Understanding how functional programming works with React"
+description: "Understanding basic concepts of functional programming"
 ---
 
 On the very first page of [reactjs.org](https://reactjs.org), it says that `React` is **declarative**, which is a major property of Functional codes.
