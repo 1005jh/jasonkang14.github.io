@@ -39,7 +39,7 @@ By avoiding shared state, **the timing and order of function calls do not change
 
 - An immutable object is an object that cannot be modified after it is created while a mutable object can be modified.
 
-To be honest, I do not completely understand why this is important with Functional Programming, but apparently the data flow of your project gets messy. I believe this is related to how a `React state` must be treated as **immutable**. This means that you cannot directly change a state in a React project without using `setState`.
+To be honest, I do not completely understand why this is important with Functional Programming, but apparently the data flow of your project gets messy. I believe this is related to how a `React state` must be treated as **immutable**. And a `React prop` is literally **immutable**. This means that you cannot directly change a state in a React project without using `setState`.
 
 ### Higher Order Function
 
