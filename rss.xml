@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 04 May 2020 14:26:08 GMT</lastBuildDate><item><title><![CDATA[Functional Programming with React [2]]]></title><description><![CDATA[Understanding how functional programming works with React]]></description><link>https://jasonkang14.github.io/react/functional-programming-with-react-part-two</link><guid isPermaLink="false">https://jasonkang14.github.io/react/functional-programming-with-react-part-two</guid><pubDate>Mon, 30 Mar 2020 12:53:37 GMT</pubDate><content:encoded>&lt;p&gt;Now I have a general understanding about functional prograamming, I am going to talk about why understanding functional programming is import when working on a React project.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 05 May 2020 07:44:32 GMT</lastBuildDate><item><title><![CDATA[TypeScript - Index Types]]></title><description><![CDATA[Explaning Index Types in TypeScript]]></description><link>https://jasonkang14.github.io/typescript/index-types-explained</link><guid isPermaLink="false">https://jasonkang14.github.io/typescript/index-types-explained</guid><pubDate>Sun, 12 Apr 2020 19:53:37 GMT</pubDate><content:encoded>&lt;p&gt;It is easier to understand by looking at the code directly.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function pluck&amp;lt;T, K extends keyof T&amp;gt;(o: T, propertyNames: K[]): T[K][] {
+  return propertyNames.map(n =&amp;gt; o[n]);
+}
+
+interface Car {
+    manufacturer: string;
+    model: string;
+    year: number;
+}
+
+let taxi: Car = {
+    manufacturer: &amp;#39;Toyota&amp;#39;,
+    model: &amp;#39;Camry&amp;#39;,
+    year: 2014
+};
+
+let makeAndModel: string[] = pluck(taxi, [&amp;#39;manufacturer&amp;#39;, &amp;#39;model&amp;#39;]);
+
+let modelYear = pluck(taxi, [&amp;#39;model&amp;#39;, &amp;#39;year&amp;#39;])&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;An object called &lt;code class=&quot;language-text&quot;&gt;taxi&lt;/code&gt; has an interface called &lt;code class=&quot;language-text&quot;&gt;Car&lt;/code&gt;. And there is a function &lt;code class=&quot;language-text&quot;&gt;pluck&lt;/code&gt;, which checks if the object has items in an array as its property.&lt;/p&gt;
+&lt;p&gt;If you look at &lt;code class=&quot;language-text&quot;&gt;(o: T, propertyNames: K[])&lt;/code&gt; this section right here, the first argument is an object, which is &lt;code class=&quot;language-text&quot;&gt;taxi&lt;/code&gt; in this case, and the second argument is an array of strings, which are properties of the object.&lt;/p&gt;
+&lt;p&gt;If you add another property like &lt;code class=&quot;language-text&quot;&gt;owner: string&lt;/code&gt; to the Car interface, the type &lt;code class=&quot;language-text&quot;&gt;keyof Car&lt;/code&gt;, or &lt;code class=&quot;language-text&quot;&gt;keyof T&lt;/code&gt; in this case, is automatically updated as well.&lt;/p&gt;
+&lt;p&gt;The second operator is &lt;code class=&quot;language-text&quot;&gt;T[K]&lt;/code&gt;, which is the &lt;strong&gt;indexed access operator&lt;/strong&gt;. Here &lt;code class=&quot;language-text&quot;&gt;T&lt;/code&gt; represents the object, and &lt;code class=&quot;language-text&quot;&gt;K&lt;/code&gt; represents &lt;code class=&quot;language-text&quot;&gt;keyof T&lt;/code&gt;, so the &lt;code class=&quot;language-text&quot;&gt;pluck&lt;/code&gt; function can be re-written like below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function pluck&amp;lt;T, K extends keyof T&amp;gt;(o: T, propertyName: K): T[K] {
+    return o[propertyName]; // o[propertyName] is of type T[K]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Classes]]></title><description><![CDATA[Explaning classes in TypeScript]]></description><link>https://jasonkang14.github.io/typescript/classes-explained</link><guid isPermaLink="false">https://jasonkang14.github.io/typescript/classes-explained</guid><pubDate>Tue, 07 Apr 2020 19:53:37 GMT</pubDate><content:encoded>&lt;p&gt;Classes are a programming property used in Objected Oriented Programming. In TypeScript, you can use a &lt;code class=&quot;language-text&quot;&gt;Class&lt;/code&gt; with &lt;code class=&quot;language-text&quot;&gt;Interface&lt;/code&gt; like below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class Student {
+    fullName: string;
+    constructor(public firstName: string, public middleInitial: string, public lastName: string) {
+        this.fullName = firstName + &amp;quot; &amp;quot; + middleInitial + &amp;quot; &amp;quot; + lastName;
+    }
+}
+
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function greeter(person: Person) {
+    return &amp;quot;Hello, &amp;quot; + person.firstName + &amp;quot; &amp;quot; + person.lastName;
+}
+
+let user = new Student(&amp;quot;Jane&amp;quot;, &amp;quot;M.&amp;quot;, &amp;quot;User&amp;quot;);
+
+document.body.textContent = greeter(user);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;First you declare a class called &lt;code class=&quot;language-text&quot;&gt;Student&lt;/code&gt;. In its constructor, it takes arguments like &lt;code class=&quot;language-text&quot;&gt;firstName&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;middleInitial&lt;/code&gt;, and &lt;code class=&quot;language-text&quot;&gt;lastName&lt;/code&gt;. The use of &lt;code class=&quot;language-text&quot;&gt;public&lt;/code&gt; on arguments indicate that you can create properties with that name.&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;Person&lt;/code&gt; interface, which is the type of an argument for the function &lt;code class=&quot;language-text&quot;&gt;greeter&lt;/code&gt;, declares the types of &lt;code class=&quot;language-text&quot;&gt;firstName&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;lastName&lt;/code&gt;. Thus ensuring the created &lt;code class=&quot;language-text&quot;&gt;user&lt;/code&gt; object has the types that can be used for the &lt;code class=&quot;language-text&quot;&gt;greeter&lt;/code&gt; function.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Functional Programming with React [2]]]></title><description><![CDATA[Understanding how functional programming works with React]]></description><link>https://jasonkang14.github.io/react/functional-programming-with-react-part-two</link><guid isPermaLink="false">https://jasonkang14.github.io/react/functional-programming-with-react-part-two</guid><pubDate>Mon, 30 Mar 2020 12:53:37 GMT</pubDate><content:encoded>&lt;p&gt;Now I have a general understanding about functional prograamming, I am going to talk about why understanding functional programming is import when working on a React project.&lt;/p&gt;
 &lt;h3 id=&quot;react-component&quot;&gt;&lt;a href=&quot;#react-component&quot; aria-label=&quot;react component permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React Component&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Similar to a pure function which has a return value, a &lt;code class=&quot;language-text&quot;&gt;React&lt;/code&gt; component must have an output via &lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;&lt;/li&gt;
@@ -328,23 +375,13 @@ const nextState = produce(baseState, draftState =&amp;gt; {
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Conditional Types]]></title><description><![CDATA[TypeScript, conditional types explained]]></description><link>https://jasonkang14.github.io/posts/typescript/conditional-types</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/conditional-types</guid><pubDate>Sat, 04 Jan 2020 13:27:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;This is a summary of the &lt;a href=&quot;https://typesriptlang.org&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official document&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Conditional types are very self-explanatory. Depending on its condition, the type can be either one or the other.&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;T extends U ? X: Y&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;T is assignable to U the type is X, otherwise the type is Y.&lt;/p&gt;
-&lt;p&gt;This could be written like below;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;interface Foo {
-  propA: boolean;
-  propB: boolean;
-}
+&lt;p&gt;A conditional type T is either X, or, Y, or deferred depending on one or more type variables. The type of T depends on whether the type system has enough information to conclude that T is always assignable to U.&lt;/p&gt;
+&lt;p&gt;Look at the example below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;declare function f&amp;lt;T extends boolean&amp;gt;(x: T): T extends true ? string : number;
 
-declare function f&amp;lt;T&amp;gt;(x: T): T extends Foo ? string : number;
-
-function foo&amp;lt;U&amp;gt;(x: U) {
-  // Has type &amp;#39;U extends Foo ? string : number&amp;#39;
-  let a = f(x);
-
-  // This assignment is allowed though!
-  let b: string | number = a;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;In the code above, the variable &lt;code class=&quot;language-text&quot;&gt;a&lt;/code&gt; has a conditional type. However no type has been assigned to it. When another piece of code ends up calling foo, it will substitute in U with some other type, and TypeScript will re-evaluate the conditional type, deciding whether it can actually pick a branch.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Mapped Types]]></title><description><![CDATA[TypeScript, mapped types explained]]></description><link>https://jasonkang14.github.io/posts/typescript/mapped-types</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/mapped-types</guid><pubDate>Fri, 03 Jan 2020 13:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Mapped types allow you to map each property in a type in the same way. Think about the &lt;code class=&quot;language-text&quot;&gt;map&lt;/code&gt; function which you can use with a JavaScript array. By using the &lt;code class=&quot;language-text&quot;&gt;map&lt;/code&gt; function, you are doing the same task to each properties—like multiplying all of them by the factor of 3.&lt;/p&gt;
+let x = f(Math.random() &amp;lt; 0.5 )&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If I were to examine the code above, type T could be either &lt;code class=&quot;language-text&quot;&gt;string&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;number&lt;/code&gt;, or deferred. And it depends on whether the type system has enough information to conclude that T is always assignable to &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt; in this case.&lt;/p&gt;
+&lt;p&gt;if &lt;code class=&quot;language-text&quot;&gt;Math.random()&lt;/code&gt; is a number less than 0.5, the type T is &lt;code class=&quot;language-text&quot;&gt;number&lt;/code&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[TypeScript - Mapped Types]]></title><description><![CDATA[TypeScript, mapped types explained]]></description><link>https://jasonkang14.github.io/posts/typescript/mapped-types</link><guid isPermaLink="false">https://jasonkang14.github.io/posts/typescript/mapped-types</guid><pubDate>Fri, 03 Jan 2020 13:27:37 GMT</pubDate><content:encoded>&lt;p&gt;Mapped types allow you to map each property in a type in the same way. Think about the &lt;code class=&quot;language-text&quot;&gt;map&lt;/code&gt; function which you can use with a JavaScript array. By using the &lt;code class=&quot;language-text&quot;&gt;map&lt;/code&gt; function, you are doing the same task to each properties—like multiplying all of them by the factor of 3.&lt;/p&gt;
 &lt;p&gt;By &lt;code class=&quot;language-text&quot;&gt;mapping&lt;/code&gt; your type, you can make all propeties of type &lt;code class=&quot;language-text&quot;&gt;readonly&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;optional&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;In old format, you would do something like below if you want to make each property optional or readonly;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// optional
