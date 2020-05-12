@@ -24,7 +24,7 @@ Class-based views were added in order to make views more concise. Since they are
 Class-based views are Python classes, which has to classmethods of `get` and `post`, or `patch` and `delete` can be also used depending on the type of API you are trying to create. And it is also easier to reuse your code when you are using class-based views. And this is the reason why class-based views were created in the first place. **Class-based views were created in order to prevent developers from repeating their codes over and over again**.
 
 This image shows what type of views to use;
-![what_view_to_choose](https://github.com/jasonkang14/jasonkang14.github.io/raw/develop/media/class_vs_function_views.jpeg)
+![what_view_to_choose](https://github.com/jasonkang14/jasonkang14.github.io/static/media/class_vs_function_views.jpeg)
 
 ### Pros and Cons
 
