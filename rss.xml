@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 12 May 2020 12:11:26 GMT</lastBuildDate><item><title><![CDATA[Django - Views, Class vs Function]]></title><description><![CDATA[Explaining the difference between function-based view and class-based view]]></description><link>https://jasonkang14.github.io/django/django-views-function-vs-class-comparison</link><guid isPermaLink="false">https://jasonkang14.github.io/django/django-views-function-vs-class-comparison</guid><pubDate>Mon, 11 May 2020 23:53:37 GMT</pubDate><content:encoded>&lt;h2 id=&quot;function-based-view&quot;&gt;&lt;a href=&quot;#function-based-view&quot; aria-label=&quot;function based view permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Function-Based View&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 12 May 2020 15:20:53 GMT</lastBuildDate><item><title><![CDATA[Django - Custom Authentication]]></title><description><![CDATA[How to create a custom user model and authentication method in Django]]></description><link>https://jasonkang14.github.io/django/django-custom-authentication</link><guid isPermaLink="false">https://jasonkang14.github.io/django/django-custom-authentication</guid><pubDate>Tue, 12 May 2020 21:53:37 GMT</pubDate><content:encoded>&lt;h3 id=&quot;djangos-official-documentation-about-customizing-authentication-can-be-found-here&quot;&gt;&lt;a href=&quot;#djangos-official-documentation-about-customizing-authentication-can-be-found-here&quot; aria-label=&quot;djangos official documentation about customizing authentication can be found here permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Django’s official documentation about customizing authentication can be found &lt;a href=&quot;https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#customizing-authentication-in-django&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;here&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In order to create custom authentication, you have to create a model. You can extend the existing &lt;strong&gt;User&lt;/strong&gt; model from &lt;code class=&quot;language-text&quot;&gt;django.contrib.auth.models&lt;/code&gt; and create an one-to-one relationship with your model and the default &lt;strong&gt;User&lt;/strong&gt; model. However, I cannot assure this because I ahve not done it myself, but I believe this would create an extra table in your database. So I have decided to substitute a custom &lt;strong&gt;User&lt;/strong&gt; model by using &lt;strong&gt;AbstractUser&lt;/strong&gt; from &lt;code class=&quot;language-text&quot;&gt;django.contrib.auth.models&lt;/code&gt; like below;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class User(AbstractUser):
+    nickname      = models.CharField(max_length=15, unique=True)
+    phone         = models.CharField(max_length=15, default=&amp;quot;010-1234-1234&amp;quot;, unique=True)
+    date_of_birth = models.DateField()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;birthday&lt;/code&gt; could be a better name for the field, but I just decided to go with &lt;code class=&quot;language-text&quot;&gt;date_of_birth&lt;/code&gt;. Unless you create a completely new model for your &lt;code class=&quot;language-text&quot;&gt;User&lt;/code&gt;, the default &lt;strong&gt;User&lt;/strong&gt; object has some primary attributes like &lt;strong&gt;username&lt;/strong&gt;, &lt;strong&gt;password&lt;/strong&gt;, &lt;strong&gt;email&lt;/strong&gt;, &lt;strong&gt;first_name&lt;/strong&gt;, and &lt;strong&gt;last_name&lt;/strong&gt;. The model also has some other attributes like &lt;strong&gt;is_superuser&lt;/strong&gt;, &lt;strong&gt;is_staff&lt;/strong&gt;, and so on.&lt;/p&gt;
+&lt;p&gt;Now you have to authenticate this user via a sign up request. I decided to go with a class view because I wanted to use a &lt;code class=&quot;language-text&quot;&gt;get&lt;/code&gt; request for sign up to check if a user with the same username, nickname, and/or email already exists.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import json
+
+from django.http         import JsonResponse, HttpResponse
+from django.views        import View
+from django.contrib.auth import authenticate, login
+
+from .models             import *                                 ## I take Align very seriously
+
+class SignupView(View):
+    def post(self, request):
+        new_user_info = json.loads(request.body)
+        req_username  = new_user_info[&amp;#39;username&amp;#39;]
+        req_phone     = new_user_info[&amp;#39;phone&amp;#39;]
+        req_email     = new_user_info[&amp;#39;email&amp;#39;]
+
+        if User.objects.filter(username=req_username).exists():
+            return JsonResponse({
+                &amp;#39;message&amp;#39;: &amp;#39;USERNAME_ALREADY_EXISTS&amp;#39;
+            }, status=409)
+
+        elif User.objects.filter(phone=req_phone).exists():
+            return JsonResponse({
+                &amp;#39;message&amp;#39;: &amp;#39;PHONE_NUMBER_ALREADY_EXISTS&amp;#39;
+            }, status=409)
+
+        elif User.objects.filter(email=req_email).exists():
+            return JsonResponse({
+                &amp;#39;message&amp;#39;: &amp;#39;EMAIL_ALREADY_EXISTS&amp;#39;
+            }, status=409)
+
+        else:
+            new_user = User.objects.create_user(
+                username      = req_username,
+                phone         = req_phone,
+                email         = req_email,
+                first_name    = new_user_info[&amp;#39;first_name&amp;#39;],
+                last_name     = new_user_info[&amp;#39;last_name&amp;#39;],
+                password      = new_user_info[&amp;#39;password&amp;#39;],
+                nickname      = new_user_info[&amp;#39;nickname&amp;#39;],
+                date_of_birth = new_user_info[&amp;#39;dateOfBirth&amp;#39;],
+                height        = new_user_info[&amp;#39;height&amp;#39;],
+                body_type     = new_user_info[&amp;#39;bodyType&amp;#39;],
+                occupation    = new_user_info[&amp;#39;occupation&amp;#39;],
+            )
+
+            new_user = authenticate(username=req_username, password=new_user_info[&amp;#39;password&amp;#39;])
+
+            return HttpResponse(status=200)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I used 409 status if a user with same info already exists because &lt;code class=&quot;language-text&quot;&gt;409 Conflict&lt;/code&gt; is used in situations &lt;strong&gt;where it is iexpected that the user might be able to resolve the conflict and resubmit the request&lt;/strong&gt;. Since the user can enter a new username, nickname, and/or email to resolve the &lt;strong&gt;conflict&lt;/strong&gt; I used 409 as the status code.&lt;/p&gt;
+&lt;p&gt;After creating a user by using &lt;code class=&quot;language-text&quot;&gt;User.objects.create_user&lt;/code&gt;, you have to &lt;strong&gt;authenticate&lt;/strong&gt; the user via &lt;code class=&quot;language-text&quot;&gt;new_user = authenticate(username=req_username, password=new_user_info[&amp;#39;password&amp;#39;])&lt;/code&gt; in order to set the password. I will write about login in a later post&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django - Views, Class vs Function]]></title><description><![CDATA[Explaining the difference between function-based view and class-based view]]></description><link>https://jasonkang14.github.io/django/django-views-function-vs-class-comparison</link><guid isPermaLink="false">https://jasonkang14.github.io/django/django-views-function-vs-class-comparison</guid><pubDate>Mon, 11 May 2020 23:53:37 GMT</pubDate><content:encoded>&lt;h2 id=&quot;function-based-view&quot;&gt;&lt;a href=&quot;#function-based-view&quot; aria-label=&quot;function based view permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Function-Based View&lt;/h2&gt;
 &lt;p&gt;Django originally had only funcion-based view, which takes a &lt;code class=&quot;language-text&quot;&gt;request&lt;/code&gt; object as an argument and returns a &lt;code class=&quot;language-text&quot;&gt;response&lt;/code&gt; object. I will write about those objects in a later post.&lt;/p&gt;
 &lt;p&gt;The returned &lt;code class=&quot;language-text&quot;&gt;response&lt;/code&gt; object is usually a &lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt; object, which is a built-in django shortcut which can return a django template with some messages. The advantage of using a function-based view is that you know exactly what you are getting since you have to write out every single case that you are dealing with. However, it is also the downside of a function-based view is that you have to write code over and over again in order to handle every single exception. For a single login view, you might have to write out 30 lines to handle a wrong username, a wrong password, and a wrong username and wrong password, and if you have more than two fields for your login for some reason, the view would have to be a lot longer to handle every possible case.&lt;/p&gt;
 &lt;h2 id=&quot;class-based-view&quot;&gt;&lt;a href=&quot;#class-based-view&quot; aria-label=&quot;class based view permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Class-Based View&lt;/h2&gt;
