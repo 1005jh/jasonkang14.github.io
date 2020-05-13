@@ -22,7 +22,7 @@ Now I have a general understanding about functional prograamming, I am going to 
 - Similar to a pure function which has a return value, a `React` component must have an output via `render()`
 - A component is like a function with returns an output based on its input like a pure function
 
-I believe this could be somewhat self-explanatory with React Hooks
+React components are pure components, but more importantly, the `render` function inside a react componenet must be a pure function which always returns the same output if the input, which is `state` in this case, is the same.
 
 ### React Props
 
