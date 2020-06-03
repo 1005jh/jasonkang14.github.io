@@ -7,7 +7,6 @@ slug: "/django/query-with-filter-and-get"
 category: "Django"
 tags:
   - "django"
-  - "styledcomponent"
 
 description: "How to make a query in Django using filter abd get"
 ---
