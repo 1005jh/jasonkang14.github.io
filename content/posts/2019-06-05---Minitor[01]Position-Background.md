@@ -7,8 +7,7 @@ slug: "/posts/Minitor-Position-Background/"
 category: "CSS"
 tags:
   - "css"
-  - "position"
-  - "background"
+
 description: "Use of position, and background- properties on HTML and CSS in attempt to make a mini-version of Twitter."
 ---
 

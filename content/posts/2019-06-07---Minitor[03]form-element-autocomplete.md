@@ -7,8 +7,7 @@ slug: "/posts/Minitor-form-element-autocomplete/"
 category: "HTML"
 tags:
   - "html"
-  - "form"
-  - "autocomplete"
+
 description: "Use of the <form> element and autocomplete in attempt to make a mini-version of Twitter."
 ---
 

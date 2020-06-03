@@ -7,7 +7,7 @@ slug: "/react-native/androidmanifest-xml-explained-app-components"
 category: "ReactNative"
 tags:
   - "reactnative"
-  - "androidmanifest"
+  - "android"
 
 description: "AndroidManifest.xml app components explained"
 ---

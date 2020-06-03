@@ -7,10 +7,6 @@ slug: "/posts/javascript/this-bind-apply-call"
 category: "JavaScript"
 tags:
   - "javascript"
-  - "this"
-  - "bind"
-  - "apply"
-  - "call"
 
 description: "Basics of JavaScript: this, apply, call, bind, arrow function"
 ---

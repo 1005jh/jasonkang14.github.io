@@ -6,9 +6,6 @@ draft: false
 slug: "/posts/JWT-Token-for-a-login-decorator"
 category: "JWT"
 tags:
-  - "bcrypt"
-  - "python"
-  - "django"
   - "jwt"
   - "decorator"
 description: "Implementing Authentication using JWT"

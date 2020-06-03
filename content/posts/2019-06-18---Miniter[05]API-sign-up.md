@@ -6,9 +6,7 @@ draft: false
 slug: "/posts/Miniter-API-sign-up"
 category: "Django"
 tags:
-  - "python"
-  - "django"
-  - "api"
+  - "http"
 description: "Making an API for the Miniter project with Django without using the REST framework."
 ---
 

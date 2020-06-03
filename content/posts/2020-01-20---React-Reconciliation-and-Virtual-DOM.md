@@ -7,7 +7,6 @@ slug: "/posts/react/reconciliation-and-virtual-dom"
 category: "React"
 tags:
   - "react"
-  - "reconciliation"
 
 description: "React reconciliation to improve efficiency"
 ---

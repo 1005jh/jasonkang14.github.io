@@ -8,7 +8,6 @@ category: "CSS"
 tags:
   - "jquery"
   - "css"
-  - "javascript"
 description: "Practicing Advanced CSS using jQuery"
 ---
 

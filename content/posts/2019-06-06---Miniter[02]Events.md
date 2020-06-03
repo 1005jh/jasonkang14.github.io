@@ -6,13 +6,8 @@ draft: false
 slug: "/posts/Miniter-Events/"
 category: "DOM"
 tags:
-  - "event"
   - "javascript"
-  - "html"
-  - "css"
-  - "keyup"
-  - "onclick"
-  - "click"
+
 description: "How to set events in attempt to make a mini-version of Twitter."
 ---
 

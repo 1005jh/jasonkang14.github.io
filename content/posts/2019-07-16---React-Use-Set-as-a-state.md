@@ -7,8 +7,6 @@ slug: "/posts/react/using-set-as-a-state"
 category: "React"
 tags:
   - "react"
-  - "set"
-  - "array"
 
 description: "How to use a 'set' as a state and update the state"
 ---

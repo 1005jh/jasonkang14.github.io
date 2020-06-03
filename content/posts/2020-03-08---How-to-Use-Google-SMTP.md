@@ -4,12 +4,9 @@ date: "2020-03-08T22:53:37.121Z"
 template: "post"
 draft: false
 slug: "/server/how-to-use-google-smtp"
-category: "Server"
+category: "SMTP"
 tags:
-  - "server"
-  - "google"
   - "smtp"
-  - "python"
 
 description: "How to use Google SMTP, which is FREE!!"
 ---

@@ -7,7 +7,6 @@ slug: "/posts/babel/how-to-make-a-babel-plugin"
 category: "Babel"
 tags:
   - "babel"
-  - "plugin"
 
 description: "How to make a babel plugin"
 ---

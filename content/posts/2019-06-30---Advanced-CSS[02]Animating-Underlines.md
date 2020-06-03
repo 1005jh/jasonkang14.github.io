@@ -7,9 +7,7 @@ slug: "/posts/AdvancedCSS/Animating Underlines"
 category: "SASS"
 tags:
   - "sass"
-  - "css"
-  - "javascript"
-  - "react"
+
 description: "Practicing Advanced CSS using SASS"
 ---
 

@@ -7,8 +7,6 @@ slug: "/posts/android/how-to-create-a-hash-key-for-an-android-project"
 category: "android"
 tags:
   - "android"
-  - "hash"
-  - "key"
 
 description: "How to create a hash key for an android project"
 ---

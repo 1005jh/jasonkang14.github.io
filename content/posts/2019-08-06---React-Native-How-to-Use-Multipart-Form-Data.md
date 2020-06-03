@@ -7,7 +7,6 @@ slug: "/posts/React-Native-Multipart-Form-Data-to-API"
 category: "React Native"
 tags:
   - "reactnative"
-  - "multipart/form-data"
   - "aws"
 description: "How to send an image file to an API to have it uploaded to AWS S3"
 ---

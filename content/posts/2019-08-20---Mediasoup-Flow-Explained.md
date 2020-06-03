@@ -7,7 +7,6 @@ slug: "/posts/webrtc/webrtc-Mediasoup-flow-explained"
 category: "webrtc"
 tags:
   - "webrtc"
-  - "reactnative"
   - "mediasoup"
 
 description: "Mediasoup Flow explained"

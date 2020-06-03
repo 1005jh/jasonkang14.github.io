@@ -6,12 +6,8 @@ draft: false
 slug: "/posts/Miniter-Link-API-to-HTML"
 category: "Django"
 tags:
-  - "python"
-  - "django"
-  - "api"
-  - "html"
-  - "csrf"
-  - "cors"
+  - "http"
+
 description: "Making an API for the Miniter project with Django without using the REST framework."
 ---
 

@@ -7,8 +7,7 @@ slug: "/posts/Bcrypt-Login-using-checkpw"
 category: "Brcypt"
 tags:
   - "bcrypt"
-  - "python"
-  - "django"
+
 description: "Implementing Login using Django and Bcrypt"
 ---
 

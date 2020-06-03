@@ -7,9 +7,6 @@ slug: "/posts/webrtc/concluding-ice-via-nomination"
 category: "webrtc"
 tags:
   - "webrtc"
-  - "ice"
-  - "icecandidate"
-  - "nomination"
 
 description: "Concluding ICE via nomination"
 ---

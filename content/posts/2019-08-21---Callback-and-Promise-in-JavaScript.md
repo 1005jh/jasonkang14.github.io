@@ -7,8 +7,6 @@ slug: "/posts/javascript/Callback-and-Promise-in-JavaScript"
 category: "javascript"
 tags:
   - "javascript"
-  - "sync"
-  - "async"
   - "promise"
 
 description: "Asynchronous Programming in JavaScript explained"

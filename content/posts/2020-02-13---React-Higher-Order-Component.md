@@ -7,7 +7,6 @@ slug: "/react/higher-order-component"
 category: "React"
 tags:
   - "react"
-  - "higherordercomponent"
 
 description: "React higher order component explained"
 ---

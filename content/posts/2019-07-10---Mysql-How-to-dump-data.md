@@ -8,7 +8,7 @@ category: "mysql"
 tags:
   - "mysql"
   - "aws"
-  - "database"
+
 description: "How to import local mysql databases to AWS mysql databases"
 ---
 

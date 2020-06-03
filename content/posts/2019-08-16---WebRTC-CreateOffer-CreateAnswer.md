@@ -7,7 +7,6 @@ slug: "/posts/webrtc/webrtc-create-offer-create-answer"
 category: "webrtc"
 tags:
   - "webrtc"
-  - "reactnative"
 
 description: "WebRTC flow explained"
 ---

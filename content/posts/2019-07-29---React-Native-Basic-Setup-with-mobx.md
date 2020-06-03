@@ -7,7 +7,6 @@ slug: "/posts/reactnative/basic-setup"
 category: "React Native"
 tags:
   - "reactnative"
-  - "setup"
   - "mobx"
 
 description: "How to set up a React Native project with MobX"

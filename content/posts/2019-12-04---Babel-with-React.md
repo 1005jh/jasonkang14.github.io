@@ -6,7 +6,6 @@ draft: false
 slug: "/posts/babel/what-with-react"
 category: "Babel"
 tags:
-  - "javascript"
   - "babel"
   - "react"
 

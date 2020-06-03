@@ -8,10 +8,6 @@ category: "ReactNative"
 tags:
   - "reactnative"
   - "android"
-  - "native"
-  - "module"
-  - "위코드"
-  - "wecode"
 
 description: "How to make an Android native module for a React-Native project"
 ---

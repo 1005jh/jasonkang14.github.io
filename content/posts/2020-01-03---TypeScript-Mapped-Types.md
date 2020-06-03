@@ -7,8 +7,6 @@ slug: "/posts/typescript/mapped-types"
 category: "TypeScript"
 tags:
   - "typescript"
-  - "type"
-  - "mapped"
 
 description: "TypeScript, mapped types explained"
 ---

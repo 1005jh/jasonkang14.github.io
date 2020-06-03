@@ -8,9 +8,7 @@ category: "React Native"
 tags:
   - "react"
   - "reactnative"
-  - "lifecycle"
-  - "mobx"
-  - "getderivedstatefromprops"
+
 description: "How to use getDerivedStateFromProps instead of componentDidUpdate"
 ---
 

@@ -7,8 +7,6 @@ slug: "/posts/webrtc/ice-candidate-exchange"
 category: "webrtc"
 tags:
   - "webrtc"
-  - "ice"
-  - "icecandidate"
 
 description: "How ICE candidate exchange works in WebRTC flow"
 ---

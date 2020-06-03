@@ -7,7 +7,7 @@ slug: "/react-native/androidmanifest-xml-explained-permissions"
 category: "ReactNative"
 tags:
   - "reactnative"
-  - "androidmanifest"
+  - "android"
 
 description: "AndroidManifest.xml permissions explained"
 ---

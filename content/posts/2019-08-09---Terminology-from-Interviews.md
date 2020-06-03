@@ -6,11 +6,8 @@ draft: false
 slug: "/posts/Terminology-from-Interviews"
 category: "terminology"
 tags:
-  - "javascript"
-  - "programming"
-  - "python"
-  - "django"
-  - "terminology"
+  - "interview"
+
 description: "Some important terminology in web development based on interview questions"
 ---
 

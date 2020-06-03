@@ -7,7 +7,6 @@ slug: "/posts/react/react-advanced-guide-context-explained"
 category: "react"
 tags:
   - "react"
-  - "context"
 
 description: "React Context Explained"
 ---

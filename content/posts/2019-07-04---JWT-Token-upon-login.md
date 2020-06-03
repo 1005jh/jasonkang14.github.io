@@ -6,9 +6,6 @@ draft: false
 slug: "/posts/JWT-Token-returned-upon-login"
 category: "JWT"
 tags:
-  - "bcrypt"
-  - "python"
-  - "django"
   - "jwt"
 description: "Implementing Authentication using JWT"
 ---

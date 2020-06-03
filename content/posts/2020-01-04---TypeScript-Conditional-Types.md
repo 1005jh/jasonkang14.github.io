@@ -7,8 +7,6 @@ slug: "/posts/typescript/conditional-types"
 category: "TypeScript"
 tags:
   - "typescript"
-  - "type"
-  - "conditional"
 
 description: "TypeScript, conditional types explained"
 ---

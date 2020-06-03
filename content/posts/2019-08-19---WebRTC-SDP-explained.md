@@ -7,7 +7,6 @@ slug: "/posts/webrtc/webrtc-SDP-explained"
 category: "webrtc"
 tags:
   - "webrtc"
-  - "reactnative"
 
 description: "SDP explained"
 ---

@@ -7,10 +7,6 @@ slug: "/react/functional-programming-with-react-part-one"
 category: "React"
 tags:
   - "react"
-  - "function"
-  - "programming"
-  - "위코드"
-  - "wecode"
 
 description: "Understanding basic concepts of functional programming"
 ---

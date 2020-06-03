@@ -7,8 +7,7 @@ slug: "/posts/React-Remaking-Miniter-Using-React-part-one"
 category: "React"
 tags:
   - "react"
-  - "css"
-  - "javascript"
+
 description: "Remaking Miniter Using React"
 ---
 

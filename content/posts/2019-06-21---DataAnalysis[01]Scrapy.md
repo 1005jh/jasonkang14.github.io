@@ -6,9 +6,7 @@ draft: false
 slug: "/posts/DataAnalysis-Scrapy"
 category: "scrapy"
 tags:
-  - "python"
   - "scrapy"
-  - "dataanalysis"
 description: "Data Analysis project using Scrapy and Luigi"
 ---
 

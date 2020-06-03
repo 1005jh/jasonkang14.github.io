@@ -7,8 +7,7 @@ slug: "/posts/Axios-explained"
 category: "Axios"
 tags:
   - "axios"
-  - "http"
-  - "request"
+
 description: "Explaining Axios"
 ---
 

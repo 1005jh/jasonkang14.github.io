@@ -6,11 +6,6 @@ draft: false
 slug: "/posts/wecode/WeCode-Main-Course-Review"
 category: "wecode"
 tags:
-  - "wecode"
-  - "maincourse"
-  - "coding"
-  - "bootcamp"
-  - "codingbootcamp"
   - "위코드"
   - "코딩부트캠프"
 

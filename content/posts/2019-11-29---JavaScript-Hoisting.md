@@ -7,7 +7,6 @@ slug: "/posts/javascript/hoisting"
 category: "JavaScript"
 tags:
   - "javascript"
-  - "hoisting"
 
 description: "JavaScript hoisting"
 ---

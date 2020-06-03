@@ -8,10 +8,6 @@ category: "React"
 tags:
   - "react"
   - "reacthooks"
-  - "component"
-  - "useref"
-  - "usedebounce"
-  - "usehasmounted"
 
 description: "React.js class component and hooks: "
 ---
