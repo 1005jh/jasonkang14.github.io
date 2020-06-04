@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 04 Jun 2020 14:58:37 GMT</lastBuildDate><item><title><![CDATA[Django - Query Set API]]></title><description><![CDATA[Methods you can use to make queries in Django]]></description><link>https://jasonkang14.github.io/django/query-set-api</link><guid isPermaLink="false">https://jasonkang14.github.io/django/query-set-api</guid><pubDate>Tue, 02 Jun 2020 15:53:37 GMT</pubDate><content:encoded>&lt;h3 id=&quot;exclude&quot;&gt;&lt;a href=&quot;#exclude&quot; aria-label=&quot;exclude permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;exclude()&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 04 Jun 2020 15:32:15 GMT</lastBuildDate><item><title><![CDATA[Django - Select Related]]></title><description><![CDATA[Let's try to improve efficiency when you make a query in Django]]></description><link>https://jasonkang14.github.io/django/select-related</link><guid isPermaLink="false">https://jasonkang14.github.io/django/select-related</guid><pubDate>Wed, 03 Jun 2020 15:53:37 GMT</pubDate><content:encoded>&lt;h3 id=&quot;tldr&quot;&gt;&lt;a href=&quot;#tldr&quot; aria-label=&quot;tldr permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;TL;DR&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt; allows you to access data without accesing the database multiple times.&lt;/p&gt;
+&lt;h3 id=&quot;explanation&quot;&gt;&lt;a href=&quot;#explanation&quot; aria-label=&quot;explanation permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;explanation&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt; is helpful when there is a &lt;code class=&quot;language-text&quot;&gt;ForeignKey&lt;/code&gt; relationship. Esepecially if there are nested foreignkey relationships between tables, it will save you a lot of time.&lt;/p&gt;
+&lt;p&gt;I created models in &lt;code class=&quot;language-text&quot;&gt;models.py&lt;/code&gt; for a testing purpose like this&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class State(models.Model):
+    name = models.CharField(max_length=25)
+
+class City(models.Model):
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    name  = models.CharField(max_length=25)
+
+class Street(models.Model):
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    name = models.CharField(max_length=25)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And then created two views. One using &lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt; and the other not using it&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class SelectRelatedView(View):
+    def get(self, request):
+        print(&amp;quot;select_related&amp;quot;)
+        street = Street.objects.select_related(&amp;#39;city__state&amp;#39;).get(pk=1)
+        print(F&amp;quot;street      == {street} {datetime.datetime.now()}&amp;quot;)
+        c = street.city
+        print(f&amp;quot;street.city == {street.city} {datetime.datetime.now()}&amp;quot;)
+        s = c.state
+        print(f&amp;quot;city.state  == {c.state} {datetime.datetime.now()}&amp;quot;)
+
+        return HttpResponse(status=200)
+
+class NormalCityView(View):
+    def get(self, request):
+        print(&amp;quot;normal&amp;quot;)
+        street = Street.objects.get(pk=1)
+        print(F&amp;quot;street      == {street} {datetime.datetime.now()}&amp;quot;)
+        c = street.city
+        print(f&amp;quot;street.city == {street.city} {datetime.datetime.now()}&amp;quot;)
+        s = c.state
+        print(f&amp;quot;city.state  == {c.state} {datetime.datetime.now()}&amp;quot;)
+
+        return HttpResponse(status=200)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And here is the time difference&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;select_related
+street      == Street object (1) 2020-06-04 15:25:55.039457
+street.city == City object (1) 2020-06-04 15:25:55.039495
+city.state  == State object (1) 2020-06-04 15:25:55.039506
+[04/Jun/2020 15:25:55] &amp;quot;GET /select_related/ HTTP/1.1&amp;quot; 200 0
+
+normal
+street      == Street object (1) 2020-06-04 15:26:04.422837
+street.city == City object (1) 2020-06-04 15:26:04.425180
+city.state  == State object (1) 2020-06-04 15:26:04.429000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can see that when I used &lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt;, the time difference between the last print line the the first prine like is 0.00005 second. However, when I did not use &lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt;, the time difference is 0.006 second. Therefore, if I were to use simple math, &lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt; is &lt;strong&gt;120&lt;/strong&gt; times more efficient.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django - Query Set API]]></title><description><![CDATA[Methods you can use to make queries in Django]]></description><link>https://jasonkang14.github.io/django/query-set-api</link><guid isPermaLink="false">https://jasonkang14.github.io/django/query-set-api</guid><pubDate>Tue, 02 Jun 2020 15:53:37 GMT</pubDate><content:encoded>&lt;h3 id=&quot;exclude&quot;&gt;&lt;a href=&quot;#exclude&quot; aria-label=&quot;exclude permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;exclude()&lt;/h3&gt;
 &lt;p&gt;very straight forward. you can exclude multiple properties using a comma like below
 &lt;code class=&quot;language-text&quot;&gt;Entry.objects.exclude(pub_date__gt=datetime.date(2005, 1, 3), headline=&amp;#39;Hello&amp;#39;)&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id=&quot;order_by&quot;&gt;&lt;a href=&quot;#order_by&quot; aria-label=&quot;order_by permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;order_by()&lt;/h3&gt;
