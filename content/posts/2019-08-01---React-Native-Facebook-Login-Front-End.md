@@ -8,7 +8,7 @@ category: "React Native"
 tags:
   - "reactnative"
   - "facebook"
-  - "sociallogin"
+  - "socialogin"
   - "ios"
 description: "How to implement Facebook Login using React Native."
 ---
