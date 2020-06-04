@@ -1,6 +1,6 @@
 ---
 title: Django - Select Related
-date: "2020-06-03T15:53:37.121Z"
+date: "2020-06-04T15:53:37.121Z"
 template: "post"
 draft: false
 slug: "/django/select-related"
