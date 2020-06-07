@@ -1,6 +1,6 @@
 ---
 title: Django - Prefetch Related
-date: "2020-06-06T18:53:37.121Z"
+date: "2020-06-07T10:53:37.121Z"
 template: "post"
 draft: false
 slug: "/django/prefetch-related"
