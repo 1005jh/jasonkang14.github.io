@@ -7,7 +7,7 @@ slug: "/react-native/usereducer-with-usecontext"
 category: "ReactNative"
 tags:
   - "reactnative"
-  - "hooks"
+  - "reacthooks"
   - "typescript"
   - "wecode"
   - "위코드"
