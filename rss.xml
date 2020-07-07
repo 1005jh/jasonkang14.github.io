@@ -1,4 +1,144 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Jun 2020 09:59:16 GMT</lastBuildDate><item><title><![CDATA[Django - Prefetch Related]]></title><description><![CDATA[Let's try to improve efficiency when you make a query in Django]]></description><link>https://jasonkang14.github.io/django/prefetch-related</link><guid isPermaLink="false">https://jasonkang14.github.io/django/prefetch-related</guid><pubDate>Sun, 07 Jun 2020 10:53:37 GMT</pubDate><content:encoded>&lt;p&gt;According to the &lt;a href=&quot;https://docs.djangoproject.com/en/3.0/ref/models/querysets/#prefetch-related&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official document&lt;/a&gt; &lt;code class=&quot;language-text&quot;&gt;preftecth_related()&lt;/code&gt; returns in a single batch, related objects for each of the specified lookups.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[Developer, seeking opportunities.]]></description><link>https://jasonkang14.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 07 Jul 2020 15:00:57 GMT</lastBuildDate><item><title><![CDATA[React Native - useReducer with useContext + TypeScript]]></title><description><![CDATA[How to use useReducer with useContext]]></description><link>https://jasonkang14.github.io/react-native/usereducer-with-usecontext</link><guid isPermaLink="false">https://jasonkang14.github.io/react-native/usereducer-with-usecontext</guid><pubDate>Mon, 15 Jun 2020 10:53:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://redux.js.org/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Redux&lt;/a&gt; has a &lt;code class=&quot;language-text&quot;&gt;Provider&lt;/code&gt;, which allows you to access the &lt;strong&gt;redux store&lt;/strong&gt; from all the components. Similar to that, &lt;code class=&quot;language-text&quot;&gt;useContext&lt;/code&gt; allows you to create a &lt;code class=&quot;language-text&quot;&gt;Context Provider&lt;/code&gt; in order for you to have an access to &lt;strong&gt;context&lt;/strong&gt; from all the components.&lt;/p&gt;
+&lt;p&gt;Here I am going to create &lt;code class=&quot;language-text&quot;&gt;UserInfoContext&lt;/code&gt;, which has information about a user’s name and age. And also implement a &lt;code class=&quot;language-text&quot;&gt;reducer&lt;/code&gt; to change user information.&lt;/p&gt;
+&lt;p&gt;First, you have to &lt;code class=&quot;language-text&quot;&gt;createContext&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// UserInfoContext.tsx
+
+import React, {createContext} from &amp;#39;react&amp;#39;;
+
+type ActionProps = {
+  type: string,
+  payload: {
+    age: number
+  }
+}
+
+const UserInfoContext = createContext({
+  userInfo: {
+    username: &amp;#39;Jason Kang&amp;#39;,
+    age: 20,
+  },
+  changeUserInfo: (action: ActionProps) =&amp;gt; {}
+});
+
+export default UserInfoContext;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you create a &lt;code class=&quot;language-text&quot;&gt;reducer&lt;/code&gt; to change user information&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// UserInfoReducer.tsx
+type ActionProps = {
+  type: string,
+  payload: {
+    name: string
+    age: number
+  }
+}
+
+type IUserInfo = {
+  username: string,
+  age: number
+}
+
+const userInfoReducer = (state: IUserInfo, action: ActionProps) =&amp;gt; {
+  switch(action.type) {
+    case &amp;#39;CHANGE_USERINFO&amp;#39;:
+      const {username} = action.payload;
+      return {
+        ...state,
+        username
+      }
+
+    case &amp;#39;CHANGE_AGE&amp;#39;:
+      const {age} = action.payload;
+      return {
+        ...state,
+        age
+      }
+
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And then you import this context in your &lt;code class=&quot;language-text&quot;&gt;App.tsx&lt;/code&gt; to create a &lt;strong&gt;context provider&lt;/strong&gt;. And you also need to &lt;code class=&quot;language-text&quot;&gt;useReducer&lt;/code&gt; and pass it to all the components using the provider so that you can change userinfo in every single component.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// App.tsx
+
+import React, {useReducer} from &amp;#39;react&amp;#39;;
+import ComponentA from &amp;#39;~/ComponentA&amp;#39;;
+import ComponentB from &amp;#39;~/ComponentB&amp;#39;;
+import ComponentC from &amp;#39;~/ComponentC&amp;#39;;
+import UserInfoContext from &amp;#39;~contexts/UserInfoContext&amp;#39;;
+import UserInfoReducer from &amp;#39;~reducers/UserInfoReducer&amp;#39;;
+
+type IUserInfo = {
+  username: string,
+  age: number
+}
+
+const App = () =&amp;gt; {
+  const initialUserInfo: IUserInfo = {
+    username: &amp;#39;Jason Kang&amp;#39;,
+    age: 20
+  }
+
+  const [state, dispatch] = useReducer(UserInfoReducer, initialUserInfo)
+
+  const userInfoValue = {
+    initialUserInfo,
+    changeUserInfo: (type: string, payload: IUserInfo) =&amp;gt; {
+      dispatch({type, payload})
+    }
+  }
+
+  return (
+    &amp;lt;UserInfoContext.Provider value={userInfoValue}&amp;gt;
+      &amp;lt;ComponentA /&amp;gt;
+      &amp;lt;ComponentB /&amp;gt;
+      &amp;lt;ComponentC /&amp;gt;
+    &amp;lt;/UserInfoContext.Provider&amp;gt;
+  );
+};
+
+export default App;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you can &lt;code class=&quot;language-text&quot;&gt;useContext&lt;/code&gt; in all the components to change user information&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// ComponentA.tsx
+
+import React, {FunctionComponent, useContext} from &amp;#39;react&amp;#39;
+import {TouchableOpacity, Text} from &amp;#39;react-native
+
+import UserInfoContext from &amp;#39;~contexts/UserInfoContext&amp;#39;;
+
+
+type ComponentAProps = {}
+
+const ComponentA: FunctionComponent&amp;lt;ComponentAProps&amp;gt; = props =&amp;gt; {
+  const userInfoContext = useContext(UserInfoContext)
+
+  const changeName = (): void =&amp;gt; {
+    userInfoContext.changeUserInfo({
+      type: &amp;#39;CHANGE_NAME&amp;#39;,
+      payload: {
+        name: &amp;#39;James Kang&amp;#39;
+      }
+    })
+  }
+
+  const changeAge = (): void =&amp;gt; {
+    userInfoContext.changeUserInfo({
+      type: &amp;#39;CHANGE_AGE&amp;#39;,
+      payload: {
+        name: 30
+      }
+    })
+  }
+
+  return (
+    &amp;lt;TouchableOpacity onPress={changeName}&amp;gt;
+      &amp;lt;Text&amp;gt;Change Name&amp;lt;/Text&amp;gt;
+    &amp;lt;/TouchableOpacity&amp;gt;
+
+    &amp;lt;TouchableOpacity onPress={changeAge}&amp;gt;
+      &amp;lt;Text&amp;gt;Change Age&amp;lt;/Text&amp;gt;
+    &amp;lt;/TouchableOpacity&amp;gt;
+  )
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you can change username and age in every single component&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django - Prefetch Related]]></title><description><![CDATA[Let's try to improve efficiency when you make a query in Django]]></description><link>https://jasonkang14.github.io/django/prefetch-related</link><guid isPermaLink="false">https://jasonkang14.github.io/django/prefetch-related</guid><pubDate>Sun, 07 Jun 2020 10:53:37 GMT</pubDate><content:encoded>&lt;p&gt;According to the &lt;a href=&quot;https://docs.djangoproject.com/en/3.0/ref/models/querysets/#prefetch-related&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;official document&lt;/a&gt; &lt;code class=&quot;language-text&quot;&gt;preftecth_related()&lt;/code&gt; returns in a single batch, related objects for each of the specified lookups.&lt;/p&gt;
 &lt;p&gt;This is somewhat similar to &lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt; as both methods save you some time by not hitting the database whenever you access a queried object.&lt;/p&gt;
 &lt;p&gt;While &lt;code class=&quot;language-text&quot;&gt;select_related()&lt;/code&gt; is limited to &lt;strong&gt;ForeignKey&lt;/strong&gt; or &lt;strong&gt;OneToOneField&lt;/strong&gt;, &lt;code class=&quot;language-text&quot;&gt;prefetch_related()&lt;/code&gt; can be used for &lt;strong&gt;ManyToManyField&lt;/strong&gt; and even used for reverse lookup for many-to-one relationship which is the opposite of &lt;strong&gt;ForeignKey&lt;/strong&gt; which represents one-to-many relationship.&lt;/p&gt;
 &lt;p&gt;It was kinda tricky to come up with my own example, so I decided to create models provided in the official document, and ran some test queries. Here are the models that I have created;&lt;/p&gt;
