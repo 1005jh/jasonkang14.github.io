@@ -15,7 +15,7 @@ description: "How to create a custom user model and authentication method in Dja
 
 In order to create custom authentication, you have to create a model. You can extend the existing **User** model from `django.contrib.auth.models` and create an one-to-one relationship with your model and the default **User** model. However, I cannot assure this because I ahve not done it myself, but I believe this would create an extra table in your database. So I have decided to substitute a custom **User** model by using **AbstractUser** from `django.contrib.auth.models` like below;
 
-```
+```python
 class User(AbstractUser):
     nickname      = models.CharField(max_length=15, unique=True)
     phone         = models.CharField(max_length=15, default="010-1234-1234", unique=True)
@@ -26,7 +26,7 @@ class User(AbstractUser):
 
 Now you have to authenticate this user via a sign up request. I decided to go with a class view because I wanted to use a `get` request for sign up to check if a user with the same username, nickname, and/or email already exists.
 
-```
+```python
 import json
 
 from django.http         import JsonResponse, HttpResponse

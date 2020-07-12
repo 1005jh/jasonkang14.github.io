@@ -19,7 +19,7 @@ I have already posted about how to set up your `React Native` project using `Mob
 
 First, you have to create a `Store` which changes a state and detects such changes.
 
-```
+```typescript
 import { observable, action, runInAction } from "mobx";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { API_URL } from "../../config";
@@ -39,7 +39,7 @@ class UserStore {
 
 And you implement the Facebook login by using the code provided by Facebook Github. I used a custom button, so my code is like below.
 
-```
+```typescript
     @action
     facebookLogin() {
         LoginManager.logInWithPermissions(["public_profile"]).then(

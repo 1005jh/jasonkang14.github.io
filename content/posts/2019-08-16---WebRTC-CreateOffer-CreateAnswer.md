@@ -26,17 +26,17 @@ Now create a caller
 Now the caller has to `createOffer()` with `offerOptions`.
 `offerOptions` represent which source of data you are going to offer: either audio or video, or could be both.
 
-```
+```typescript
 const offerOptions = {
   offerToReceiveAudio: 1,
   offerToReceiveVideo: 0,
-  voiceActivityDetection: true
+  voiceActivityDetection: true,
 };
 ```
 
 Using the created `offer`, the caller must set his/her `localDescription`
 
-```
+```typescript
 caller.createOffer(offerOptions)
   .then(async (desc) => {
     await caller.setLocalDescription(desc);
@@ -49,7 +49,7 @@ Then the callee uses the `localDescription` from the caller to set the callee's 
 
 The callee then sends the `localDescription` to the caller so that the caller can use the callee's `localDescription` to set the caller's `remoteDescription`
 
-```
+```typescript
 callee.setRemoteDescription(desc)
   .then(() => {
     return callee.createAnswer()

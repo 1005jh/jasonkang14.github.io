@@ -14,7 +14,7 @@ description: "Practicing Advanced CSS using SASS"
 Tried to show underline on two buttons upon mouse hover. <br>
 CSS codes were written using `SASS`<br>
 
-```
+```css
 //main.sass
 $font-stack:    Helvetica, sans-serif
 

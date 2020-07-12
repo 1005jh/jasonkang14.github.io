@@ -37,14 +37,12 @@ description: "Asynchronous Programming in JavaScript explained"
 - `Promise` can be either `fulfilled` or `rejected`
 - a `promise` can be created like this: below is a code from [mediasoup-client](https://github.com/versatica/mediasoup-client)
 
-```
-async safeEmitAsPromise(event, ...args)
-	{
-		return new Promise((resolve, reject) =>
-		{
-			this.safeEmit(event, ...args, resolve, reject);
-		});
-	}
+```typescript
+async function safeEmitAsPromise(event, ...args) {
+  return new Promise((resolve, reject) => {
+    this.safeEmit(event, ...args, resolve, reject);
+  });
+}
 ```
 
 - `resolve` and `reject` are also functions. However, they do not stop the function from running. They simply takes care of the `state` of a `promise`
@@ -54,11 +52,11 @@ async safeEmitAsPromise(event, ...args)
   - I used this when I implemented social login. if there is no answer from a social login server, it throws an error to inform that a promise has been rejected instead of waiting forever.
 - `Promise.all` returns a single Promise after multiple promises get resolved. Below example is from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 
-```
+```typescript
 var promise1 = Promise.resolve(3);
 var promise2 = 42;
 var promise3 = new Promise(function(resolve, reject) {
-  setTimeout(resolve, 100, 'foo');
+  setTimeout(resolve, 100, "foo");
 });
 
 Promise.all([promise1, promise2, promise3]).then(function(values) {

@@ -14,7 +14,7 @@ The definition of decorator is a function that must execute before executing a f
 
 The code is like below;
 
-```
+```python
 import json
 import jwt
 

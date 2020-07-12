@@ -15,24 +15,24 @@ With JavaScript hoisting, or since JavaScript hoist variables, variables can be 
 
 So even if you call a function, before it is declared, you can still get the same result as when you call the function after its declaration.
 
-```
-sayHello()   // "hello"
+```javascript
+sayHello(); // "hello"
 
 function sayHello() {
-    console.log("hello")
+  console.log("hello");
 }
 
-sayHello()   // "hello"
+sayHello(); // "hello"
 ```
 
 So even if you call a function before its declaration, you won't get undefined.
 JavaScript hoist declartaion, but it won't hoist initialization.
 
-```
+```javascript
 a = 3;
-console.log(a);  //  3
+console.log(a); //  3
 var a;
 
-console.log(b);  // undefined
+console.log(b); // undefined
 var b = 3;
 ```

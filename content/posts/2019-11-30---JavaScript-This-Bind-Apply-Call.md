@@ -18,9 +18,9 @@ description: "Basics of JavaScript: this, apply, call, bind, arrow function"
      - if not in `strict mode`, `this` refers to the global object
      - if in `strict mode`, `this` is undefined
 
-```
+```javascript
 function f2() {
-  'use strict'; // see strict mode
+  "use strict"; // see strict mode
   return this;
 }
 
@@ -32,17 +32,17 @@ f2() === undefined; // true
 
 2. `apply` / `call`
 
-```
-var obj = {a: 'Custom'};
+```javascript
+var obj = { a: "Custom" };
 
-var a = 'Global';
+var a = "Global";
 
 function whatsThis() {
   return this.a;
 }
 
-whatsThis();          // 'Global'
-whatsThis.call(obj);  // 'Custom'
+whatsThis(); // 'Global'
+whatsThis.call(obj); // 'Custom'
 whatsThis.apply(obj); // 'Custom'
 ```
 
@@ -55,17 +55,16 @@ if the value you are passing with `call` or `apply` is not an object, the browse
    - if you call a function using bind like `foo.bind(someObject)` this is the `someObject` regardless of how the function is being called.
    - but you cannot `bind` more than once.
 
-```
+```javascript
 function f() {
   return this.a;
 }
 
-var g = f.bind({a: 'azerty'});
+var g = f.bind({ a: "azerty" });
 console.log(g()); // azerty
 
-var h = g.bind({a: 'yoo'}); // bind only works once!
+var h = g.bind({ a: "yoo" }); // bind only works once!
 console.log(h()); // azerty
-
 ```
 
 4. arrow function

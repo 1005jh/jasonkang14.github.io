@@ -35,7 +35,7 @@ The default value for this is **<model_name>\_set** as in `membership_set` in th
 
 The name of a field or a list of field names in a model. This is usually `DateField`, `DateTimeField`, or `IntegerField`, which can be ordered numerically. This specifies the default fields to use in `manager`'s `latest()` and `earliest()` methods.
 
-```
+```python
 # Latest by ascending order_date.
 get_latest_by = "order_date"
 
@@ -51,7 +51,7 @@ The default is `True`, however, if set `False`, django does not perform any tabl
 
 Declaring that you would like to order your jmodel with respect to aa field, ususally a `ForeignKey` like the example below;
 
-```
+```python
 from django.db import models
 
 class Question(models.Model):
@@ -70,7 +70,7 @@ class Answer(models.Model):
 
 The default ordering for the example. Either a tuple or list of strings and?or query expressions. `ordering = ['pub_date']`, or `ordering = ['-pub_date']` if you ant a descending order. You can also use query expressions like below;
 
-```
+```python
 ordering = [F('author').asc(nulls_last=True)]
 ```
 

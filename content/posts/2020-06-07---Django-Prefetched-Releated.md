@@ -19,7 +19,7 @@ While `select_related()` is limited to **ForeignKey** or **OneToOneField**, `pre
 
 It was kinda tricky to come up with my own example, so I decided to create models provided in the official document, and ran some test queries. Here are the models that I have created;
 
-```
+```python
 class Topping(models.Model):
     name = models.CharField(max_length=25)
 

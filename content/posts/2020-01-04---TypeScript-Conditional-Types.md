@@ -21,10 +21,10 @@ A conditional type T is either X, or, Y, or deferred depending on one or more ty
 
 Look at the example below;
 
-```
+```typescript
 declare function f<T extends boolean>(x: T): T extends true ? string : number;
 
-let x = f(Math.random() < 0.5 )
+let x = f(Math.random() < 0.5);
 ```
 
 If I were to examine the code above, type T could be either `string`, `number`, or deferred. And it depends on whether the type system has enough information to conclude that T is always assignable to `true` in this case.

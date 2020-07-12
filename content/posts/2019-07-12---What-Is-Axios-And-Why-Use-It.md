@@ -16,24 +16,23 @@ description: "Explaining Axios"
 1. Automatic Transformation
    When you use the native `Fetch API`, you have to transfrom the `response` to `json` in order to use it. This means that it takes a while for you to receive a `response` from the server since you have to wait until a `response` gets transformed into `json`.
 
-```
+```typescript
 // Fetch API
 fetch(ADDRESS + "restaurant")
-.then(res => res.json())
-.then(result => {
+  .then((res) => res.json())
+  .then((result) => {
     this.props.setStore(result);
-});
+  });
 ```
 
 However, `Axios` converts the data to `json` automatically, so you have one less step to perform. This means that using a `response` from the server would not take as long.
 
-```
+```typescript
 // Axios
 if (storeId === undefined) {
-    axios(ADDRESS + "restaurant")
-    .then(res => {
-        this.props.setStore(res);
-    });
+  axios(ADDRESS + "restaurant").then((res) => {
+    this.props.setStore(res);
+  });
 }
 ```
 

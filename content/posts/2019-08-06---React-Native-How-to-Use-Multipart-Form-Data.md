@@ -19,66 +19,68 @@ In order to send a file to a server, you have to send it as a `multipart/form-da
 
 and then you just add the code given in the instruction .
 
-```
+```typescript
 _addPicture = () => {
-    ImagePicker.showImagePicker(options, (response) => {
+  ImagePicker.showImagePicker(options, (response) => {
+    if (response.didCancel) {
+      console.log("User cancelled image picker");
+    } else if (response.error) {
+      console.log("ImagePicker Error: ", response.error);
+    } else if (response.customButton) {
+      console.log("User tapped custom button: ", response.customButton);
+    } else {
+      const source = { uri: response.uri };
 
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-      } else if (response.customButton) {
-        console.log("User tapped custom button: ", response.customButton);
-      } else {
-        const source = { uri: response.uri };
-
-        this.setState({
-          image: source,
-          imageName: response.fileName
-        });
-      }
-    });
-  };
+      this.setState({
+        image: source,
+        imageName: response.fileName,
+      });
+    }
+  });
+};
 ```
 
 Now that you have added the picture, you have to create a `formData` in order to send the picture to an API.
 
-```
+```typescript
 _createFormData = () => {
-    const { image, imageName } = this.state;
-    const imageUri = image.uri.slice(7);
+  const { image, imageName } = this.state;
+  const imageUri = image.uri.slice(7);
 
-    let picture = new FormData();
-    let file = {
-      uri: imageUri,
-      type: "image/jpeg",
-      name: imageName
-    }
-    picture.append("image", file);
-    return picture
-  }
+  let picture = new FormData();
+  let file = {
+    uri: imageUri,
+    type: "image/jpeg",
+    name: imageName,
+  };
+  picture.append("image", file);
+  return picture;
+};
 ```
 
 `image` is an object which contains a key called uri whose value contains some prefix that `multipart/form-data` cannot recognize. So, I used the `slice()` method in order to cut the first seven letters off the string.
 
-```
+```typescript
 _uploadPicture = async () => {
-    const accessToken = await AsyncStorage.getItem('@storage_Key');
-    const picture = this._createFormData()
-    const pictureUploadSettings = {
-      method: "POST",
-      headers: {
-        Authorization: `Token ${accessToken}`,
-        "Content-Type": "multipart/form-data"
-      },
-      body: picture
-    }
+  const accessToken = await AsyncStorage.getItem("@storage_Key");
+  const picture = this._createFormData();
+  const pictureUploadSettings = {
+    method: "POST",
+    headers: {
+      Authorization: `Token ${accessToken}`,
+      "Content-Type": "multipart/form-data",
+    },
+    body: picture,
+  };
 
-    const response = await fetch(`${API_URL}listener/upload/picture`, pictureUploadSettings);
-    const pictureUri = await response.json();
+  const response = await fetch(
+    `${API_URL}listener/upload/picture`,
+    pictureUploadSettings
+  );
+  const pictureUri = await response.json();
 
-    return pictureUri.picture_uri
-}
+  return pictureUri.picture_uri;
+};
 ```
 
 Then I sent the image file to the API using the code above.

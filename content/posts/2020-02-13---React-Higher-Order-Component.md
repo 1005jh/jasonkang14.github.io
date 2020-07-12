@@ -21,17 +21,14 @@ A HOC is a wrapper that wraps a component and returns another component. The wra
 
 For example, if you have a component that deals with a blog post with comments and another component with a video with subscriptions, you can reuse your codes for comments for both components without having to write a code for comments for both components. You can reuse your code for comments by wrapping such components. Because comments and subscriptions would have a similar structure.
 
-```
-const BlogWithComments = withComments(
-  CommentList,
-  (DataSource) => DataSource.getComments()
+```javascript
+const BlogWithComments = withComments(CommentList, (DataSource) =>
+  DataSource.getComments()
 );
 
-const VideoWithSubscription = withSubscription(
-  Video,
-  (DataSource, props) => DataSource.getVideo(props.id)
+const VideoWithSubscription = withSubscription(Video, (DataSource, props) =>
+  DataSource.getVideo(props.id)
 );
-
 ```
 
 According to the [official website](https://reactjs.org/docs/higher-order-components.html), libraries that allow you to maintain global states like `Redux` and `MobX` are somewhat higher order components. You wrap your components with `connect()` or `provider()` so that you can reuse your codes in `store` in various components.

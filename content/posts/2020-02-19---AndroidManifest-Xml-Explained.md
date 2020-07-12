@@ -20,7 +20,7 @@ description: "AndroidManifest.xml package explained"
 
 What a `AndroidManifest.xml` looks like
 
-```
+```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.voting_frontend">
 

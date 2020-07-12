@@ -17,46 +17,46 @@ By `mapping` your type, you can make all propeties of type `readonly` or `option
 
 In old format, you would do something like below if you want to make each property optional or readonly;
 
-```
+```typescript
 // optional
 interface CartItem {
-    totalPrice?: number
-    rewardPoints?: number
-    id?: number
-    count?: number
+  totalPrice?: number;
+  rewardPoints?: number;
+  id?: number;
+  count?: number;
 }
 
 // readonly
 interface CartItem {
-    readonly totalPrice: number
-    readonly rewardPoints: number
-    readonly id: number
-    readonly count: number
+  readonly totalPrice: number;
+  readonly rewardPoints: number;
+  readonly id: number;
+  readonly count: number;
 }
 ```
 
 With **mapped types**, you can do it like below. `T` represents Type/Interface and `P` properties
 
-```
+```typescript
 type ReadOnly<T> = {
-    readonly [P in keyof T]: T[P]
-}
+  readonly [P in keyof T]: T[P];
+};
 
 type Partial<T> = {
-    [P in keyof T]?: T[P]
-}
+  [P in keyof T]?: T[P];
+};
 ```
 
 And use the mapped type like below;
 
-```
-type CartItemPartial = Partial<CartItem>
-type ReadonlyCartItem = Readonly<CartItem>
+```typescript
+type CartItemPartial = Partial<CartItem>;
+type ReadonlyCartItem = Readonly<CartItem>;
 ```
 
 You can add members using an intersection type and a mapped type together
 
-```
+```typescript
 type PartialWithNewMember<T> = {
     [P in keyof T]> : T[P];
 } & { newMember: boolean}

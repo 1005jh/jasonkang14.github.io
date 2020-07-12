@@ -30,23 +30,23 @@ You have to install both the regular one and the one that supports type if you w
 
 The regular `styled-components` library supports a web project like React. In order to apply styled-components for your React Native project, you have to import your components from `styled-components/native` like below;
 
-```
-import styled from 'styled-components/native';
+```typescript
+import styled from "styled-components/native";
 
 const StyledView = styled.View`
-  ${props =>
-    props.class === 'mainOtherText' &&
+  ${(props) =>
+    props.class === "mainOtherText" &&
     `
       padding-top: 104
       padding-bottom: 22
       padding-right:${props.paddingRight}
       padding-left:${props.paddingLeft}
     `}
-  ${props =>
+  ${(props) =>
     props.class === undefined &&
     `
-      flex-direction: ${props.flexDirection || 'column'}
-      background-color: ${props.backgroundColor || 'transparent'}
+      flex-direction: ${props.flexDirection || "column"}
+      background-color: ${props.backgroundColor || "transparent"}
       margin-vertical: ${props.marginVertical || 0}
       margin-horizontal: ${props.marginHorizontal || 0};
       padding-vertical: ${props.paddingVertical || 0};

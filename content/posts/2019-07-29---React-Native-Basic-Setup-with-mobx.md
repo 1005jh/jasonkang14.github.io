@@ -34,14 +34,14 @@ And then you have to install `babel`. The problem that I ran into while installi
 
 And then you have to change `babel.config.js` like below;
 
-```
+```typescript
 module.exports = {
-  "presets": ["module:metro-react-native-babel-preset"],
-  "plugins": [
-        ["@babel/plugin-transform-flow-strip-types"],
-        ["@babel/plugin-proposal-decorators", { "legacy": true}],
-        ["@babel/plugin-proposal-class-properties", { "loose": true}]
-    ]
+  presets: ["module:metro-react-native-babel-preset"],
+  plugins: [
+    ["@babel/plugin-transform-flow-strip-types"],
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
+  ],
 };
 ```
 

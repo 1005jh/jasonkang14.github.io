@@ -13,26 +13,26 @@ description: "Explaning Index Types in TypeScript"
 
 It is easier to understand by looking at the code directly.
 
-```
+```typescript
 function pluck<T, K extends keyof T>(o: T, propertyNames: K[]): T[K][] {
-  return propertyNames.map(n => o[n]);
+  return propertyNames.map((n) => o[n]);
 }
 
 interface Car {
-    manufacturer: string;
-    model: string;
-    year: number;
+  manufacturer: string;
+  model: string;
+  year: number;
 }
 
 let taxi: Car = {
-    manufacturer: 'Toyota',
-    model: 'Camry',
-    year: 2014
+  manufacturer: "Toyota",
+  model: "Camry",
+  year: 2014,
 };
 
-let makeAndModel: string[] = pluck(taxi, ['manufacturer', 'model']);
+let makeAndModel: string[] = pluck(taxi, ["manufacturer", "model"]);
 
-let modelYear = pluck(taxi, ['model', 'year'])
+let modelYear = pluck(taxi, ["model", "year"]);
 ```
 
 An object called `taxi` has an interface called `Car`. And there is a function `pluck`, which checks if the object has items in an array as its property.
@@ -43,8 +43,8 @@ If you add another property like `owner: string` to the Car interface, the type 
 
 The second operator is `T[K]`, which is the **indexed access operator**. Here `T` represents the object, and `K` represents `keyof T`, so the `pluck` function can be re-written like below;
 
-```
+```typescript
 function pluck<T, K extends keyof T>(o: T, propertyName: K): T[K] {
-    return o[propertyName]; // o[propertyName] is of type T[K]
+  return o[propertyName]; // o[propertyName] is of type T[K]
 }
 ```

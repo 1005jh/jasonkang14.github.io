@@ -24,34 +24,34 @@ From this explanation, I feel like what it is saying is this. When you have an a
 
 By looking at [producer](https://immerjs.github.io/immer/docs/produce), I think I am right
 
-```
-import produce from "immer"
+```javascript
+import produce from "immer";
 
 const baseState = [
-    {
-        todo: "Learn typescript",
-        done: true
-    },
-    {
-        todo: "Try immer",
-        done: false
-    }
-]
+  {
+    todo: "Learn typescript",
+    done: true,
+  },
+  {
+    todo: "Try immer",
+    done: false,
+  },
+];
 
-const nextState = produce(baseState, draftState => {
-    draftState.push({todo: "Tweet about it"})
-    draftState[1].done = true
-})
+const nextState = produce(baseState, (draftState) => {
+  draftState.push({ todo: "Tweet about it" });
+  draftState[1].done = true;
+});
 ```
 
 by using the `draftState` provided by the `producer`, instead of `slicing` your array, or the `baseState`, you can just push the new item to the array. Like the example below from the [official document](https://immerjs.github.io/immer/docs/example-setstate)
 
-```
+```javascript
 onBirthDayClick2 = () => {
-    this.setState(
-        produce(draft => {
-            draft.user.age += 1
-        })
-    )
-}
+  this.setState(
+    produce((draft) => {
+      draft.user.age += 1;
+    })
+  );
+};
 ```

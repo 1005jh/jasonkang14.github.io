@@ -23,7 +23,7 @@ if `proxy=True`, this model is a proxy model. I will write about a proxy model l
 
 List of constratins you want to define on the model. like an age limit.
 
-```
+```python
 from django.db import models
 
 class Customer(models.Model):

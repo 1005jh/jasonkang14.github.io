@@ -15,7 +15,7 @@ I had to create a feature where uses report certain things to me when they find 
 
 Google lets you use their SMTP(Simple Mail Transfer Protocol) for free. If you are using Python, you can do it like this .
 
-```
+```python
 import smtplib
 import email.mime.text import MIMEText
 

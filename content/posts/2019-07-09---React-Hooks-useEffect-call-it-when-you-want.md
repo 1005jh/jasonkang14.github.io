@@ -15,28 +15,28 @@ I wanted to use `useEffect()` to work like `componentDidUpda()`. Whenever I clic
 
 Check out the code below;
 
-```
+```typescript
 useEffect(() => {
-    if (joinPartyBtnClick) {
-      const getToken = localStorage.getItem("wtw-token");
-      fetch(`${ADDRESS}party/join`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: getToken
-        },
-        body: JSON.stringify({
-          id : idJoinParty
-        })
-      }).then((response) => {
-        if (response.status === 200) {
-          setParticipationStatus(!participationStatus);
-        }
-        setJoinPartyBtnClick(!joinPartyBtnClick);
-      });
-    }
-  }, [joinPartyBtnClick]);
+  if (joinPartyBtnClick) {
+    const getToken = localStorage.getItem("wtw-token");
+    fetch(`${ADDRESS}party/join`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: getToken,
+      },
+      body: JSON.stringify({
+        id: idJoinParty,
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        setParticipationStatus(!participationStatus);
+      }
+      setJoinPartyBtnClick(!joinPartyBtnClick);
+    });
+  }
+}, [joinPartyBtnClick]);
 ```
 
 This is very straight-forward. If `joinPartyBtnClick === true`, you run the `fetch` as written. I can set that the `useEffect()` runs whenever the state of `joinPartyBtnClick` changes by adding it as the second argument like above.

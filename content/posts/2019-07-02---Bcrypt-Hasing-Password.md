@@ -18,7 +18,7 @@ First, install bcrypt:
 
 And using bcrypt, you gotta encode the entered password into `bytes` type,and then hash the password using a salt.
 
-```
+```python
 else :
     password = bytes(new_account_info["password"], "utf-8")
     hashed = bcrypt.hashpw(password, bcrypt.gensalt())

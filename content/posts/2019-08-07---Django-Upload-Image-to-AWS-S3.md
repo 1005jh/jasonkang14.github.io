@@ -20,7 +20,7 @@ and please build a habit of `pip freeze > requirements.txt` in order to help tho
 
 Check out the code below
 
-```
+```python
 import boto3
 
 ...

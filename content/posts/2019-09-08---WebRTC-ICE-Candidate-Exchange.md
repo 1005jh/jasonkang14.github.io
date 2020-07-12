@@ -15,11 +15,11 @@ Simply put, ICE candidate exchange is simply a negotiation between to peers to s
 
 An ICE candidate is an object that looks like this
 
-```
+```typescript
 {
-  candidate: "candidate:2322976989 1 tcp 1518280447 IPADDRESS PORT typ host tcptype passive generation 0 ufrag UXEY network-id 1 network-cost 10"
-  sdpMLineIndex: 0
-  sdpMid: "audio"
+  candidate: "candidate:2322976989 1 tcp 1518280447 IPADDRESS PORT typ host tcptype passive generation 0 ufrag UXEY network-id 1 network-cost 10";
+  sdpMLineIndex: 0;
+  sdpMid: "audio";
 }
 ```
 

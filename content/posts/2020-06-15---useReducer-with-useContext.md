@@ -21,24 +21,24 @@ Here I am going to create `UserInfoContext`, which has information about a user'
 
 First, you have to `createContext`
 
-```
+```javascript
 // UserInfoContext.tsx
 
-import React, {createContext} from 'react';
+import React, { createContext } from "react";
 
 type ActionProps = {
   type: string,
   payload: {
-    age: number
-  }
-}
+    age: number,
+  },
+};
 
 const UserInfoContext = createContext({
   userInfo: {
-    username: 'Jason Kang',
+    username: "Jason Kang",
     age: 20,
   },
-  changeUserInfo: (action: ActionProps) => {}
+  changeUserInfo: (action: ActionProps) => {},
 });
 
 export default UserInfoContext;
@@ -46,7 +46,7 @@ export default UserInfoContext;
 
 Now you create a `reducer` to change user information
 
-```
+```javascript
 // UserInfoReducer.tsx
 type ActionProps = {
   type: string,
@@ -85,35 +85,35 @@ const userInfoReducer = (state: IUserInfo, action: ActionProps) => {
 
 And then you import this context in your `App.tsx` to create a **context provider**. And you also need to `useReducer` and pass it to all the components using the provider so that you can change userinfo in every single component.
 
-```
+```typescript
 // App.tsx
 
-import React, {useReducer} from 'react';
-import ComponentA from '~/ComponentA';
-import ComponentB from '~/ComponentB';
-import ComponentC from '~/ComponentC';
-import UserInfoContext from '~contexts/UserInfoContext';
-import UserInfoReducer from '~reducers/UserInfoReducer';
+import React, { useReducer } from "react";
+import ComponentA from "~/ComponentA";
+import ComponentB from "~/ComponentB";
+import ComponentC from "~/ComponentC";
+import UserInfoContext from "~contexts/UserInfoContext";
+import UserInfoReducer from "~reducers/UserInfoReducer";
 
 type IUserInfo = {
-  username: string,
-  age: number
-}
+  username: string;
+  age: number;
+};
 
 const App = () => {
   const initialUserInfo: IUserInfo = {
-    username: 'Jason Kang',
-    age: 20
-  }
+    username: "Jason Kang",
+    age: 20,
+  };
 
-  const [state, dispatch] = useReducer(UserInfoReducer, initialUserInfo)
+  const [state, dispatch] = useReducer(UserInfoReducer, initialUserInfo);
 
   const userInfoValue = {
     initialUserInfo,
     changeUserInfo: (type: string, payload: IUserInfo) => {
-      dispatch({type, payload})
-    }
-  }
+      dispatch({ type, payload });
+    },
+  };
 
   return (
     <UserInfoContext.Provider value={userInfoValue}>
@@ -129,7 +129,7 @@ export default App;
 
 Now you can `useContext` in all the components to change user information
 
-```
+```typescript
 // ComponentA.tsx
 
 import React, {FunctionComponent, useContext} from 'react'

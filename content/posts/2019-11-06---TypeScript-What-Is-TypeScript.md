@@ -21,18 +21,18 @@ Statically Typed Langauge allows you to face erros during compile-time, which me
 
 Check out the code below;
 
-```
+```typescript
 let v1 = 123;
-v1 = 'abc';  // throws an error
+v1 = "abc"; // throws an error
 ```
 
 The code above throws an error since 'abc' is not a number. This is the advantage of TypeScript as you find your error during compile-time.
 
 You can declare a variable with different type options like below as well;
 
-```
+```typescript
 let v1: number | string = 123;
-v1 = 'abc'
+v1 = "abc";
 ```
 
 In the code above, `v1` is either a number or a string, so you can assign 'abc' to `v1`, and it will not throw an error

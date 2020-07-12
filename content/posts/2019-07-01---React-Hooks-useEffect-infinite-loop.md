@@ -15,7 +15,7 @@ React came out with a new feature called `React Hooks`. As I work on a group pro
 
 Before `React Hooks`, you had to use a `class` in order for your React component to have a state. But with `React Hooks`, your function component can have a state like below.
 
-```
+```typescript
 const Party = () => {
     const [joinBtnClicked, setJoinBtnClicked] = useState(true);
 ```
@@ -26,37 +26,34 @@ This is very straight-forward.
 2. `useState()` method allows me to declare the initial `state` of `joinBtnClicked`.
 3. I can change the state of `joinBtnClicked` with a method called `setJoinBtnClicked` like below.
 
-```
+```typescript
 const displayPartyGenerationField = () => {
-    setJoinBtnClicked(false);
-}
+  setJoinBtnClicked(false);
+};
 ```
 
 `React Hooks` makes my code a lot more efficient and easier to understand.
 
 I don't need to use lifecycle methods such as `componenetDidMount()` or `componentWillUnmount()` anymore. I just use one method called `useEffect()` which deals with all the lifecycle methods. But I actually ran into a problem while using this method.
 
-```
+```typescript
 useEffect(() => {
-    fetch (`${ADDRESS}party`, {mode: 'cors'})
-        .then (
-            (response) => {
-                response.json().then((data) => {
-                    const length = data.length;
-                    for(let i=0; i < length; i++) {
-                        for (let key in data[i]) {
-                            oldParty[key] = data[i][key];
-                        }
-                        oldParty.time = oldParty.time.slice(0, -3);
-                        oldPartyArr.push(oldParty);
-                        oldParty = {};
-                    }
-                    displayParties();
-                    setPartyArr(oldPartyArr);
-                })
-            }
-        )
-})
+  fetch(`${ADDRESS}party`, { mode: "cors" }).then((response) => {
+    response.json().then((data) => {
+      const length = data.length;
+      for (let i = 0; i < length; i++) {
+        for (let key in data[i]) {
+          oldParty[key] = data[i][key];
+        }
+        oldParty.time = oldParty.time.slice(0, -3);
+        oldPartyArr.push(oldParty);
+        oldParty = {};
+      }
+      displayParties();
+      setPartyArr(oldPartyArr);
+    });
+  });
+});
 ```
 
 With the above code, I am retrieving a list of parties that had been formed by other users, so that I can pick a party to join myself. However, when I executed this code, `useEffect()` kept re-rendering while I needed it to render only once.
@@ -66,25 +63,22 @@ According to `React.js`,
 
 So, I simply added [] as an argument like below and the problem was solved.
 
-```
+```typescript
 useEffect(() => {
-    fetch (`${ADDRESS}party`, {mode: 'cors'})
-        .then (
-            (response) => {
-                response.json().then((data) => {
-                    const length = data.length;
-                    for(let i=0; i < length; i++) {
-                        for (let key in data[i]) {
-                            oldParty[key] = data[i][key];
-                        }
-                        oldParty.time = oldParty.time.slice(0, -3);
-                        oldPartyArr.push(oldParty);
-                        oldParty = {};
-                    }
-                    displayParties();
-                    setPartyArr(oldPartyArr);
-                })
-            }
-        )
-},[])
+  fetch(`${ADDRESS}party`, { mode: "cors" }).then((response) => {
+    response.json().then((data) => {
+      const length = data.length;
+      for (let i = 0; i < length; i++) {
+        for (let key in data[i]) {
+          oldParty[key] = data[i][key];
+        }
+        oldParty.time = oldParty.time.slice(0, -3);
+        oldPartyArr.push(oldParty);
+        oldParty = {};
+      }
+      displayParties();
+      setPartyArr(oldPartyArr);
+    });
+  });
+}, []);
 ```

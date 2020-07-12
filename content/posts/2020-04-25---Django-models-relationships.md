@@ -15,7 +15,7 @@ description: "Django models: relationships like Many-to-One, Many-to-Many, and O
 
 In order to define a many-to-one relationship, you can use `django.db.models.ForeignKey` like below;
 
-```
+```python
 from django.db import models
 
 class Manufacturer(models.Model):
@@ -28,7 +28,7 @@ class Car(models.Model):
 
 You just have to add the name of the model as an argument to the field. Make sure that the model you are referencing in your `ForienKey` field is delcared before. If you are creating a relationship on a model that has not yet been defined, you have to use the name of the model instead of the model object itself like below:
 
-```
+```python
 from django.db import models
 
 class Car(models.Model):
@@ -45,7 +45,7 @@ If you want to create a recursive relationship, which is an object that has a ma
 
 In order to define a many-to-one relationship, you can use `ManyToManyField` like below;
 
-```
+```python
 from django.db import models
 
 class Topping(models.Model):
@@ -60,7 +60,7 @@ Like you would do with `ForeignKey`, you can create recursive relationships and 
 
 Sometimes, you might want to use an extra table in order to describe the relationship between two models by using the `through` argument like below;
 
-```
+```python
 from django.db import models
 
 class Person(models.Model):
@@ -87,7 +87,7 @@ The `Group` model has a many-to-many relationship with the `Person` model throug
 
 You can use `add()`, `create()`, `set()` to create relationships as long as you specify `through_defulats` like below;
 
-```
+```python
 beatles.members.add(john, through_defaults={'date_joined': date(1960, 8, 1)})
 beatles.members.create(name="George Harrison", through_defaults={'date_joined': date(1960, 8, 1)})
 beatles.members.set([john, paul, ringo, george], through_defaults={'date_joined': date(1960, 8, 1)})
@@ -97,7 +97,7 @@ If you call `remove()`, all intermediate model instances related to the model wi
 
 f`{modelname}_set` like `membership_set` can be used in order to mane a query on `Person` model
 
-```
+```python
 ringos_membership = ringo.membership_set.get(group=beatles)
 ringos_membership.date_joined   #  datetime.date(1962, 8, 16)
 ```
@@ -106,7 +106,7 @@ ringos_membership.date_joined   #  datetime.date(1962, 8, 16)
 
 In order to define a many-to-one relationship, you can use `OneToOneField`. This is very straight-forward. Like you would do with `ForeignKey`, you can create recursive relationships and relationships to models not yet defined. This is somewhat similar to inheritance, which is inheriting a previously declared model like a normal python class.
 
-```
+```python
 from django.db import models
 
 class CommonInfo(models.Model):

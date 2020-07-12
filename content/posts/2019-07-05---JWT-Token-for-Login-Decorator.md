@@ -20,7 +20,7 @@ But the problem that I ran into while writing this was that I messed up the orde
 
 I tried so hard to look this up on `StackOverflow`, but couldn't find anyone who made a stupid mistake like I did. So I fixed my code like below, and it is now working as a `login decorator`
 
-```
+```python
 import json
 import jwt
 import db_settings

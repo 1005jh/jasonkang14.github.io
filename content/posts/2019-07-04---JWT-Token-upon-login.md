@@ -28,7 +28,7 @@ So simple. It is so easy to encode, but I faced so many errors while implementin
 
 My first code was something like this:
 
-```
+```python
 if bcrypt.checkpw(login_password.encode("utf-8"), registered_password.encode("utf-8")):
     payload = {
         "iss": "team_babKKUNG",
@@ -45,7 +45,7 @@ And below is the error that I got:
 `Object of type bytes is not JSON serializable`,
 which is very straight forward. you have to decode it like this in order to avoid the error and successfully.
 
-```
+```python
 if bcrypt.checkpw(login_password.encode("utf-8"), registered_password.encode("utf-8")):
     payload = {
         "iss": "team_babKKUNG",

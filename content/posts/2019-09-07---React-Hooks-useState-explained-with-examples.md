@@ -18,27 +18,27 @@ I personally find `hooks` a lot easier. `useEffect()` is a lot easier to use tha
 
 When you change a state in a react component, you have to `setState` like below;
 
-```
+```typescript
 increasePrice = () => {
-    this.setState({
-      priceChange: !this.state.priceChange,
-      price: this.state.price + 2000
-    });
-  };
+  this.setState({
+    priceChange: !this.state.priceChange,
+    price: this.state.price + 2000,
+  });
+};
 ```
 
 By chaning the state of price, I was trying to update the total price that appears in a component.
 
 If I were to use `useState()` instead, I can change the above method/function like below
 
-```
+```typescript
 const [priceChange, setPriceChange] = useState(true);
 const [price, setPrice] = useState(0);
 
 increasePrice = () => {
-    setPrieChange(!priceChange)
-    setPrice(price + 2000)
-}
+  setPrieChange(!priceChange);
+  setPrice(price + 2000);
+};
 ```
 
 The value inside `useState(value)` represents the intial value of the state. By using `useState`, there is no need for destructuring, and the code itself becomes a lot more straight-forward. The downside is that if you have a lot of states to manage within a single component, you have to declare all of them like I did in the second example.

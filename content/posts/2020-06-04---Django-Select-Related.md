@@ -21,7 +21,7 @@ description: "Let's try to improve efficiency when you make a query in Django"
 
 I created models in `models.py` for a testing purpose like this
 
-```
+```python
 class State(models.Model):
     name = models.CharField(max_length=25)
 
@@ -36,7 +36,7 @@ class Street(models.Model):
 
 And then created two views. One using `select_related()` and the other not using it
 
-```
+```python
 class SelectRelatedView(View):
     def get(self, request):
         print("select_related")

@@ -18,7 +18,7 @@ Before creating a native module for a react-native project, you have to understa
 
 There are two default `java` files in a react-native project. One is `MainApplication.java`, which I am going to use in order to add a native module, and the ohter is `MainActivity.java`, which you rarely deal with throughout your project. The only thing declared in `MainActivity.java` is the name of your project like below;
 
-```
+```java
 package com.your-app-name;
 
 import com.facebook.react.ReactActivity;
@@ -38,7 +38,7 @@ public class MainActivity extends ReactActivity {
 
 And everything else is declared in `MainApplication.java`. When you create a native module of your own, you have to pay attention to this section right here;
 
-```
+```java
     @Override
     protected List<ReactPackage> getPackages() {
         @SuppressWarnings("UnnecessaryLocalVariable")
@@ -54,7 +54,7 @@ Technically, you are not adding a module to `MainApplication.java`. You are addi
 
 First, you create your module like this. The below example is directly from the [official website](https://reactnative.dev/docs/native-modules-android)
 
-```
+```java
 // ToastModule.java
 
 package com.your-app-name;
@@ -105,7 +105,7 @@ public class ToastModule extends ReactContextBaseJavaModule {
 
 Now you have to create a `package` to register your `module`
 
-```
+```java
 // CustomToastPackage.java
 
 package com.your-app-name;
@@ -141,7 +141,7 @@ public class CustomToastPackage implements ReactPackage {
 
 Now you add the `package` to `MainApplication.java`
 
-```
+```java
 ...
 import com.your-app-name.CustomToastPackage; // <-- Add this line with your package name.
 ...
@@ -157,30 +157,29 @@ protected List<ReactPackage> getPackages() {
 
 Now you create a JavaScript file to wrap the native module you have just created, which is `React.NativeModule.ToastExample`.
 
-```
+```javascript
 //ToastExample.js
 
-import {NativeModules} from 'react-native';
+import { NativeModules } from "react-native";
 module.exports = NativeModules.ToastExample;
-
 ```
 
 This is not in the official document, but you can also do it like this
 
-```
-import {NativeModules} from 'react-native';
+```javascript
+import { NativeModules } from "react-native";
 
-const {ToastExample} = NativeModules
+const { ToastExample } = NativeModules;
 
-export default ToastExample
+export default ToastExample;
 ```
 
 You can all the `show` method which you have decorated with `ReactMethod` in `ToastModule.java` like this
 
-```
-import ToastExample from './ToastExample';
+```javascript
+import ToastExample from "./ToastExample";
 
-ToastExample.show('Awesome', ToastExample.SHORT);
+ToastExample.show("Awesome", ToastExample.SHORT);
 ```
 
 This shows a toast with a text `Awesome` when you launch your Android app

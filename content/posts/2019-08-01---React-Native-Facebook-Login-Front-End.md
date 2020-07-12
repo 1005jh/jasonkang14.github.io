@@ -75,7 +75,7 @@ I would recommend you to open your XCode and build your project after each step 
 5. Connect Your App Delegate
    Add `#import <FBSDKCoreKit/FBSDKCoreKit.h>` to the top of your `AppDelegate.m` and then copy the code given in Facebook for Developers and paste it to your `AppDelegate.m` like below
 
-```
+```swift
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -13,7 +13,7 @@ description: "How to use a header right button in React Native"
 
 `React Native` comes with a default header, which has a back button which allows you to go back to the previous page. You can also add a button to the right side of the header by using `headerRight` property like below;
 
-```
+```typescript
 static navigationOptions = ({ navigation }) => ({
     headerTitleStyle: {
     ...
@@ -43,7 +43,7 @@ As you can see, a method that gets called `onPress` is not a typical `this.whate
 I used `navigation` in order to call a method when the header right button is pressed.
 In order for the button to `getParam`, you have to `setParam` in `componentDidUpdate()` like below
 
-```
+```typescript
 componentDidMount() {
     this.props.navigation.setParams({
       handleClick: this._makePost

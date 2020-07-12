@@ -13,7 +13,7 @@ description: "Django does not access the database every single time you make a q
 
 Let's say you have this code in your django backend;
 
-```
+```python
 q = Entry.objects.filter(headline__startswith="What")
 q = q.filter(pub_date__lte=datetime.date.today())
 q = q.exclude(body_text__icontains="food")

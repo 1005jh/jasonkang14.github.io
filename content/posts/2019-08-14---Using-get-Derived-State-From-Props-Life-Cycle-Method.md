@@ -20,7 +20,7 @@ The solution that I have found is using `getDerivedStateFromProps()`. While `com
 
 Look at my code below
 
-```
+```typescript
 static getDerivedStateFromProps(props, state) {
         if (toJS(props.MainScreenStore.snsPostArr[0]).length !== state.prPostArr.length) {
             return {

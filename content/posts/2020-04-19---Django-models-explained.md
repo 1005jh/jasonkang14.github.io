@@ -21,7 +21,7 @@ A Django model becomes a table and its rows in your database.
 
 1. Each model is a Python class that subclasses `django.db.models.Model`
 
-```
+```python
 from django.db import models
 
 class Person(models.Model):
@@ -33,7 +33,7 @@ You have just created a `Person` model with fields name `first_name` and `last_n
 
 But the name of the table becomes `myapp_person` instead of `person`. If you want to want a table called `person` instead, you can write your model like this by using a `Meta` class.
 
-```
+```python
 from django.db import models
 
 class Person(models.Model):
@@ -54,7 +54,7 @@ Certain arguments may come to you as you write more codes. For example, a `CharF
 
 There is also an argument called `choices`, which is a sequence of 2-tuples. Check the example below;
 
-```
+```python
 class Person(models.Model):
     SHIRT_SIZES = (
         ('S', 'Small'),
@@ -69,7 +69,7 @@ If you make a query to a `Person` class, `person.shirt_size` would give you S, M
 
 You can also use enumeration classes like below;
 
-```
+```python
 from django.db import models
 
 class Runner(models.Model):
