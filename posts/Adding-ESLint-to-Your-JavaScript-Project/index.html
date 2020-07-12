@@ -94,28 +94,23 @@ void function() {
 <p>then your terminal will ask some questions. you have to answer them by using arrows—or j and k if you are familiar with vim—to choose your <code class="language-text">ESLint</code> options</p>
 <p><img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/69036743_10219574424732121_8346729998689763328_o.jpg?_nc_cat=104&#x26;_nc_oc=AQlGHZSxPCwUYvh0A6vl5c82DOBPdNhCtjc-gnIvobnUH9k8hr2SfOavYSB_qrpM8-c&#x26;_nc_ht=scontent-icn1-1.xx&#x26;oh=6ea0750cc536dbe38dc60a85d4a310c0&#x26;oe=5DE9F755" alt="ESLint questions answered"></p>
 <p>After answering all the questions, it even asks you if you want to install all the necessary dependencies. You just gotta enter <code class="language-text">Y</code>, and all the dependencies will be installed. And it automatically creates an <code class="language-text">.eslintrc.js</code> file like this</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-  },
-  extends: [
-    &#39;airbnb&#39;,
-  ],
-  globals: {
-    Atomics: &#39;readonly&#39;,
-    SharedArrayBuffer: &#39;readonly&#39;,
-  },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: &#39;module&#39;,
-  },
-  plugins: [
-    &#39;react&#39;,
-  ],
-  rules: {
-  },
-};</code></pre></div></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/react/">react</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/Adding-ESLint-to-Your-JavaScript-Project";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">module</span><span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  env<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    browser<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    es6<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">extends</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"airbnb"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  globals<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    Atomics<span class="token punctuation">:</span> <span class="token string">"readonly"</span><span class="token punctuation">,</span>
+    SharedArrayBuffer<span class="token punctuation">:</span> <span class="token string">"readonly"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  parserOptions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    ecmaFeatures<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      jsx<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    ecmaVersion<span class="token punctuation">:</span> <span class="token number">2018</span><span class="token punctuation">,</span>
+    sourceType<span class="token punctuation">:</span> <span class="token string">"module"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"react"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  rules<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/react/">react</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/Adding-ESLint-to-Your-JavaScript-Project";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

@@ -89,18 +89,18 @@ void function() {
 <p>This is somewhat similar to <code class="language-text">select_related()</code> as both methods save you some time by not hitting the database whenever you access a queried object.</p>
 <p>While <code class="language-text">select_related()</code> is limited to <strong>ForeignKey</strong> or <strong>OneToOneField</strong>, <code class="language-text">prefetch_related()</code> can be used for <strong>ManyToManyField</strong> and even used for reverse lookup for many-to-one relationship which is the opposite of <strong>ForeignKey</strong> which represents one-to-many relationship.</p>
 <p>It was kinda tricky to come up with my own example, so I decided to create models provided in the official document, and ran some test queries. Here are the models that I have created;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">class Topping(models.Model):
-    name = models.CharField(max_length=25)
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Topping</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">25</span><span class="token punctuation">)</span>
 
-class Pizza(models.Model):
-    name     = models.CharField(max_length=25)
-    toppings = models.ManyToManyField(Topping)
+<span class="token keyword">class</span> <span class="token class-name">Pizza</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name     <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">25</span><span class="token punctuation">)</span>
+    toppings <span class="token operator">=</span> models<span class="token punctuation">.</span>ManyToManyField<span class="token punctuation">(</span>Topping<span class="token punctuation">)</span>
 
-    def __str__(self):
-        return &quot;%s (%s)&quot; % (
-            self.name,
-            &quot;, &quot;.join(topping.name for topping in self.toppings.all()),
-        )</code></pre></div>
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"%s (%s)"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>
+            self<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+            <span class="token string">", "</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>topping<span class="token punctuation">.</span>name <span class="token keyword">for</span> topping <span class="token keyword">in</span> self<span class="token punctuation">.</span>toppings<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span></code></pre></div>
 <p>And then I ran queries to call the <code class="language-text">__str__()</code> method on the Pizza class. One using <code class="language-text">prefetch_related()</code> and the other without it .</p>
 <p>When I ran <code class="language-text">Pizza.objects.all()</code>,</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">before == 2020-06-07 09:31:07.965861

@@ -90,30 +90,30 @@ void function() {
 <p><code class="language-text">pip install boto3</code> <br>
 and please build a habit of <code class="language-text">pip freeze &gt; requirements.txt</code> in order to help those who are working on the same project with you.</p>
 <p>Check out the code below</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">import boto3
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">import</span> boto3
 
-...
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
-class UploadPictureView(APIView):
-    permission_classes = [IsAuthenticated]
-    s3_client = boto3.client(
-        &#39;s3&#39;,
-        aws_access_key_id     = yptest_aws_access_key_id,
-        aws_secret_access_key = yptest_aws_secret_access_key
-    )
+<span class="token keyword">class</span> <span class="token class-name">UploadPictureView</span><span class="token punctuation">(</span>APIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>IsAuthenticated<span class="token punctuation">]</span>
+    s3_client <span class="token operator">=</span> boto3<span class="token punctuation">.</span>client<span class="token punctuation">(</span>
+        <span class="token string">'s3'</span><span class="token punctuation">,</span>
+        aws_access_key_id     <span class="token operator">=</span> yptest_aws_access_key_id<span class="token punctuation">,</span>
+        aws_secret_access_key <span class="token operator">=</span> yptest_aws_secret_access_key
+    <span class="token punctuation">)</span>
 
-    def post(self, request):
-        picture = request.FILES[&#39;image&#39;]
-        picture.name = f&quot;{request.user.id}_{picture.name}&quot;
+    <span class="token keyword">def</span> <span class="token function">post</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        picture <span class="token operator">=</span> request<span class="token punctuation">.</span>FILES<span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">]</span>
+        picture<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>request<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token builtin">id</span><span class="token punctuation">}</span></span><span class="token string">_</span><span class="token interpolation"><span class="token punctuation">{</span>picture<span class="token punctuation">.</span>name<span class="token punctuation">}</span></span><span class="token string">"</span></span>
 
-        self.s3_client.upload_fileobj(
-            picture,
-            &quot;yptest-sns&quot;,
-            picture.name,
-        )
+        self<span class="token punctuation">.</span>s3_client<span class="token punctuation">.</span>upload_fileobj<span class="token punctuation">(</span>
+            picture<span class="token punctuation">,</span>
+            <span class="token string">"yptest-sns"</span><span class="token punctuation">,</span>
+            picture<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
 
-        return JsonResponse({
-            &quot;picture_uri&quot;: f&quot;https://yptest-sns.s3.ap-northeast-2.amazonaws.com/{picture}&quot;
-        }, safe=False)</code></pre></div>
+        <span class="token keyword">return</span> JsonResponse<span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token string">"picture_uri"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"https://yptest-sns.s3.ap-northeast-2.amazonaws.com/</span><span class="token interpolation"><span class="token punctuation">{</span>picture<span class="token punctuation">}</span></span><span class="token string">"</span></span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> safe<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span></code></pre></div>
 <p>You can retrieve your <code class="language-text">aws_access_key_id</code> and <code class="language-text">aws_secret_access_key</code> from your <code class="language-text">AWS IAM</code>. <br></p>
 <p>Once you upload an image to <code class="language-text">AWS S3</code>, it provides you with an uri specific to the image by adding the image file name to the end of the <code class="language-text">S3 bucket uri</code>. So if you return the uri to your client, the client will send a request to your server with the uri to save the information into your database</p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/django/">django</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/aws/">aws</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/Django-upload-image-to-aws-s3";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

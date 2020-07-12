@@ -88,34 +88,34 @@ void function() {
     </script><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">TypeScript - Different Types of TypeScript</h1><div class="Content-module--content__body--2TrQ-"><ol>
 <li>Array</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const values: number[] = [1, 2, 3];
-const values2: Array&lt;number&gt; = [1, 2, 3];
-values.push(&#39;a&#39;);      // TypeError</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> values<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> values2<span class="token punctuation">:</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+values<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span></code></pre></div>
 <p>You cannot push a string into an array declared as an array of numbers.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const data: [string, number] = [msg, size];
-data[0].substr(1);
-data[1].substr(1); // TypeError</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">number</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>msg<span class="token punctuation">,</span> size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span></code></pre></div>
 <p>You cannot use a string method on a number.</p>
 <ol start="2">
 <li>null vs undefined</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">let v1: undefined = undefined;
-let v2: null = null;
-v1 = 123; // TypeError
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> v1<span class="token punctuation">:</span> undefined <span class="token operator">=</span> undefined<span class="token punctuation">;</span>
+<span class="token keyword">let</span> v2<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+v1 <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
 
-let v3: number | undefined = undefined;
-v3 = 123;</code></pre></div>
+<span class="token keyword">let</span> v3<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> undefined <span class="token operator">=</span> undefined<span class="token punctuation">;</span>
+v3 <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span></code></pre></div>
 <p>You cannot assign a number to a variable of undefined type.
 <code class="language-text">undefined</code> and <code class="language-text">null</code> can be used with other types to declare a variable as a union type, which is used with <code class="language-text">|</code>.</p>
 <ol start="3">
 <li>Literal type</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">let v1: 10 | 20 | 30;
-v1 = 10;
-v1 = 15; // TypeError
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> v1<span class="token punctuation">:</span> <span class="token number">10</span> <span class="token operator">|</span> <span class="token number">20</span> <span class="token operator">|</span> <span class="token number">30</span><span class="token punctuation">;</span>
+v1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+v1 <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
 
-let v2: &#39;police&#39; | &#39;firefighter&#39;
-let v2 = &#39;doctor&#39; // TypeError</code></pre></div>
+<span class="token keyword">let</span> v2<span class="token punctuation">:</span> <span class="token string">"police"</span> <span class="token operator">|</span> <span class="token string">"firefighter"</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> v2 <span class="token operator">=</span> <span class="token string">"doctor"</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span></code></pre></div>
 <p>When you declare a variable with a certain value, the value becomes its literal type. <code class="language-text">v1</code> can be 10, 20, or 30, and <code class="language-text">v2</code> can be only either ‘police’ or ‘firefighter’</p>
 <ol start="4">
 <li>any type
@@ -123,156 +123,156 @@ any can be anything. it could be either a number or a string. Any type also coul
 <li>void vs never
 If a function does not return anything, it could be declared <code class="language-text">void</code>. And if a function stops due to an exception or does not stop due to an infitie loop, it can be declared <code class="language-text">never</code></li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function f1(): void {
-    console.log(&#39;hello&#39;)    // this function does not return anything
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span>    <span class="token comment">// this function does not return anything</span>
+<span class="token punctuation">}</span>
 
-function f2(): never {
-    throw new Error(&#39;some error&#39;);   // this function stops due to an exception/error
-}
+<span class="token keyword">function</span> <span class="token function">f2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">never</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'some error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// this function stops due to an exception/error</span>
+<span class="token punctuation">}</span>
 
-function f3(): never {
-    while (true) {
-        ...          // this function has an infinite loop
-    }
-}</code></pre></div>
+<span class="token keyword">function</span> <span class="token function">f3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">never</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>          <span class="token comment">// this function has an infinite loop</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <ol start="6">
 <li>Object</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">let v: obejct;
-v = {
-    name: &#39;abc;
-};
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> v<span class="token punctuation">:</span> obejct<span class="token punctuation">;</span>
+v <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'abc'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-console.log(v.prop1);   // TypeError</code></pre></div>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>prop1<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// TypeError</span></code></pre></div>
 <p>Since there is no information about the object property, it throws a TypeError. If you want to declare a type with information about properties included, you have to use interface, which will be explained later.</p>
 <ol start="7">
 <li>Intersection Type and Union Type
 Intersection Type is declared with <code class="language-text">&amp;</code> and Union Type is declared with <code class="language-text">|</code></li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">let v1: (1 | 3 | 5) &amp; (3 | 5 | 7);
-v1 = 3;
-v1 = 1; // TypeError</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> v1<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">|</span> <span class="token number">3</span> <span class="token operator">|</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">|</span> <span class="token number">5</span> <span class="token operator">|</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+v1 <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+v1 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span></code></pre></div>
 <p><code class="language-text">v1</code> can be either 3 or 5 and nothing else.</p>
 <ol start="8">
 <li>Giving a nickname to a type</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">type Width = number | string;
-let width: Width;
-width = 100;
-width = &#39;100px&#39;;</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">type</span> Width <span class="token operator">=</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> width<span class="token punctuation">:</span> Width<span class="token punctuation">;</span>
+width <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+width <span class="token operator">=</span> <span class="token string">"100px"</span><span class="token punctuation">;</span></code></pre></div>
 <p>You are assigning <code class="language-text">number | string</code> to a type variable <code class="language-text">Width</code>. As a variable <code class="language-text">width</code> is declared with the type of <code class="language-text">Width</code>, the variable can be either number or string.</p>
 <ol start="9">
 <li>enum type</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">enum Fruit {
-    Apple,
-    Banana,
-    Orange,
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">enum</span> Fruit <span class="token punctuation">{</span>
+  Apple<span class="token punctuation">,</span>
+  Banana<span class="token punctuation">,</span>
+  Orange<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
 
-const v1: Fruit = Fruit.Apple;
-const v2: Fruit.Apple | Fruit.Banana = Fruit.Banana;</code></pre></div>
+<span class="token keyword">const</span> v1<span class="token punctuation">:</span> Fruit <span class="token operator">=</span> Fruit<span class="token punctuation">.</span>Apple<span class="token punctuation">;</span>
+<span class="token keyword">const</span> v2<span class="token punctuation">:</span> Fruit<span class="token punctuation">.</span>Apple <span class="token operator">|</span> Fruit<span class="token punctuation">.</span>Banana <span class="token operator">=</span> Fruit<span class="token punctuation">.</span>Banana<span class="token punctuation">;</span></code></pre></div>
 <p>You declare Fruit by using <code class="language-text">enum</code> type. <code class="language-text">v1</code> has the type of <code class="language-text">Fruit</code> and has been assigned with the value <code class="language-text">Fruit.Apple</code>, and <code class="language-text">v2</code> has the type of <code class="language-text">Fruit.Apple</code>. I think</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">enum Fruit {
-    Apple,
-    Banana = 5,
-    Orange,
-}
-console.log(Fruit.Apple, Fruit.Banana, Fruit.Orange); // 0, 5, 6</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">enum</span> Fruit <span class="token punctuation">{</span>
+  Apple<span class="token punctuation">,</span>
+  Banana <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span>
+  Orange<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">.</span>Apple<span class="token punctuation">,</span> Fruit<span class="token punctuation">.</span>Banana<span class="token punctuation">,</span> Fruit<span class="token punctuation">.</span>Orange<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0, 5, 6</span></code></pre></div>
 <p>If you do not assign anything to an element of <code class="language-text">enum</code> type, <code class="language-text">0/zero</code> is automatically assigned to it. And if you assign a number to an element, the next element gets a number which is greater than the number assigned to the previous element—unless you declare it otherwise.</p>
 <p>When you compile an <code class="language-text">enum</code> type variable;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">var Fruit;
-(function(Fruit) {
-    Fruit[(Fruit[&#39;Apple&#39;] = 0)] = &#39;Apple&#39;;
-    Fruit[(Fruit[&#39;Banana&#39;] = 5)] = &#39;Banana&#39;;
-    Fruit[(Fruit[&#39;Orange&#39;] = 6)] = &#39;Orange&#39;;
-})(Fruit || (Fruit = {}));
-console.log(Fruit.Apple, Fruit.Banana, Fruit.Orange); // 0, 5, 6</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">var</span> Fruit<span class="token punctuation">;</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">Fruit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Fruit<span class="token punctuation">[</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">[</span><span class="token string">"Apple"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Apple"</span><span class="token punctuation">;</span>
+  Fruit<span class="token punctuation">[</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">[</span><span class="token string">"Banana"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Banana"</span><span class="token punctuation">;</span>
+  Fruit<span class="token punctuation">[</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">[</span><span class="token string">"Orange"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Orange"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Fruit <span class="token operator">||</span> <span class="token punctuation">(</span>Fruit <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">.</span>Apple<span class="token punctuation">,</span> Fruit<span class="token punctuation">.</span>Banana<span class="token punctuation">,</span> Fruit<span class="token punctuation">.</span>Orange<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0, 5, 6</span></code></pre></div>
 <p>the <code class="language-text">enum</code> type exists as an object, and each element is mapped bi-directionally with the key and value.</p>
 <p>If you use it for run-time;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">enum Fruit {
-    Apple,
-    Banana = 5,
-    Orange,
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">enum</span> Fruit <span class="token punctuation">{</span>
+  Apple<span class="token punctuation">,</span>
+  Banana <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span>
+  Orange<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
 
-console.log(Fruit.Banana); // 5
-console.log(Fruit[&#39;Banana&#39;]); // 5
-console.log(Fruit[5]); // Banana     &lt;&lt; bi-directional mapping</code></pre></div>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">.</span>Banana<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">[</span><span class="token string">"Banana"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Fruit<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Banana     &lt;&lt; bi-directional mapping</span></code></pre></div>
 <p>But if you assign a string to an element of an <code class="language-text">enum</code> type, it is uni-directionally mapped since the same string could be assigned to different elements.</p>
 <ol start="10">
 <li>Function type</li>
 </ol>
 <p>In order to declare a function, you need types of parameters and returns. You can declare types of parameters and returns using a colon(:)</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function getInfoText(name: string, age: number): string {
-    const nameText = name.substr(0, 10);
-    const ageText = age &gt;= 35 ? &#39;senior&#39; : &#39;junior&#39;;
-    return `name: ${nameText}, age: ${ageText}`;
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> nameText <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> ageText <span class="token operator">=</span> age <span class="token operator">>=</span> <span class="token number">35</span> <span class="token operator">?</span> <span class="token string">"senior"</span> <span class="token punctuation">:</span> <span class="token string">"junior"</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">name: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>nameText<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, age: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ageText<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-const v1: string = getInfoText(&#39;mike&#39;, 23);
-const v2: string = getInfoText(&#39;mile&#39;, &#39;23&#39;); // TypeError
-const v3: number = getInfoText(&#39;mike&#39;, 23); // TypeError</code></pre></div>
+<span class="token keyword">const</span> v1<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">"mike"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> v2<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">"mile"</span><span class="token punctuation">,</span> <span class="token string">"23"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+<span class="token keyword">const</span> v3<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">"mike"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span></code></pre></div>
 <p>the types of parameters are declared inside parenthesis, and the type of return is declared right before the curly brackets;</p>
 <p>You can declare the above function like this as well;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const getInfoText: (name: string, age: number) =&gt; string = function (name, age) {
-    ...
-}</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> <span class="token function-variable function">getInfoText</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function-variable function">string</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>You can declare an optional parameter using a question mark like below</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function getInfoText(name: string, age:number, language?: string): string {
-    const nameText = name.substr(0, 10);
-    const ageText = age &gt;= 35 ? &#39;senior&#39; : &#39;junior&#39;;
-    const languageTet = language ? language.substr(0,10) : &#39;&#39;;
-    return `name: ${nameText}, age: ${ageText}, lanauge: ${languageText}`;
-}
-getInfoText(&#39;mike&#39;, 23, &#39;ko&#39;);
-getInfoText(&#39;mile&#39;, &#39;23&#39;); //
-getInfoText(&#39;mike&#39;, 23, 123); // TypeError</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> language<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> nameText <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> ageText <span class="token operator">=</span> age <span class="token operator">>=</span> <span class="token number">35</span> <span class="token operator">?</span> <span class="token string">"senior"</span> <span class="token punctuation">:</span> <span class="token string">"junior"</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> languageTet <span class="token operator">=</span> language <span class="token operator">?</span> language<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">name: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>nameText<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, age: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ageText<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, lanauge: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>languageText<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">"mike"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token string">"ko"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">"mile"</span><span class="token punctuation">,</span> <span class="token string">"23"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//</span>
+<span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">"mike"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span></code></pre></div>
 <p>The second case does not throw a TypeError since <code class="language-text">language</code> is an optional variable. However, the third case throws a TypeError since the type of <code class="language-text">language</code> has to be a string if it is used.</p>
 <p>You can also assign <code class="language-text">undefined</code> buy using <code class="language-text">union</code> type.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function getInfoText(
-    name: string,
-    language: string | undefined,
-    age: number,
-): string {
-    ...
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">getInfoText</span><span class="token punctuation">(</span>
+    <span class="token parameter">name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    language<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> undefined<span class="token punctuation">,</span>
+    age<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span></span>
+<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span>
 
-getInfoText(&#39;mike&#39;, undefined, 23);</code></pre></div>
+<span class="token function">getInfoText</span><span class="token punctuation">(</span><span class="token string">'mike'</span><span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>This does not throw a TypeError, but its usability and readability is extremely low. You can pre-assign a value to a parameter like you would do in Python. I won’t write about that here</p>
 <p>You can assign <code class="language-text">this</code> type of a function as the first parameter of a function like below</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function getParam(this:string, index: number): string {
-    const params = this.splt(&#39;,&#39;); // TypeError
-}</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">getParam</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">this</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> index<span class="token punctuation">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> params <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">splt</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>The code above throws a TypeError since the type of this has been declared as string. If you do not declare the type of <code class="language-text">this</code>, it would not have thrown a TypeError. And <code class="language-text">index</code> here is the first parameter since <code class="language-text">this</code> type is not a parameter.</p>
 <p>You use <code class="language-text">interface</code> when you add a method to a primitive type like below;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">interface String {
-    getParam(this: string, index: number): string;
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+  <span class="token function">getParam</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> index<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-String.prototype.getParam = getParam;
-console.log(&#39;asdf, 1234, ok &#39;.gerParam(1));</code></pre></div>
+<span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>getParam <span class="token operator">=</span> getParam<span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"asdf, 1234, ok "</span><span class="token punctuation">.</span><span class="token function">gerParam</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>You are adding <code class="language-text">getParam</code> method to a primitive type <code class="language-text">String</code> by using <code class="language-text">interface</code></p>
 <ol start="11">
 <li>Function Overload: declaring multiple types at once</li>
 </ol>
 <p>Since JavaScript is a Dynamically Typed Language, one functioncan have different parameter types and return types. In TypeScript, you can use function overload to declare multiple types within a single function.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function add(x: number | string, y: number | string): number | string {
-    if (typeof x === &#39;number&#39; &amp;&amp; typeof y === &#39;number&#39;) {
-        return x + y;
-    } else {
-        const result = Number(x) + Number(y);
-        return result.toString();
-    }
-}
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> x <span class="token operator">===</span> <span class="token string">"number"</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> y <span class="token operator">===</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">Number</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-const v1: number = add(1,2); // TypeError
-console.log(add(1, &#39;2&#39;));</code></pre></div>
+<span class="token keyword">const</span> v1<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p><code class="language-text">const v1</code> throws a TypeError even though both parameters and return are numbers. This is because the type of the function was not declared specifically. This is how you are supposed to declare a function using <code class="language-text">function overload</code></p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">functino add(x: number, y: number): number;
-function add(x: string, y: string): string;
-function add(x: number | string, y: number | string): number | string {
-    ...
-}</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript">functino <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>Basically you are declaring a function with all the possible options</p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Nov 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/typescript/">typescript</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/typescript/different-types-of-typescript";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

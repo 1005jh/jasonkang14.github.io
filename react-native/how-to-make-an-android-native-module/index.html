@@ -88,135 +88,135 @@ void function() {
     </script><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">React Native - How to make an Android native module</h1><div class="Content-module--content__body--2TrQ-"><h3 id="this-is-following-an-example-from-the-official-document-with-some-of-my-personal-input"><a href="#this-is-following-an-example-from-the-official-document-with-some-of-my-personal-input" aria-label="this is following an example from the official document with some of my personal input permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>This is following an example from the <a href="https://reactnative.dev/docs/native-modules-android" target="_blank" rel="nofollow noopener noreferrer">official document</a> with some of my personal input</h3>
 <p>Before creating a native module for a react-native project, you have to understand how react-native works for an Android app. A general tree is defined in <code class="language-text">AndroidManifest.xml</code> like I have posted. And how the app actually works or how it is composed is declared in <code class="language-text">MainApplication.java</code></p>
 <p>There are two default <code class="language-text">java</code> files in a react-native project. One is <code class="language-text">MainApplication.java</code>, which I am going to use in order to add a native module, and the ohter is <code class="language-text">MainActivity.java</code>, which you rarely deal with throughout your project. The only thing declared in <code class="language-text">MainActivity.java</code> is the name of your project like below;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">package com.your-app-name;
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>your</span><span class="token operator">-</span>app<span class="token operator">-</span>name<span class="token punctuation">;</span>
 
-import com.facebook.react.ReactActivity;
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react</span><span class="token punctuation">.</span><span class="token class-name">ReactActivity</span><span class="token punctuation">;</span>
 
-public class MainActivity extends ReactActivity {
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainActivity</span> <span class="token keyword">extends</span> <span class="token class-name">ReactActivity</span> <span class="token punctuation">{</span>
 
-  /**
+  <span class="token comment">/**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
-   */
-  @Override
-  protected String getMainComponentName() {
-    return &quot;your-app-name&quot;;
-  }
-}</code></pre></div>
+   */</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getMainComponentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"your-app-name"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>And everything else is declared in <code class="language-text">MainApplication.java</code>. When you create a native module of your own, you have to pay attention to this section right here;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">    @Override
-    protected List&lt;ReactPackage&gt; getPackages() {
-        @SuppressWarnings(&quot;UnnecessaryLocalVariable&quot;)
-        List&lt;ReactPackage&gt; packages = new PackageList(this).getPackages();
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java">    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">></span></span> <span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"UnnecessaryLocalVariable"</span><span class="token punctuation">)</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">></span></span> packages <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PackageList</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        // packages.add(new MyReactNativePackage());  // &lt;-- this is where you are going to add your module
-        return packages;
-    }</code></pre></div>
+        <span class="token comment">// packages.add(new MyReactNativePackage());  // &lt;-- this is where you are going to add your module</span>
+        <span class="token keyword">return</span> packages<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre></div>
 <p>Technically, you are not adding a module to <code class="language-text">MainApplication.java</code>. You are adding a <code class="language-text">package</code> which includes a <code class="language-text">module</code> to <code class="language-text">MainApplication.java</code>.</p>
 <p>First, you create your module like this. The below example is directly from the <a href="https://reactnative.dev/docs/native-modules-android" target="_blank" rel="nofollow noopener noreferrer">official website</a></p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">// ToastModule.java
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// ToastModule.java</span>
 
-package com.your-app-name;
+<span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>your</span><span class="token operator">-</span>app<span class="token operator">-</span>name<span class="token punctuation">;</span>
 
-import android.widget.Toast;
+<span class="token keyword">import</span> <span class="token namespace">android<span class="token punctuation">.</span>widget</span><span class="token punctuation">.</span><span class="token class-name">Toast</span><span class="token punctuation">;</span>
 
-import com.facebook.react.bridge.NativeModule;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">NativeModule</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">ReactApplicationContext</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">ReactContext</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">ReactContextBaseJavaModule</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">ReactMethod</span><span class="token punctuation">;</span>
 
-import java.util.Map;
-import java.util.HashMap;
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util</span><span class="token punctuation">.</span><span class="token class-name">Map</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util</span><span class="token punctuation">.</span><span class="token class-name">HashMap</span><span class="token punctuation">;</span>
 
-public class ToastModule extends ReactContextBaseJavaModule {
-// a native module is a Java class that extends ReactContextBaseJavaModule
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ToastModule</span> <span class="token keyword">extends</span> <span class="token class-name">ReactContextBaseJavaModule</span> <span class="token punctuation">{</span>
+<span class="token comment">// a native module is a Java class that extends ReactContextBaseJavaModule</span>
 
-  private static ReactApplicationContext reactContext;
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">ReactApplicationContext</span> reactContext<span class="token punctuation">;</span>
 
-  private static final String DURATION_SHORT_KEY = &quot;SHORT&quot;;
-  private static final String DURATION_LONG_KEY = &quot;LONG&quot;;
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> DURATION_SHORT_KEY <span class="token operator">=</span> <span class="token string">"SHORT"</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> DURATION_LONG_KEY <span class="token operator">=</span> <span class="token string">"LONG"</span><span class="token punctuation">;</span>
 
-  ToastModule(ReactApplicationContext context) {
-    super(context);
-    reactContext = context;
-  }
+  <span class="token class-name">ToastModule</span><span class="token punctuation">(</span><span class="token class-name">ReactApplicationContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    reactContext <span class="token operator">=</span> context<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  @Override
-  public String getName() { // a ReactContextBaseJavaModule requires this method to be implemented
-    return &quot;ToastExample&quot;; // this string represents the name of the NativeModule that you are creating
-  }                        // therefore, you can access this module through React.NativeModules.ToastExample
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// a ReactContextBaseJavaModule requires this method to be implemented</span>
+    <span class="token keyword">return</span> <span class="token string">"ToastExample"</span><span class="token punctuation">;</span> <span class="token comment">// this string represents the name of the NativeModule that you are creating</span>
+  <span class="token punctuation">}</span>                        <span class="token comment">// therefore, you can access this module through React.NativeModules.ToastExample</span>
 
-  @Override
-  public Map&lt;String, Object&gt; getConstants() {     // this is optional
-    final Map&lt;String, Object&gt; constants = new HashMap&lt;&gt;();
-    constants.put(DURATION_SHORT_KEY, Toast.LENGTH_SHORT);
-    constants.put(DURATION_LONG_KEY, Toast.LENGTH_LONG);
-    return constants;
-  }
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token function">getConstants</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     <span class="token comment">// this is optional</span>
+    <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span></span> constants <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    constants<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>DURATION_SHORT_KEY<span class="token punctuation">,</span> <span class="token class-name">Toast</span><span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    constants<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>DURATION_LONG_KEY<span class="token punctuation">,</span> <span class="token class-name">Toast</span><span class="token punctuation">.</span>LENGTH_LONG<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> constants<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  @ReactMethod   // this decorator allows you to access this Java method with JavaScript. You will see what I mean later
-  public void show(String message, int duration) {
-    Toast.makeText(getReactApplicationContext(), message, duration).show();
-  }
-}</code></pre></div>
+  <span class="token annotation punctuation">@ReactMethod</span>   <span class="token comment">// this decorator allows you to access this Java method with JavaScript. You will see what I mean later</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">,</span> <span class="token keyword">int</span> duration<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Toast</span><span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span><span class="token function">getReactApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> message<span class="token punctuation">,</span> duration<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>Now you have to create a <code class="language-text">package</code> to register your <code class="language-text">module</code></p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">// CustomToastPackage.java
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// CustomToastPackage.java</span>
 
-package com.your-app-name;
+<span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>your</span><span class="token operator">-</span>app<span class="token operator">-</span>name<span class="token punctuation">;</span>
 
-import com.facebook.react.ReactPackage;
-import com.facebook.react.bridge.NativeModule;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.uimanager.ViewManager;
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react</span><span class="token punctuation">.</span><span class="token class-name">ReactPackage</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">NativeModule</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>bridge</span><span class="token punctuation">.</span><span class="token class-name">ReactApplicationContext</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>uimanager</span><span class="token punctuation">.</span><span class="token class-name">ViewManager</span><span class="token punctuation">;</span>
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util</span><span class="token punctuation">.</span><span class="token class-name">ArrayList</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util</span><span class="token punctuation">.</span><span class="token class-name">Collections</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util</span><span class="token punctuation">.</span><span class="token class-name">List</span><span class="token punctuation">;</span>
 
-public class CustomToastPackage implements ReactPackage {
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomToastPackage</span> <span class="token keyword">implements</span> <span class="token class-name">ReactPackage</span> <span class="token punctuation">{</span>
 
-  @Override
-  public List&lt;ViewManager&gt; createViewManagers(ReactApplicationContext reactContext) {
-    return Collections.emptyList();
-  }
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ViewManager</span><span class="token punctuation">></span></span> <span class="token function">createViewManagers</span><span class="token punctuation">(</span><span class="token class-name">ReactApplicationContext</span> reactContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  @Override
-  public List&lt;NativeModule&gt; createNativeModules(
-                              ReactApplicationContext reactContext) {
-    List&lt;NativeModule&gt; modules = new ArrayList&lt;&gt;();
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">NativeModule</span><span class="token punctuation">></span></span> <span class="token function">createNativeModules</span><span class="token punctuation">(</span>
+                              <span class="token class-name">ReactApplicationContext</span> reactContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">NativeModule</span><span class="token punctuation">></span></span> modules <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    modules.add(new ToastModule(reactContext));  // Your module is added right here
+    modules<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ToastModule</span><span class="token punctuation">(</span>reactContext<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Your module is added right here</span>
 
-    return modules;
-  }
+    <span class="token keyword">return</span> modules<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-}</code></pre></div>
+<span class="token punctuation">}</span></code></pre></div>
 <p>Now you add the <code class="language-text">package</code> to <code class="language-text">MainApplication.java</code></p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">...
-import com.your-app-name.CustomToastPackage; // &lt;-- Add this line with your package name.
-...
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>your</span><span class="token operator">-</span>app<span class="token operator">-</span>name<span class="token punctuation">.</span><span class="token class-name">CustomToastPackage</span><span class="token punctuation">;</span> <span class="token comment">// &lt;-- Add this line with your package name.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
-protected List&lt;ReactPackage&gt; getPackages() {
-  @SuppressWarnings(&quot;UnnecessaryLocalVariable&quot;)
-  List&lt;ReactPackage&gt; packages = new PackageList(this).getPackages();
+<span class="token keyword">protected</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">></span></span> <span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"UnnecessaryLocalVariable"</span><span class="token punctuation">)</span>
+  <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">></span></span> packages <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PackageList</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  packages.add(new CustomToastPackage()); // &lt;-- Add this line with your package name.
-  return packages;
-}</code></pre></div>
+  packages<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CustomToastPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &lt;-- Add this line with your package name.</span>
+  <span class="token keyword">return</span> packages<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>Now you create a JavaScript file to wrap the native module you have just created, which is <code class="language-text">React.NativeModule.ToastExample</code>.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">//ToastExample.js
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">//ToastExample.js</span>
 
-import {NativeModules} from &#39;react-native&#39;;
-module.exports = NativeModules.ToastExample;</code></pre></div>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NativeModules <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-native"</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> NativeModules<span class="token punctuation">.</span>ToastExample<span class="token punctuation">;</span></code></pre></div>
 <p>This is not in the official document, but you can also do it like this</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">import {NativeModules} from &#39;react-native&#39;;
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NativeModules <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react-native"</span><span class="token punctuation">;</span>
 
-const {ToastExample} = NativeModules
+<span class="token keyword">const</span> <span class="token punctuation">{</span> ToastExample <span class="token punctuation">}</span> <span class="token operator">=</span> NativeModules<span class="token punctuation">;</span>
 
-export default ToastExample</code></pre></div>
+<span class="token keyword">export</span> <span class="token keyword">default</span> ToastExample<span class="token punctuation">;</span></code></pre></div>
 <p>You can all the <code class="language-text">show</code> method which you have decorated with <code class="language-text">ReactMethod</code> in <code class="language-text">ToastModule.java</code> like this</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">import ToastExample from &#39;./ToastExample&#39;;
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> ToastExample <span class="token keyword">from</span> <span class="token string">"./ToastExample"</span><span class="token punctuation">;</span>
 
-ToastExample.show(&#39;Awesome&#39;, ToastExample.SHORT);</code></pre></div>
+ToastExample<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token string">"Awesome"</span><span class="token punctuation">,</span> ToastExample<span class="token punctuation">.</span><span class="token constant">SHORT</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>This shows a toast with a text <code class="language-text">Awesome</code> when you launch your Android app</p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->16 Mar 2020</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/android/">android</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/react-native/how-to-make-an-android-native-module";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

@@ -89,55 +89,57 @@ void function() {
 <p>In order to send a file to a server, you have to send it as a <code class="language-text">multipart/form-data</code>. Since I am using an image, I used a library called <code class="language-text">react-native-image-picker</code>. It is very easy to use the library—you just have to follow the instruction written in the official Github.</p>
 <p><code class="language-text">npm i --save react-native-image-picker</code></p>
 <p>and then you just add the code given in the instruction .</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">_addPicture = () =&gt; {
-    ImagePicker.showImagePicker(options, (response) =&gt; {
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token function-variable function">_addPicture</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  ImagePicker<span class="token punctuation">.</span><span class="token function">showImagePicker</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span>didCancel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"User cancelled image picker"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"ImagePicker Error: "</span><span class="token punctuation">,</span> response<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span>customButton<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"User tapped custom button: "</span><span class="token punctuation">,</span> response<span class="token punctuation">.</span>customButton<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> source <span class="token operator">=</span> <span class="token punctuation">{</span> uri<span class="token punctuation">:</span> response<span class="token punctuation">.</span>uri <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-      if (response.didCancel) {
-        console.log(&quot;User cancelled image picker&quot;);
-      } else if (response.error) {
-        console.log(&quot;ImagePicker Error: &quot;, response.error);
-      } else if (response.customButton) {
-        console.log(&quot;User tapped custom button: &quot;, response.customButton);
-      } else {
-        const source = { uri: response.uri };
-
-        this.setState({
-          image: source,
-          imageName: response.fileName
-        });
-      }
-    });
-  };</code></pre></div>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        image<span class="token punctuation">:</span> source<span class="token punctuation">,</span>
+        imageName<span class="token punctuation">:</span> response<span class="token punctuation">.</span>fileName<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
 <p>Now that you have added the picture, you have to create a <code class="language-text">formData</code> in order to send the picture to an API.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">_createFormData = () =&gt; {
-    const { image, imageName } = this.state;
-    const imageUri = image.uri.slice(7);
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token function-variable function">_createFormData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> image<span class="token punctuation">,</span> imageName <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> imageUri <span class="token operator">=</span> image<span class="token punctuation">.</span>uri<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    let picture = new FormData();
-    let file = {
-      uri: imageUri,
-      type: &quot;image/jpeg&quot;,
-      name: imageName
-    }
-    picture.append(&quot;image&quot;, file);
-    return picture
-  }</code></pre></div>
+  <span class="token keyword">let</span> picture <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FormData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> file <span class="token operator">=</span> <span class="token punctuation">{</span>
+    uri<span class="token punctuation">:</span> imageUri<span class="token punctuation">,</span>
+    <span class="token keyword">type</span><span class="token punctuation">:</span> <span class="token string">"image/jpeg"</span><span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> imageName<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  picture<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"image"</span><span class="token punctuation">,</span> file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> picture<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
 <p><code class="language-text">image</code> is an object which contains a key called uri whose value contains some prefix that <code class="language-text">multipart/form-data</code> cannot recognize. So, I used the <code class="language-text">slice()</code> method in order to cut the first seven letters off the string.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">_uploadPicture = async () =&gt; {
-    const accessToken = await AsyncStorage.getItem(&#39;@storage_Key&#39;);
-    const picture = this._createFormData()
-    const pictureUploadSettings = {
-      method: &quot;POST&quot;,
-      headers: {
-        Authorization: `Token ${accessToken}`,
-        &quot;Content-Type&quot;: &quot;multipart/form-data&quot;
-      },
-      body: picture
-    }
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token function-variable function">_uploadPicture</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> accessToken <span class="token operator">=</span> <span class="token keyword">await</span> AsyncStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"@storage_Key"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> picture <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_createFormData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> pictureUploadSettings <span class="token operator">=</span> <span class="token punctuation">{</span>
+    method<span class="token punctuation">:</span> <span class="token string">"POST"</span><span class="token punctuation">,</span>
+    headers<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      Authorization<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Token </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>accessToken<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token string">"Content-Type"</span><span class="token punctuation">:</span> <span class="token string">"multipart/form-data"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    body<span class="token punctuation">:</span> picture<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    const response = await fetch(`${API_URL}listener/upload/picture`, pictureUploadSettings);
-    const pictureUri = await response.json();
+  <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">API_URL</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">listener/upload/picture</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    pictureUploadSettings
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> pictureUri <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return pictureUri.picture_uri
-}</code></pre></div>
+  <span class="token keyword">return</span> pictureUri<span class="token punctuation">.</span>picture_uri<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
 <p>Then I sent the image file to the API using the code above.</p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->7 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/aws/">aws</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/React-Native-Multipart-Form-Data-to-API";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

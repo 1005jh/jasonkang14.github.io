@@ -131,41 +131,41 @@ pod &#39;FBSDKShareKit&#39;</code></pre></div>
 <li>Connect Your App Delegate
 Add <code class="language-text">#import &lt;FBSDKCoreKit/FBSDKCoreKit.h&gt;</code> to the top of your <code class="language-text">AppDelegate.m</code> and then copy the code given in Facebook for Developers and paste it to your <code class="language-text">AppDelegate.m</code> like below</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">@implementation AppDelegate
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift">@implementation <span class="token builtin">AppDelegate</span>
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@&quot;sideProject&quot;
-                                            initialProperties:nil];
-  [[FBSDKApplicationDelegate sharedInstance] application:application
-                           didFinishLaunchingWithOptions:launchOptions];
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token constant">BOOL</span><span class="token punctuation">)</span>application<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token builtin">UIApplication</span> <span class="token operator">*</span><span class="token punctuation">)</span>application didFinishLaunchingWithOptions<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token builtin">NSDictionary</span> <span class="token operator">*</span><span class="token punctuation">)</span>launchOptions
+<span class="token punctuation">{</span>
+  <span class="token builtin">RCTBridge</span> <span class="token operator">*</span>bridge <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">RCTBridge</span> alloc<span class="token punctuation">]</span> initWithDelegate<span class="token punctuation">:</span><span class="token keyword">self</span> launchOptions<span class="token punctuation">:</span>launchOptions<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token builtin">RCTRootView</span> <span class="token operator">*</span>rootView <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">RCTRootView</span> alloc<span class="token punctuation">]</span> initWithBridge<span class="token punctuation">:</span>bridge
+                                                   moduleName<span class="token punctuation">:</span>@<span class="token string">"sideProject"</span>
+                                            initialProperties<span class="token punctuation">:</span><span class="token constant">nil</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">FBSDKApplicationDelegate</span> sharedInstance<span class="token punctuation">]</span> application<span class="token punctuation">:</span>application
+                           didFinishLaunchingWithOptions<span class="token punctuation">:</span>launchOptions<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  rootView<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">UIColor</span> alloc<span class="token punctuation">]</span> initWithRed<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">.</span>0f green<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">.</span>0f blue<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">.</span>0f alpha<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [UIViewController new];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
-  return YES;
-}
+  <span class="token keyword">self</span><span class="token punctuation">.</span>window <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">UIWindow</span> alloc<span class="token punctuation">]</span> initWithFrame<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token builtin">UIScreen</span> mainScreen<span class="token punctuation">]</span><span class="token punctuation">.</span>bounds<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token builtin">UIViewController</span> <span class="token operator">*</span>rootViewController <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">UIViewController</span> <span class="token keyword">new</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  rootViewController<span class="token punctuation">.</span>view <span class="token operator">=</span> rootView<span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>window<span class="token punctuation">.</span>rootViewController <span class="token operator">=</span> rootViewController<span class="token punctuation">;</span>
+  <span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>window makeKeyAndVisible<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-            options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey,id&gt; *)options {
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token constant">BOOL</span><span class="token punctuation">)</span>application<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token builtin">UIApplication</span> <span class="token operator">*</span><span class="token punctuation">)</span>application
+            openURL<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSURL</span> <span class="token operator">*</span><span class="token punctuation">)</span>url
+            options<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token builtin">NSDictionary</span><span class="token operator">&lt;</span><span class="token builtin">UIApplicationOpenURLOptionsKey</span><span class="token punctuation">,</span>id<span class="token operator">></span> <span class="token operator">*</span><span class="token punctuation">)</span>options <span class="token punctuation">{</span>
 
-  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                                openURL:url
-                                                      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-                  ];
+  <span class="token constant">BOOL</span> handled <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">FBSDKApplicationDelegate</span> sharedInstance<span class="token punctuation">]</span> application<span class="token punctuation">:</span>application
+                                                                openURL<span class="token punctuation">:</span>url
+                                                      sourceApplication<span class="token punctuation">:</span>options<span class="token punctuation">[</span><span class="token builtin">UIApplicationOpenURLOptionsSourceApplicationKey</span><span class="token punctuation">]</span>
+                                                             annotation<span class="token punctuation">:</span>options<span class="token punctuation">[</span><span class="token builtin">UIApplicationOpenURLOptionsAnnotationKey</span><span class="token punctuation">]</span>
+                  <span class="token punctuation">]</span><span class="token punctuation">;</span>
 
 
-  // Add any custom logic here.
-  return handled;
-}</code></pre></div>
+  <span class="token comment">// Add any custom logic here.</span>
+  <span class="token keyword">return</span> handled<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <ol start="6">
 <li>Ignore the rest of the instruction given in the link and copy the code from Facebook Github. Follow the <a href="https://github.com/facebook/react-native-fbsdk#usage" target="_blank" rel="nofollow noopener noreferrer">Usage</a> section</li>
 </ol></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->1 Aug 2019</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/reactnative/">reactnative</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/facebook/">facebook</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/socialogin/">socialogin</a></li><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/ios/">ios</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/React-Native-Facebook-Login-Front-End";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

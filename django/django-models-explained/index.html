@@ -92,21 +92,21 @@ void function() {
 <ol>
 <li>Each model is a Python class that subclasses <code class="language-text">django.db.models.Model</code></li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">from django.db import models
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> models
 
-class Person(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)</code></pre></div>
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    first_name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
+    last_name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span></code></pre></div>
 <p>You have just created a <code class="language-text">Person</code> model with fields name <code class="language-text">first_name</code> and <code class="language-text">last_name</code>. If you use a database, <code class="language-text">Person</code> is your table, and <code class="language-text">first_name</code> and <code class="language-text">last_name</code> are its rows. And an <code class="language-text">id</code> is added automatically as a primary key for your convenience.</p>
 <p>But the name of the table becomes <code class="language-text">myapp_person</code> instead of <code class="language-text">person</code>. If you want to want a table called <code class="language-text">person</code> instead, you can write your model like this by using a <code class="language-text">Meta</code> class.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">from django.db import models
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> models
 
-class Person(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    first_name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
+    last_name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
 
-    class Meta:
-        db_table = &#39;person&#39;</code></pre></div>
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        db_table <span class="token operator">=</span> <span class="token string">'person'</span></code></pre></div>
 <p>After creating a model, you have to make migrations with <code class="language-text">manage.py makemigrations</code> and then <code class="language-text">manage.py migrate</code>. The first command creates migration files which declares what you have done with your <code class="language-text">models.py</code> like creating a table and rows or alternating rows. And the next command applies the changes to your database.</p>
 <ol start="2">
 <li>Fields</li>
@@ -114,20 +114,20 @@ class Person(models.Model):
 <p>Each field takes a certain set of field-specific arguments. Some fields requires certain arguments while others do not. I feel like it is not really worth memorizing those, so you can find the information <a href="https://docs.djangoproject.com/en/3.0/ref/models/fields/#model-field-types" target="_blank" rel="nofollow noopener noreferrer">here</a></p>
 <p>Certain arguments may come to you as you write more codes. For example, a <code class="language-text">CharField</code> requires an <code class="language-text">max_length</code> argument. If you add <code class="language-text">null=True</code> as an argument to a field, Django will store empty values as <code class="language-text">NULL</code>. If you add <code class="language-text">blank=True</code> as an argument to a field, Django will store an empty value instead of using <code class="language-text">NULL</code>.</p>
 <p>There is also an argument called <code class="language-text">choices</code>, which is a sequence of 2-tuples. Check the example below;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">class Person(models.Model):
-    SHIRT_SIZES = (
-        (&#39;S&#39;, &#39;Small&#39;),
-        (&#39;M&#39;, &#39;Medium&#39;),
-        (&#39;L&#39;, &#39;Large&#39;),
-    )
-    name = models.CharField(max_length=60)
-    shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)</code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    SHIRT_SIZES <span class="token operator">=</span> <span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'Small'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'Medium'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token string">'L'</span><span class="token punctuation">,</span> <span class="token string">'Large'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">60</span><span class="token punctuation">)</span>
+    shirt_size <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> choices<span class="token operator">=</span>SHIRT_SIZES<span class="token punctuation">)</span></code></pre></div>
 <p>If you make a query to a <code class="language-text">Person</code> class, <code class="language-text">person.shirt_size</code> would give you S, M, or an L. If you call a function like <code class="language-text">person.get_shirt_size_display()</code>, yow would get Small, Medium, or Large.</p>
 <p>You can also use enumeration classes like below;</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">from django.db import models
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> models
 
-class Runner(models.Model):
-    MedalType = models.TextChoices(&#39;MedalType&#39;, &#39;GOLD, SILVER, BRONZE&#39;)
-    name = models.CharField(max_length=60)
-    medal = models.CharField(blank=True, choices=MedalType.choices, max_length=10)</code></pre></div>
+<span class="token keyword">class</span> <span class="token class-name">Runner</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    MedalType <span class="token operator">=</span> models<span class="token punctuation">.</span>TextChoices<span class="token punctuation">(</span><span class="token string">'MedalType'</span><span class="token punctuation">,</span> <span class="token string">'GOLD, SILVER, BRONZE'</span><span class="token punctuation">)</span>
+    name <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">60</span><span class="token punctuation">)</span>
+    medal <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>blank<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> choices<span class="token operator">=</span>MedalType<span class="token punctuation">.</span>choices<span class="token punctuation">,</span> max_length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span></code></pre></div>
 <p>There is an argument called <code class="language-text">verbose_name</code>, which is automatically generated if you do not specify. I think you can use this as for your reference for you to help other developers what you were trying to do with this field.</p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->20 Apr 2020</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/django/">django</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Developer, seeking opportunities<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"><strong>Byeongjin Jason Kang</strong> on Twitter</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/django/django-models-explained";window.webpackCompilationHash="73c4a47e2c163fc9d239";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-4e94794d7a681d471755.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fe482c9ecbcc81b9c63a.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-d5bbffab7807855cb20a.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-5c277c0845fca2d65e84.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-f4bf93957acaae63a20e.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-6817e4768153cc0ea5b7.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-081a1477d4c756525b09.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-33ba6bf5146e680ec708.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-52d372c414c9cc967dc4.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-47a452339afc6daac477.js"]};/*]]>*/</script><script src="/component---src-templates-post-template-js-081a1477d4c756525b09.js" async=""></script><script src="/2-27148cca0ecaa34c873d.js" async=""></script><script src="/1-5c9d331f9ee981892385.js" async=""></script><script src="/styles-7e120d11eb55bc447d23.js" async=""></script><script src="/app-4e94794d7a681d471755.js" async=""></script><script src="/webpack-runtime-238aa1e0b187205570fb.js" async=""></script></body></html>

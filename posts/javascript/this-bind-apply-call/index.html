@@ -97,28 +97,28 @@ void function() {
 </ul>
 </li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function f2() {
-  &#39;use strict&#39;; // see strict mode
-  return this;
-}
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">"use strict"</span><span class="token punctuation">;</span> <span class="token comment">// see strict mode</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-f2() === undefined; // true</code></pre></div>
+<span class="token function">f2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span> <span class="token comment">// true</span></code></pre></div>
 <ul>
 <li>the above is because function <code class="language-text">f2</code> is called directly. not as a method or a property of the <code class="language-text">window</code> object</li>
 <li>To set the value of this to a particular value when calling a function, use <code class="language-text">call()</code>, or <code class="language-text">apply()</code></li>
 <li><code class="language-text">apply</code> / <code class="language-text">call</code></li>
 </ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">var obj = {a: &#39;Custom&#39;};
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token string">"Custom"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-var a = &#39;Global&#39;;
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token string">"Global"</span><span class="token punctuation">;</span>
 
-function whatsThis() {
-  return this.a;
-}
+<span class="token keyword">function</span> <span class="token function">whatsThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-whatsThis();          // &#39;Global&#39;
-whatsThis.call(obj);  // &#39;Custom&#39;
-whatsThis.apply(obj); // &#39;Custom&#39;</code></pre></div>
+<span class="token function">whatsThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'Global'</span>
+<span class="token function">whatsThis</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'Custom'</span>
+<span class="token function">whatsThis</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'Custom'</span></code></pre></div>
 <p>if you call a function without <code class="language-text">call</code> or <code class="language-text">apply</code>, <code class="language-text">this</code> refers to the <code class="language-text">window</code> object. However, if you call the same function with <code class="language-text">call</code> or <code class="language-text">apply</code>, you set <code class="language-text">this</code> as the <code class="language-text">object</code> with which you are calling the function.</p>
 <p>if the value you are passing with <code class="language-text">call</code> or <code class="language-text">apply</code> is not an object, the browser will use the internal method <code class="language-text">ToObject()</code> in order to convert it to an object.</p>
 <ol start="3">
@@ -130,15 +130,15 @@ whatsThis.apply(obj); // &#39;Custom&#39;</code></pre></div>
 </ul>
 </li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">function f() {
-  return this.a;
-}
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-var g = f.bind({a: &#39;azerty&#39;});
-console.log(g()); // azerty
+<span class="token keyword">var</span> g <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token string">"azerty"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// azerty</span>
 
-var h = g.bind({a: &#39;yoo&#39;}); // bind only works once!
-console.log(h()); // azerty</code></pre></div>
+<span class="token keyword">var</span> h <span class="token operator">=</span> <span class="token function">g</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token string">"yoo"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// bind only works once!</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// azerty</span></code></pre></div>
 <ol start="4">
 <li>
 <p>arrow function</p>

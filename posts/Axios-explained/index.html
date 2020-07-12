@@ -90,20 +90,19 @@ void function() {
 <li>Automatic Transformation
 When you use the native <code class="language-text">Fetch API</code>, you have to transfrom the <code class="language-text">response</code> to <code class="language-text">json</code> in order to use it. This means that it takes a while for you to receive a <code class="language-text">response</code> from the server since you have to wait until a <code class="language-text">response</code> gets transformed into <code class="language-text">json</code>.</li>
 </ol>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">// Fetch API
-fetch(ADDRESS + &quot;restaurant&quot;)
-.then(res =&gt; res.json())
-.then(result =&gt; {
-    this.props.setStore(result);
-});</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token comment">// Fetch API</span>
+<span class="token function">fetch</span><span class="token punctuation">(</span><span class="token constant">ADDRESS</span> <span class="token operator">+</span> <span class="token string">"restaurant"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=></span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">result</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">setStore</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>However, <code class="language-text">Axios</code> converts the data to <code class="language-text">json</code> automatically, so you have one less step to perform. This means that using a <code class="language-text">response</code> from the server would not take as long.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">// Axios
-if (storeId === undefined) {
-    axios(ADDRESS + &quot;restaurant&quot;)
-    .then(res =&gt; {
-        this.props.setStore(res);
-    });
-}</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token comment">// Axios</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>storeId <span class="token operator">===</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">axios</span><span class="token punctuation">(</span><span class="token constant">ADDRESS</span> <span class="token operator">+</span> <span class="token string">"restaurant"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">setStore</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <ol start="2">
 <li>
 <p>Built-in CSRF Protection
