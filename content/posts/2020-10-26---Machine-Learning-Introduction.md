@@ -7,8 +7,9 @@ slug: "/machine-learning/introduction"
 category: "MACHINELEARNING"
 tags:
   - "machinelearning"
-  - "wdeeplearning"
+  - "deeplearning"
   - "supervisedlearning"
+  - "unsupervisedlearning"
 
 description: "Coursera Machine Learning course: Introduction"
 ---
