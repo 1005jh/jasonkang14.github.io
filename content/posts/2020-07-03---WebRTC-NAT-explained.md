@@ -8,7 +8,6 @@ category: "webrtc"
 tags:
   - "webrtc"
   - "nat"
-  - "wecode"
 
 description: "Network Address Translation(NAT) explained"
 ---

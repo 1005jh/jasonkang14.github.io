@@ -7,7 +7,6 @@ slug: "/html/semantic-tags-form-tag-explained"
 category: "HTML"
 tags:
   - "html"
-  - "wecode"
 
 description: "Why do I have to use a form tag when div can just do everything"
 ---

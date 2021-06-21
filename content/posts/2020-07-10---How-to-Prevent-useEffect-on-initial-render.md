@@ -9,7 +9,6 @@ tags:
   - "reactnative"
   - "reacthooks"
   - "typescript"
-  - "wecode"
 
 description: "How to prevent useEffect on initial render"
 ---
