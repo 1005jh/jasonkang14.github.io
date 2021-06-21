@@ -10,7 +10,6 @@ tags:
   - "reacthooks"
   - "typescript"
   - "wecode"
-  - "위코드"
 
 description: "How to use useReducer with useContext"
 ---

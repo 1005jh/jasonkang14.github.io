@@ -8,7 +8,6 @@ category: "HTML"
 tags:
   - "html"
   - "wecode"
-  - "위코드"
 
 description: "Why do I have to use a form tag when div can just do everything"
 ---

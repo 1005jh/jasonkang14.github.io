@@ -9,7 +9,6 @@ tags:
   - "webrtc"
   - "nat"
   - "wecode"
-  - "위코드"
 
 description: "Network Address Translation(NAT) explained"
 ---

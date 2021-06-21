@@ -7,7 +7,6 @@ slug: "/react/functional-programming-with-react-part-two"
 category: "React"
 tags:
   - "react"
-  - "위코드"
   - "wecode"
 
 description: "Understanding how functional programming works with React"
