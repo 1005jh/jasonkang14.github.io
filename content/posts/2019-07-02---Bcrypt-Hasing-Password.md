@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/Bcrypt-Signup-Function-using-hashpw"
 category: "Brcypt"
 tags:
-  - "bcrypt"
+  - "Django"
 
 description: "Implementing Signup using Django and Bcrypt"
 ---

@@ -1,6 +1,6 @@
 ---
 title: Dynamic Programming
-date: "2021-01-02T23:34:37.121Z"
+date: "2022-05-22T23:34:37.121Z"
 template: "post"
 draft: false
 slug: "/cs/dynamic-programming"

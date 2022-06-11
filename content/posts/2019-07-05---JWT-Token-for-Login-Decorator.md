@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/JWT-Token-for-a-login-decorator"
 category: "JWT"
 tags:
-  - "jwt"
+  - "Python"
 
 description: "Implementing Authentication using JWT"
 ---

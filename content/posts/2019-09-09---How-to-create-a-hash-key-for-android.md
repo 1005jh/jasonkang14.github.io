@@ -4,7 +4,7 @@ date: "2019-09-09T22:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/android/how-to-create-a-hash-key-for-an-android-project"
-category: "android"
+category: "Android"
 tags:
   - "Android"
 

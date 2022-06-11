@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/JWT-Token-returned-upon-login"
 category: "JWT"
 tags:
-  - "jwt"
+  - "Python"
 description: "Implementing Authentication using JWT"
 ---
 

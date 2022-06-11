@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/Terminology-from-Interviews"
 category: "terminology"
 tags:
-  - "interview"
+  - "Interview"
 
 description: "Some important terminology in web development based on interview questions"
 ---

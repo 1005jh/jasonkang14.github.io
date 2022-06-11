@@ -4,9 +4,9 @@ date: "2019-07-03T13:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/Bcrypt-Login-using-checkpw"
-category: "Brcypt"
+category: "Python"
 tags:
-  - "bcrypt"
+  - "Django"
 
 description: "Implementing Login using Django and Bcrypt"
 ---
