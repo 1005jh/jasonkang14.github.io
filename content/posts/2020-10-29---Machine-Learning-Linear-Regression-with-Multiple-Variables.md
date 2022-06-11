@@ -6,9 +6,7 @@ draft: false
 slug: "/machine-learning/linear-regression-with-multiple-variables"
 category: "MACHINELEARNING"
 tags:
-  - "machinelearning"
-  - "linearregression"
-  - "multivariate"
+  - "Machine Learning"
 
 description: "Coursera Machine Learning course: Linear Regression with Multiple Variables"
 ---

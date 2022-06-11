@@ -6,8 +6,7 @@ draft: false
 slug: "/machine-learning/neural-networks-representation"
 category: "MACHINELEARNING"
 tags:
-  - "machinelearning"
-  - "neuralnetworks"
+  - "Machine Learning"
 
 description: "Coursera Machine Learning course: Neural Networks - Representation"
 ---

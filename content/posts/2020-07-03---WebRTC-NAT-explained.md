@@ -6,8 +6,7 @@ draft: false
 slug: "/webrtc/nat-explained"
 category: "webrtc"
 tags:
-  - "webrtc"
-  - "nat"
+  - "WebRTC"
 
 description: "Network Address Translation(NAT) explained"
 ---

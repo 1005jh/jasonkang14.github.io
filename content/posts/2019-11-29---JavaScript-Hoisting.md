@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/javascript/hoisting"
 category: "JavaScript"
 tags:
-  - "javascript"
+  - "JavaScript"
 
 description: "JavaScript hoisting"
 ---

@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/webrtc/webrtc-Mediasoup-flow-explained"
 category: "webrtc"
 tags:
-  - "webrtc"
-  - "mediasoup"
+  - "WebRTC"
 
 description: "Mediasoup Flow explained"
 ---

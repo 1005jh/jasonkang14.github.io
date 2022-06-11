@@ -6,7 +6,7 @@ draft: false
 slug: "/git/allow-unrelated-histories"
 category: "Git"
 tags:
-  - "git"
+  - "Git"
 
 description: "How to fix an error when you try to merge unrelated branches"
 ---

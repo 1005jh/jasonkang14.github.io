@@ -6,7 +6,7 @@ draft: false
 slug: "/html/semantic-tags-form-tag-explained"
 category: "HTML"
 tags:
-  - "html"
+  - "HTML"
 
 description: "Why do I have to use a form tag when div can just do everything"
 ---

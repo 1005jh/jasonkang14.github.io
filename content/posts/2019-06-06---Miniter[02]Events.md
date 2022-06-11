@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/Miniter-Events/"
 category: "DOM"
 tags:
-  - "javascript"
+  - "HTML"
 
 description: "How to set events in attempt to make a mini-version of Twitter."
 ---

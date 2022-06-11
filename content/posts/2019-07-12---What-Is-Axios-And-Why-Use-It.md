@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/Axios-explained"
 category: "Axios"
 tags:
-  - "axios"
+  - "JavaScript"
 
 description: "Explaining Axios"
 ---

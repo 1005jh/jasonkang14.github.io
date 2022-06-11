@@ -6,8 +6,8 @@ draft: false
 slug: "/posts/React-Hooks-useEffect-update-when-you-want"
 category: "React"
 tags:
-  - "react"
-  - "reacthooks"
+  - "React"
+
 description: "How to use `useEffect()` instead of `componentDidUpdate()`"
 ---
 

@@ -4,10 +4,9 @@ date: "2020-03-15T22:53:37.121Z"
 template: "post"
 draft: false
 slug: "/react-native/how-to-make-an-android-native-module"
-category: "ReactNative"
+category: "React Native"
 tags:
-  - "reactnative"
-  - "android"
+  - "React Native"
 
 description: "How to make an Android native module for a React-Native project"
 ---

@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/Adding-ESLint-to-Your-JavaScript-Project"
 category: "javascript"
 tags:
-  - "react"
-  - "reactnative"
+  - "JavaScript"
 
 description: "How to add ESLint to your JavaScript Project"
 ---

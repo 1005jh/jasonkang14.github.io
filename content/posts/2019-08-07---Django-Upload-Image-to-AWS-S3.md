@@ -6,8 +6,8 @@ draft: false
 slug: "/posts/Django-upload-image-to-aws-s3"
 category: "Django"
 tags:
-  - "django"
-  - "aws"
+  - "Django"
+  - "AWS"
 description: "How to upload an image to AWS S3 using Django"
 ---
 

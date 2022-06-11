@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/How-to-implement-a-login-decorator"
 category: "Python"
 tags:
-  - "decorator"
+  - "Python"
 description: "How to implement a login decorator"
 ---
 

@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/react/reconciliation-and-virtual-dom"
 category: "React"
 tags:
-  - "react"
+  - "React"
 
 description: "React reconciliation to improve efficiency"
 ---

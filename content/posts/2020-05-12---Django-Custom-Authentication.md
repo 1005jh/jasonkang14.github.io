@@ -6,7 +6,7 @@ draft: false
 slug: "/django/django-custom-authentication"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "How to create a custom user model and authentication method in Django"
 ---

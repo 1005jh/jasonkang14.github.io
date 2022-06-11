@@ -6,10 +6,8 @@ draft: false
 slug: "/posts/Request-to-Server-using-MobX"
 category: "MobX"
 tags:
-  - "reactnative"
-  - "facebook"
-  - "socialogin"
-  - "mobx"
+  - "React"
+
 description: "How to send a request to the server via MobX"
 ---
 

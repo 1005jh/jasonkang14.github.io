@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/typescript/mapped-types"
 category: "TypeScript"
 tags:
-  - "typescript"
+  - "TypeScript"
 
 description: "TypeScript, mapped types explained"
 ---

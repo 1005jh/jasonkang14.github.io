@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/webrtc/concluding-ice-via-nomination"
 category: "webrtc"
 tags:
-  - "webrtc"
+  - "WebRTC"
 
 description: "Concluding ICE via nomination"
 ---

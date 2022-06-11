@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/typescript/different-types-of-typescript"
 category: "Typescript"
 tags:
-  - "typescript"
+  - "TypeScript"
 
 description: "Types that you can declare while using TypeScript"
 ---
@@ -143,7 +143,7 @@ When you compile an `enum` type variable;
 
 ```typescript
 var Fruit;
-(function(Fruit) {
+(function (Fruit) {
   Fruit[(Fruit["Apple"] = 0)] = "Apple";
   Fruit[(Fruit["Banana"] = 5)] = "Banana";
   Fruit[(Fruit["Orange"] = 6)] = "Orange";

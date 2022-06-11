@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/react/using-set-as-a-state"
 category: "React"
 tags:
-  - "react"
+  - "React"
 
 description: "How to use a 'set' as a state and update the state"
 ---

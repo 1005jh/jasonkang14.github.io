@@ -4,10 +4,9 @@ date: "2019-08-14T14:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/react/react-life-cycle-get-derived-state-from-props-with-mobx"
-category: "React Native"
+category: "React"
 tags:
-  - "react"
-  - "reactnative"
+  - "React"
 
 description: "How to use getDerivedStateFromProps instead of componentDidUpdate"
 ---

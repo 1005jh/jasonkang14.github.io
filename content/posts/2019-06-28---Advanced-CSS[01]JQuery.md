@@ -6,8 +6,8 @@ draft: false
 slug: "/posts/Advanced-CSS-Change-Font-Mousemove"
 category: "CSS"
 tags:
-  - "jquery"
-  - "css"
+  - "CSS"
+
 description: "Practicing Advanced CSS using jQuery"
 ---
 

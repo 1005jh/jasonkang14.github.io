@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/babel/how-to-make-a-babel-plugin"
 category: "Babel"
 tags:
-  - "babel"
+  - "Babel"
 
 description: "How to make a babel plugin"
 ---

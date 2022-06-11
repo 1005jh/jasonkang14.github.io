@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/react/react-hooks-useState-explained-with-examples"
 category: "react"
 tags:
-  - "react"
-  - "reacthooks"
+  - "React"
 
 description: "How to use the state hook in React"
 ---

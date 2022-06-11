@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/Minitor-Flexbox"
 category: "CSS"
 tags:
-  - "css"
+  - "CSS"
 
 description: "Use of flexbox in attempt to make a mini-version of Twitter."
 ---

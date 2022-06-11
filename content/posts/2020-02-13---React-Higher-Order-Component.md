@@ -6,7 +6,7 @@ draft: false
 slug: "/react/higher-order-component"
 category: "React"
 tags:
-  - "react"
+  - "React"
 
 description: "React higher order component explained"
 ---

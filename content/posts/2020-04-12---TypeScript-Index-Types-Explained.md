@@ -6,7 +6,7 @@ draft: false
 slug: "/typescript/index-types-explained"
 category: "Typescript"
 tags:
-  - "typescript"
+  - "TypeScript"
 
 description: "Explaning Index Types in TypeScript"
 ---

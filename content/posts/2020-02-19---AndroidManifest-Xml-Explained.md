@@ -6,8 +6,7 @@ draft: false
 slug: "/react-native/androidmanifest-xml-explained-package-name"
 category: "ReactNative"
 tags:
-  - "reactnative"
-  - "android"
+  - "React Native"
 
 description: "AndroidManifest.xml package explained"
 ---

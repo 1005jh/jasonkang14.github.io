@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/webrtc/webrtc-create-offer-create-answer"
 category: "webrtc"
 tags:
-  - "webrtc"
+  - "WebRTC"
 
 description: "WebRTC flow explained"
 ---

@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/javascript/Async-and-Await-in-JavaScript"
 category: "javascript"
 tags:
-  - "javascript"
-  - "promise"
+  - "JavaScript"
 
 description: "Async/Await in JavaScript Explained"
 ---

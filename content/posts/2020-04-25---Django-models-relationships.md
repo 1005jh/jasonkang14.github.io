@@ -6,7 +6,7 @@ draft: false
 slug: "/django/django-relationships-explained"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Django models: relationships like Many-to-One, Many-to-Many, and One-to-One explained"
 ---

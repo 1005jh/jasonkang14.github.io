@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/webpack/basics"
 category: "Webpack"
 tags:
-  - "webpack"
+  - "Webpack"
 
 description: "Webpack basics"
 ---

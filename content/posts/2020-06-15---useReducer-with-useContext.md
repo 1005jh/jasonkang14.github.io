@@ -4,11 +4,9 @@ date: "2020-06-15T10:53:37.121Z"
 template: "post"
 draft: false
 slug: "/react-native/usereducer-with-usecontext"
-category: "ReactNative"
+category: "REACT"
 tags:
-  - "reactnative"
-  - "reacthooks"
-  - "typescript"
+  - "React"
 
 description: "How to use useReducer with useContext"
 ---

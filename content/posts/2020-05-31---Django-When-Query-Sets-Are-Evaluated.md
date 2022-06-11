@@ -6,7 +6,7 @@ draft: false
 slug: "/django/when-query-sets-are-evaluated"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Django does not access the database every single time you make a query"
 ---

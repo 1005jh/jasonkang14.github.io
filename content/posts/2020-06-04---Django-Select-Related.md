@@ -6,7 +6,7 @@ draft: false
 slug: "/django/select-related"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Let's try to improve efficiency when you make a query in Django"
 ---

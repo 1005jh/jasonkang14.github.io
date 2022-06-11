@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/Miniter-Sending-Get-Post-Requests"
 category: "JavaScript"
 tags:
-  - "http"
+  - "JavaScript"
 
 description: "Sending a post request to a locally created API to build log-in, sign-up, and making tweets."
 ---

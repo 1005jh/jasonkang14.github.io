@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/React-Remaking-Miniter-Using-React-part-three"
 category: "React"
 tags:
-  - "react"
+  - "React"
 
 description: "Remaking Miniter Using React"
 ---

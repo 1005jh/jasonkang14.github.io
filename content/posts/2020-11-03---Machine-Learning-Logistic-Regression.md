@@ -6,8 +6,7 @@ draft: false
 slug: "/machine-learning/logistic-regression"
 category: "MACHINELEARNING"
 tags:
-  - "machinelearning"
-  - "logisticregression"
+  - "Machine Learning"
 
 description: "Coursera Machine Learning course: Logistic Regression"
 ---

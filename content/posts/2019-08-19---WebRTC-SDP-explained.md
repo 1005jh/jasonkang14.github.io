@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/webrtc/webrtc-SDP-explained"
 category: "webrtc"
 tags:
-  - "webrtc"
+  - "WebRTC"
 
 description: "SDP explained"
 ---

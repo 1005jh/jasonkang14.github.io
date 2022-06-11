@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/git-rebase"
 category: "GIT"
 tags:
-  - "git"
+  - "Git"
 description: "How I overcame my confusion using git rebase"
 ---
 

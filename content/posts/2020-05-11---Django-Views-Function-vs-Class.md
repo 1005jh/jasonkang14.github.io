@@ -6,7 +6,7 @@ draft: false
 slug: "/django/django-views-function-vs-class-comparison"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Explaining the difference between function-based view and class-based view"
 ---

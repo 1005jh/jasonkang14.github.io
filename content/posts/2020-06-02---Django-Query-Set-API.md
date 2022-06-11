@@ -6,7 +6,7 @@ draft: false
 slug: "/django/query-set-api"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Methods you can use to make queries in Django"
 ---

@@ -6,7 +6,7 @@ draft: false
 slug: "/react/functional-programming-with-react-part-two"
 category: "React"
 tags:
-  - "react"
+  - "React"
 
 description: "Understanding how functional programming works with React"
 ---

@@ -6,8 +6,8 @@ draft: false
 slug: "/posts/React-Hooks-avoid-infinite-loops"
 category: "React"
 tags:
-  - "react"
-  - "reacthooks"
+  - "React"
+
 description: "How to avoid potential infinite loops of while using useEffect."
 ---
 

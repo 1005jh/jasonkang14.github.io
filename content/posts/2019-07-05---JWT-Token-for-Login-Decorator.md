@@ -7,7 +7,7 @@ slug: "/posts/JWT-Token-for-a-login-decorator"
 category: "JWT"
 tags:
   - "jwt"
-  - "decorator"
+
 description: "Implementing Authentication using JWT"
 ---
 

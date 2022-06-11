@@ -6,7 +6,7 @@ draft: false
 slug: "/server/how-to-use-google-smtp"
 category: "SMTP"
 tags:
-  - "smtp"
+  - "SMTP"
 
 description: "How to use Google SMTP, which is FREE!!"
 ---

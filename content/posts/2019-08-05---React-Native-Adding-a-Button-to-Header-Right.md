@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/React-Native-Header-Right-Button"
 category: "React Native"
 tags:
-  - "reactnative"
+  - "React Native"
 
 description: "How to use a header right button in React Native"
 ---

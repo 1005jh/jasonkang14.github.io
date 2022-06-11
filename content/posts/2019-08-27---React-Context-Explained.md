@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/react/react-advanced-guide-context-explained"
 category: "react"
 tags:
-  - "react"
+  - "React"
 
 description: "React Context Explained"
 ---

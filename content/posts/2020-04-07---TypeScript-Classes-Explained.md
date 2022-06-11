@@ -6,7 +6,7 @@ draft: false
 slug: "/typescript/classes-explained"
 category: "Typescript"
 tags:
-  - "typescript"
+  - "TypeScript"
 
 description: "Explaning classes in TypeScript"
 ---

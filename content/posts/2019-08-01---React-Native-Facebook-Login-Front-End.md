@@ -6,10 +6,8 @@ draft: false
 slug: "/posts/React-Native-Facebook-Login-Front-End"
 category: "React Native"
 tags:
-  - "reactnative"
-  - "facebook"
-  - "socialogin"
-  - "ios"
+  - "React Native"
+
 description: "How to implement Facebook Login using React Native."
 ---
 

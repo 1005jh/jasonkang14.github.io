@@ -6,7 +6,7 @@ draft: false
 slug: "/django/django-models-meta-class"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Django models: what you can do with Meta options"
 ---

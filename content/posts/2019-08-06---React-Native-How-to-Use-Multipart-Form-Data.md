@@ -4,10 +4,9 @@ date: "2019-08-06T19:27:37.121Z"
 template: "post"
 draft: false
 slug: "/posts/React-Native-Multipart-Form-Data-to-API"
-category: "React Native"
+category: "React"
 tags:
-  - "reactnative"
-  - "aws"
+  - "React"
 description: "How to send an image file to an API to have it uploaded to AWS S3"
 ---
 

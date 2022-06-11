@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/webrtc-explained"
 category: "webrtc"
 tags:
-  - "webrtc"
+  - "WebRTC"
 description: "Basics of WebRTC Explained"
 ---
 

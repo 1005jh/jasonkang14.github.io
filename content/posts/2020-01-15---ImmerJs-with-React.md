@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/react/immerjs-and-its-benefits"
 category: "React"
 tags:
-  - "react"
-  - "immerjs"
+  - "React"
 
 description: "Basics of ImmerJS explained with its benefits"
 ---

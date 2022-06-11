@@ -6,7 +6,7 @@ draft: false
 slug: "/django/django-models-explained"
 category: "Django"
 tags:
-  - "django"
+  - "Django"
 
 description: "Django models explained"
 ---

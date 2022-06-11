@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/babel/babel-with-typescript"
 category: "Babel"
 tags:
-  - "babel"
-  - "typescript"
+  - "TypeScript"
 
 description: "Using Babel with TypeScript"
 ---

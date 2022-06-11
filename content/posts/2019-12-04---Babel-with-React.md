@@ -6,10 +6,9 @@ draft: false
 slug: "/posts/babel/what-with-react"
 category: "Babel"
 tags:
-  - "babel"
-  - "react"
+  - "React"
 
-description: "How Bable works with React"
+description: "How Babel works with React"
 ---
 
 `React` uses `JSX`, which is a **XML-like syntax extension for JavaScript, which allows

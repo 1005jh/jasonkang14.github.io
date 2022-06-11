@@ -6,8 +6,7 @@ draft: false
 slug: "/posts/react/class-component-and-hooks"
 category: "React"
 tags:
-  - "react"
-  - "reacthooks"
+  - "React"
 
 description: "React.js class component and hooks: "
 ---

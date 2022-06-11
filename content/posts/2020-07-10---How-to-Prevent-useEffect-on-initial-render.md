@@ -4,11 +4,9 @@ date: "2020-07-10T10:53:37.121Z"
 template: "post"
 draft: false
 slug: "/react/how-to-prevent-useeffect-on-initial-render"
-category: "React"
+category: "REACT"
 tags:
-  - "reactnative"
-  - "reacthooks"
-  - "typescript"
+  - "React"
 
 description: "How to prevent useEffect on initial render"
 ---

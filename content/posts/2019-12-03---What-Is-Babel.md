@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/babel/what-is-babel"
 category: "Babel"
 tags:
-  - "babel"
+  - "Babel"
 
 description: "Basics of Babel and its role in web development"
 ---

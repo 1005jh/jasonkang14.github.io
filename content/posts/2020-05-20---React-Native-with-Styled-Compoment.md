@@ -4,10 +4,9 @@ date: "2020-05-20T21:53:37.121Z"
 template: "post"
 draft: false
 slug: "/react-native/how-to-set-up-styled-component"
-category: "ReactNative"
+category: "REACTNATIVE"
 tags:
-  - "reactnative"
-  - "styledcomponent"
+  - "React Native"
 
 description: "How to set up a React Native project with Styled Components"
 ---

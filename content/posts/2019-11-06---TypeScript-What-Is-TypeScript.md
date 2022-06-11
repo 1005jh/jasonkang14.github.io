@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/typescript/what-is-typescript"
 category: "Typescript"
 tags:
-  - "typescript"
+  - "TypeScript"
 
 description: "Introducing TypeScript"
 ---
