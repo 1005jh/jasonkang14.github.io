@@ -3,12 +3,12 @@ title: List vs Tuple
 date: "2022-06-01T13:34:37.121Z"
 template: "post"
 draft: false
-slug: "/python/list-vs-tuple"
-category: "Python"
+slug: "/cs/list-vs-tuple"
+category: "CS"
 tags:
-  - "Python"
+  - "CS"
 
-description: "Python datastructure - list vs tuple"
+description: "Data Structure - list vs tuple"
 ---
 
 # TL;DR
