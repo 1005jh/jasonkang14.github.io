@@ -3,7 +3,7 @@
 module.exports = {
   url: 'https://jasonkang14.github.io',
   title: 'Byeongjin Jason Kang',
-  subtitle: 'Developer, seeking opportunities.',
+  subtitle: 'I believe software engineers can change the world',
   copyright: '© All rights reserved.',
   disqusShortname: '',
   postsPerPage: 4,
@@ -24,8 +24,8 @@ module.exports = {
   ],
   author: {
     name: 'Byeongjin Jason Kang',
-    photo: './photo.jpg',
-    bio: 'Developer, seeking opportunities',
+    photo: 'https://i.imgur.com/6jS3FOt.jpg',
+    bio: 'I believe software engineers can change the world',
     contacts: {
       email: 'jasonkang14@gmail.com',
       github: 'jasonkang14',

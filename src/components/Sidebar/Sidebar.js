@@ -16,6 +16,17 @@ const Sidebar = ({ isIndex }: Props) => {
   const { author, copyright, menu } = useSiteMetadata();
   const tags = useTagsList();
 
+  const formatURL = (url) => {
+    const regex = /[a-z][A-Z]|\s[A-Z]/;
+    const index = url.search(regex);
+    if (index === -1) {
+      return url.toLowerCase();
+    }
+
+    const newText = `${url.slice(0, index + 1)}-${url.slice(index + 1, url.length)}`.toLowerCase().replaceAll(/\s/g, '');
+    return newText;
+  };
+
   return (
     <div className={styles['sidebar']}>
       <div className={styles['sidebar__inner']}>
@@ -23,8 +34,8 @@ const Sidebar = ({ isIndex }: Props) => {
         <Menu menu={menu} />
         <Contacts contacts={author.contacts} />
         <Tags
-          tags={tags.map((tag) => tag.fieldValue)}
-          tagSlugs={tags.map((tag) => `/tag/${tag.fieldValue}`)}
+          tags={tags.map((tag) => `${tag.fieldValue} ${tag.totalCount}`)}
+          tagSlugs={tags.map((tag) => `/tag/${formatURL(tag.fieldValue)}`)}
           inSidebar
         />
         <Copyright copyright={copyright} />
