@@ -13,93 +13,70 @@ description: "함수형 프로그래밍에서 커링(currying)은 무엇인가?"
 
 # TL;DR
 
-### A pure function always returns the same output if the same inputs are given without having any side effects.
+### Currying is a way to transform a function to decoponse multiple arguments into a sequence of functions with a single argument
 
-영어로 쓰는게 말이 좀 더 쉬운 것 같아서 TL;DR만 영어로 작성한다. 블로그는 영어로 쓰는게 편하긴 하지만, 사내 세미나용이기 때문에 한국말로 써본다.
-
-[Toss SLASH 22](https://toss.im/slash-22)에 frontend 개발자들이 참고하면 좋을만한 내용이 많았다. 현재 회사에 시니어가 없는 상황이라, 프로젝트 코드를 고도화 할 아이디어들을 다양한 컨퍼런스를 통해서 얻는 중인데, 그중에 `Effective Component`를 적용해보기로 했다. 그리고 리팩토링 하는김에, 함수형 프로그래밍을 조금 더 잘 적용하면 어떨까 싶어 공부하게 되었다.
-
-우선 기본개념인 순수함수에 대해서 알아보자.
-
-순수함수는
-
-1. input이 같다면 항상 같은 output을 return 해야하고,
-2. side effect가 없어야한다.
-
-#### 항상 같은 output을 return 한다는 것은 무슨 뜻인지 예제를 통해 같이 살펴보자
+순수함수에 대해 이해했으니, 이제 currying에 대해 알아본다. 일반적으로 함수를 호출할 때 아래와 같이 호출한다.
 
 ```javascript
-function add(a, b) {
-  return a + b;
-}
-
-console.log(add(3, 5));
-console.log(add(3, 5));
-console.log(add(3, 5));
+func(a, b, c);
 ```
 
-몇 번을 호출하던 항상 8을 return하고, 언제 호출하던 항상 8을 return한다. 즉 input이 같다면 항상 같은 output을 return하기 때문에, 순수함수라고 할 수 있다. 그렇다면 input이 같아도 다른 output을 return하는 함수는 어떤경우일까?
+currying하면 아래와 같이 호출한다.
 
 ```javascript
-let c = 10;
-function addTwo(a, b) {
+func(a)(b)(c);
+```
+
+호출하는 방식이 변하려면, 함수의 구조가 변경되어야 하는데. 아래와 같다.
+
+```javascript
+function func(a, b, c) {
+  return a + b + c;
+}
+```
+
+위 함수에 currying을 적용하면,
+
+```javascript
+function func(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+```
+
+이렇게된다.
+
+### 그럼 왜 currying을 해야하나?
+
+1. 함수 실행 전 필요한 변수들을 모두 받았는지 확인할 수 있다.
+2. 같은 인자를 여러번 넘기는 것을 방지할 수 있다.
+3. 함수를 나누면서 하나의 함수가 하나의 역할만 할 수 있도록 구현한다(순수함수)
+4. higher-order function(HOC)를 만들기 위해 사용된다.
+5. 가독성에 도움이 된다.
+
+어쩌면 currying을 적용한 함수가 가독성이 떨어진다고 볼 수도 있다. 그래서 자바스크립트에서 기본으로 제공하지는 않지만, currying을 적용할 수 있는 utility function을 만들어서 사용하는 방법도 있다.
+
+```javascript
+function _curry(func) {
+  return function curried(...args) {
+    if (f.length !== args.length) {
+      return curried.bind(null, ...args);
+    }
+    return func(...args);
+  };
+}
+
+function add(a, b, c) {
   return a + b + c;
 }
 
-console.log(addTwo(1, 2));
-console.log(addTwo(1, 2));
-console.log(addTwo(1, 2));
+add(1, 2, 3);
+
+const curriedAdd = curry(add);
+curriedAdd(1)(2)(3);
 ```
 
-이번에도 비슷하다. 항상 13을 return한다. 그런데 갑자기 `c`의 값이 바뀐다면 어떻게 될까?
-
-```javascript
-let c = 10;
-function addTwo(a, b) {
-  return a + b + c;
-}
-
-console.log(addTwo(1, 2));
-console.log(addTwo(1, 2));
-c = 20;
-console.log(addTwo(1, 2));
-```
-
-`c` 의 값이 바뀌면서 갑자기 23을 return한다. input이 같더라도 항상 같은 output을 return하지 않기 때문에, `addTwo`는 순수함수가 아니다.
-
-#### 그렇다면 side effect는 무엇인가?
-
-side effect는 함수 밖의 외부의 상태를 변경하거나, 들어온 인자의 상태를 변경하는 것이다.
-
-```javascript
-let c = 10;
-function addThree(a, b) {
-  c = b;
-  return a + b;
-}
-```
-
-위 함수는 항상 같은 값을 return하긴 하지만, 함수 밖 `c`라는 변수에 영향을 미친다. 이런 것들이 side-effect이다. 따라서 side-effect를 가진 위 함수는 순수함수라고 볼 수 없다. 그렇다고 side-effect가 늘 나쁜 것은 아니다. 가끔은 side-effect를 의도하는 경우도 있다(함수형 프로그래밍에 어긋나긴 하지만)
-
-들어온 인자의 상태를 변경하는 건 어떤 경우가 있을까?
-
-```javascript
-let obj = { val: 10 };
-
-function changeObj(obj, b) {
-  obj.val += b;
-}
-```
-
-위 함수는 `obj`라는 인자를 변형시키기 때문에 순수함수가 아니다. 함수형 프로그래밍에서는 외부의 값, 또는 기존 객체를 변형하지 않고 새로운 객체를 return한다.
-
-```javascript
-let obj = { val: 10 };
-
-function createNewObj(obj, b) {
-  return { val: obj.val + b };
-}
-```
-
-이런식으로.
-다음에는 currying에 대해 알아본다
+이런식으로 가능하다. 사실 가독성보다는 순수함수의 규칙을 지킨다는 것에 더 큰 의의가 있다고 생각한다. 다음에는 리액트에서 중요한 개념인 Higher-Order Component와 유사한 개념인 Higher-Order Function에 대해 알아보도록 하자.
