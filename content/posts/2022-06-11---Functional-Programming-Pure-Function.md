@@ -102,4 +102,4 @@ function createNewObj(obj, b) {
 ```
 
 이런식으로.
-다음에는 currying에 대해 알아본다
+다음에는 [currying](https://jasonkang14.github.io/cs/functional-programming-currying)에 대해 알아본다
