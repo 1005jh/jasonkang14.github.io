@@ -122,36 +122,10 @@ void function() {
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">ComponentA</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> prop <span class="token punctuation">}</span><span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token punctuation">[</span>showStatus<span class="token punctuation">,</span> setShowStatus<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">const</span> <span class="token function-variable function">handleStatusChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token function">setShowStatus</span><span class="token punctuation">(</span><span class="token operator">!</span>showStatus<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">const</span> onRenderCallback <span class="token operator">=</span> <span class="token punctuation">(</span>
-    id<span class="token punctuation">,</span> <span class="token comment">// the "id" prop of the Profiler tree that has just committed</span>
-    phase<span class="token punctuation">,</span> <span class="token comment">// either "mount" (if the tree just mounted) or "update" (if it re-rendered)</span>
-    actualDuration<span class="token punctuation">,</span> <span class="token comment">// time spent rendering the committed update</span>
-    baseDuration<span class="token punctuation">,</span> <span class="token comment">// estimated time to render the entire subtree without memoization</span>
-    startTime<span class="token punctuation">,</span> <span class="token comment">// when React began rendering this update</span>
-    commitTime<span class="token punctuation">,</span> <span class="token comment">// when React committed this update</span>
-    interactions <span class="token comment">// the Set of interactions belonging to this update</span>
-  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token comment">// Aggregate or log render timings...</span>
-
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"id:"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"phase: "</span><span class="token punctuation">,</span> phase<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"actual: "</span><span class="token punctuation">,</span> actualDuration<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"dbase: "</span><span class="token punctuation">,</span> baseDuration<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"start: "</span><span class="token punctuation">,</span> startTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"commit: "</span><span class="token punctuation">,</span> commitTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"interaction: "</span><span class="token punctuation">,</span> interactions<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
     <span class="token operator">&lt;</span>Profiler id<span class="token operator">=</span><span class="token string">"component-a"</span> onRender<span class="token operator">=</span><span class="token punctuation">{</span>onRenderCallback<span class="token punctuation">}</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>ComponentB status<span class="token operator">=</span><span class="token punctuation">{</span>showStatus<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>ComponentC status<span class="token operator">=</span><span class="token punctuation">{</span>showStatus<span class="token punctuation">}</span> changeStatus<span class="token operator">=</span><span class="token punctuation">{</span>handleStatusChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>ComponentB <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>ComponentC <span class="token operator">/</span><span class="token operator">></span>
     <span class="token operator">&lt;</span><span class="token operator">/</span>Profiler<span class="token operator">></span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
