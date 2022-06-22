@@ -1,5 +1,5 @@
 ---
-title: Functional Programming with React [3]
+title: Functional Programming with React [3] - Pure Component
 date: "2022-06-13T12:53:37.121Z"
 template: "post"
 draft: false
