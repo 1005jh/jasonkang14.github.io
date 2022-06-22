@@ -31,8 +31,11 @@ const Sidebar = ({ isIndex }: Props) => {
     <div className={styles['sidebar']}>
       <div className={styles['sidebar__inner']}>
         <Author author={author} isIndex={isIndex} />
+
         <Menu menu={menu} />
+        <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjasonkang14.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
         <Contacts contacts={author.contacts} />
+
         <Tags
           tags={tags.map((tag) => `${tag.fieldValue} ${tag.totalCount}`)}
           tagSlugs={tags.map((tag) => `/tag/${formatURL(tag.fieldValue)}`)}
