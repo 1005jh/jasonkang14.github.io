@@ -4,9 +4,9 @@ date: "2022-06-06T13:34:37.121Z"
 template: "post"
 draft: false
 slug: "/sql/b-plus-tree-database-indexing"
-category: "SQL"
+category: "Database"
 tags:
-  - "SQL"
+  - "Database"
 
 description: "B+ Tree 구조가 Database Indexing에 미치는 영향"
 ---

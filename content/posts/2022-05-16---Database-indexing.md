@@ -4,9 +4,9 @@ date: "2022-05-16T23:34:37.121Z"
 template: "post"
 draft: false
 slug: "/sql/database-indexing"
-category: "SQL"
+category: "Database"
 tags:
-  - "SQL"
+  - "Database"
 
 description: "인덱싱을 적용한 데이터베이스의 효율을 알아본다"
 ---

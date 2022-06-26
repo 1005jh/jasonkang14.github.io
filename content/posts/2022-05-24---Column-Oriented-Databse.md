@@ -4,9 +4,9 @@ date: "2022-05-24T03:34:37.121Z"
 template: "post"
 draft: false
 slug: "/sql/column-oriented-database"
-category: "SQL"
+category: "Database"
 tags:
-  - "SQL"
+  - "Database"
 
 description: "How a column-oriented database is different from a row-oriented database"
 ---
