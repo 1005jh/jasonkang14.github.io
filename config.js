@@ -6,7 +6,7 @@ module.exports = {
   subtitle: 'I believe software engineers can change the world',
   copyright: '© All rights reserved.',
   disqusShortname: '',
-  postsPerPage: 4,
+  postsPerPage: 5,
   googleAnalyticsId: 'UA-73379983-2',
   menu: [
     {
