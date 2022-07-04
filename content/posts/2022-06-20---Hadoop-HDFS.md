@@ -19,17 +19,17 @@ description: "Hadoop에서 HDFS가 하는 역할"
 
 가장 큰 특징은 데이터를 `클러스터` 전반에 나누어서 저장하고. 데이터에 빠르고 안정적으로 접근할 수 있다는 것이다. 이렇게 나누어진 데이터를 `block`이라고 칭하고, 한 `block`은 128MB이다. 또한 여러개의 컴퓨터에서 동시에 특정 데이터에 접근할 수 있다.
 
-![HDFS 저장방식](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c15b18a4-79ea-4bdc-857b-4735978f2bdd/Screen_Shot_2022-06-01_at_9.50.42_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220625T050633Z&X-Amz-Expires=86400&X-Amz-Signature=1e0cfac2a67924f30d3f283fde50930ac5f5b0dc9e4dbde5062fb1518e1d8ff0&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-01%2520at%25209.50.42%2520PM.png%22&x-id=GetObject)
+![HDFS 저장방식](https://i.imgur.com/m8rGbKK.png)
 
 HDFS의 기본구조는 아래 그림과 같이 1개의 Name Node와 여러개의 Data Node로 구성되어 있다.
 
-![HDFS Architecture](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/323011c4-98cb-46c5-8b06-d1d295bee68c/Screen_Shot_2022-06-01_at_7.19.25_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220625T050908Z&X-Amz-Expires=86400&X-Amz-Signature=23753db29367bf8e47f8f8761f9823e8b73323334f8f185f966b7f9164ed31b8&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-01%2520at%25207.19.25%2520PM.png%22&x-id=GetObject)
+![HDFS Architecture](https://i.imgur.com/8o8HG7B.png)
 
 `data node`는 실제 `block`들이 저장되는 공간이고, `name node`는 분산되어 저장된 각 `block`들이 어떤 `data node`에 저장되어있는지 기억하는 역할을 한다. HDFS는 데이터가 들어오면 원본만 저장하는 것이아니라, 복사본도 저장을 하는데, `name node`는 그 복사본들의 위치까지 저장한다. 또한 언제 데이터의 edit log도 `name node`에 저장된다.
 
 따라서 `client node`가 `HDFS`에서 파일을 읽기 위해서는 `block`의 모든 정보를 가지고 있는 `name node`에 먼저 접근한다. `name node`로부터 내가 접근하고자 하는 `block`이 어떤 `data node`에 있는지 확인하고, 해당 `data node`에 접근해서 원하는 `block`을 읽어낸다.
 
-![reading a file from HDFS](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/26c7e062-0c93-4fcd-9673-d03b727229ed/Screen_Shot_2022-06-01_at_7.20.16_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220625T051244Z&X-Amz-Expires=86400&X-Amz-Signature=8a4fd50a8da908ef4e0af288cc31f51d0c00627b70216253796710623e554514&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-01%2520at%25207.20.16%2520PM.png%22&x-id=GetObject)
+![reading a file from HDFS](https://i.imgur.com/dXbyswZ.png)
 
 `HDFS`에 파일을 쓸 때도 역시 `name node`에 먼저 접근한다. `name node`는 `client node`가 작성하고자 하는 데이터의 Entry를 특정 `data node`에 생성하고, 해당 정보를 `client node`에 전달한다. `client node`는 `name node`로 부터 전달받은 `data node`에 write를 시작하고, 해당 block은 data node로 분산되어 저장된다. block의 위치에 관한 정보와 edit log는 `name node`에 저장된다.
 
