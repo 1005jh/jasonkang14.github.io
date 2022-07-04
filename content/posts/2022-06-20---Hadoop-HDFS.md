@@ -44,16 +44,21 @@ HDFS의 기본구조는 아래 그림과 같이 1개의 Name Node와 여러개�
 
 여기저 저장하는 메타데이터에 대해 조금 더 알아보자면, hadoop은 원래 디스크 말고 메모리에서 파일명, 디렉토리, 블록크기, 소유자, 파일속성 등 모든 메타데이터를 관리한다. 이 메타데이터는 `fsimage`와 `edits`로 나누어지는데, `fsimage`가 파일명, 디렉토리, 블록크기, 소유자, 파일속성과 같이 메모리 상에서 관리되는 메타데이터 내의 파일 이미지이다. socket의 health check와 유사한 `check point`라는 시점에 name node의 로컬 파일시트템에 생성되고, data node 블록 정보는 포함하지 않는다. `edits`는 로컬 파일 시스템에 생성되는 `edit log`이다.
 
+
 2. secondary name node
 
    - 완전히 동일한 name node는 아니고 name node가 가지고있는 `edit log`의 copy를 저장한다
    - name node가 죽으면 바로 대체할 hot standby는 아니지만, name node가 하나 더 있는 방식이기 때문에 meta data를 backup하는 첫번째 방식보다는 복구가 빠르다는 이점이 있다.
    - secondary name node는 기존의 name node와는 다른 클러스터에서 돌아가고, meta data에서 설명한 `fsimage`와 `edits`를 주기적으로 name node에서 받아와서 저장한다.
 
+![secondary name node](https://i.imgur.com/2tH3Fbj.png)
+
 3. High Availability
    - 이 단어는 여기저기서 자주 사용된다. hot standby라고 보면 된다
    - 동시에 두개를 켜놓고 잘 돌던게 죽으면 바로 대체한다
    - hadoop 생태계의 다른 프로그램(?)인 `Zookeeper`가 어떤 name node가 메인이고, 어떤 name node가 hot standby인지를 파악한다.
+
+![High Availability](https://i.imgur.com/nsul5YQ.png)
 
 앞으로 조금씩 hadoop에 관한 포스팅을 해보도록 하겠다. 회사 인프라팀에서 쿠버네티스를 구축하는 중인데, 요즘 하둡 스터디 한다고 하니까 긍정적인 반응을 보이셨다. 공부 잘 해서 회사에서도 적용할 수 있었으면 좋겠다.
 
