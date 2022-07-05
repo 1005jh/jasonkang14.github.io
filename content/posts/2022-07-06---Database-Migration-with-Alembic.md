@@ -22,7 +22,6 @@ pip freeze > requirements.txt
 
 혼자 하는 프로젝트지만 나중에 dockerize해야하기 때문에 `requirements.txt`도 잘 관리해야 한다. 여담이지만 파이썬 레포를 생성하면 무조건 conda를 사용해서 가상환경부터 만드는 습관이 있다. 이제 alembic을 적용해본다. 
 
-그리고 alembic을 실행한다. 
 ```bash
 alembic init alembic
 ```
@@ -39,6 +38,27 @@ alembic init alembic
   before proceeding.
 ```
 
+이제 디렉토리 구조는 아래와 같이 바뀐다
+```
+app
+├── __init__.py
+├── main.py
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+├── alembic.ini
+├── routers
+│   ├── __init__.py
+│   └── users.py
+└── sql
+    ├── __init__.py
+    ├── crud.py
+    ├── database.py
+    ├── models.py
+    └── schemas.py
+```
+
 이제 위 메세지에서 나온 `.ini` 파일을 수정한다. 가장 먼저 `database.py`에 선언했던 데이터베이스 인터페이스 주소를 입력한다. 
 
 ```python
@@ -46,15 +66,18 @@ alembic init alembic
 # are written from script.py.mako
 # output_encoding = utf-8
 
-sqlalchemy.url = mysql://root:mysql@localhost:3306/database
+sqlalchemy.url = mysql+mysqlconnector://root:password@localhost:3306/database
 ```
 
 나중에 환경변수화 해야겠지만 일단은 그냥 넣어둔다.
 장고에서 사용하는
-`python manage.py makemigrations`와 유사한 기능을 하는 명령어는 
+`python manage.py makemigrations`
+와 유사한 기능을 하는 명령어는 
 `alembic revision --autogenerate -m "CUSTOM MESSAGE"`
 이다. 
-이를 하기 위해서 alembic 디렉토리 내 `env.py`에서 `target_metadata`라는 변수를 추가로 설정해줘야한다. 예제를 보면 `model`에서 `Base`를 import 하기 때문에, 기존에 `database.py` 에서 선언한 `declarative_base`를 `models.py`로 옮기고 `env.py`파일을 업데이트 한다
+
+`autogenerate`를 사용하지 않으려면 revision파일을 만들고 일일이 테이블을 선언해줘야 하는데, 이러면 `models.py`에 작성한 내용을 포맷에 맞게 입력해야한다. 따라서 `autogenerate`를 사용하기 위해서 alembic 디렉토리 내 `env.py`의 `target_metadata`라는 변수를 추가로 설정해줘야한다. 
+예제를 보면 `model`에서 `Base`를 import 한다. 따라서 기존에 `database.py` 에서 선언한 `declarative_base`를 `models.py`로 옮기고 `env.py`파일을 업데이트 한다
 
 ```python
 # env.py

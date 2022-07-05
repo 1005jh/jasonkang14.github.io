@@ -16,19 +16,23 @@ FastAPI 공식문서의 tutorial에서 [User Guide - SQL Databases](https://fast
 공식문서에서 제시한 대로 파일들을 만들어서 정보를 입력할 생각이다. 차이가 있다면 여기는 `sql_app`이라는 디렉토리를 생성하는데, 나는 이미 `app` 이라는 디렉토리에 `main.py`가 존재하기 때문에, 기존의 `app` 디렉토리 안에 `sql`이라는 디렉토리를 만들어서 데이터베이스 연동과 관련된 코드들을 집어넣으려고 한다. 현재 디렉토리 tree는 아래와 같은 형태이다
 
 ```
-.
-├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── routers
-│       ├── __init__.py
-│       └── users.py
-│   └── sql
-│       ├── __init__.py
-│       ├── crud.py
-│       ├── database.py
-│       ├── models.py
-│       └── schemas.py
+app
+├── __init__.py
+├── main.py
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+├── alembic.ini
+├── routers
+│   ├── __init__.py
+│   └── users.py
+└── sql
+    ├── __init__.py
+    ├── crud.py
+    ├── database.py
+    ├── models.py
+    └── schemas.py
 ```
 
 `crud.py`가 가장 위에 있지만 공식문서에 나와있는 순서대로 따라가보기로 한다. 

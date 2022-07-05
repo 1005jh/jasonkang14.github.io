@@ -20,13 +20,12 @@ description: "FastAPI로 Hello World!"
 admin은 필요 없는 기능인 것 같고--지금 보기에는--dependencies 는 http 통신할 때 토큰을 가져오는 코드인데, 아직 로그인 구현도 안 된 상태에서 토큰을 가져오는 코드는 빌요 없는 것 같다. 
 
 ```
-.
-├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── routers
-│       ├── __init__.py
-│       └── users.py
+app
+├── __init__.py
+├── main.py
+└── routers
+    ├── __init__.py
+    └── users.py
 
 ```
 
