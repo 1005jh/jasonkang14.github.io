@@ -1,9 +1,9 @@
 ---
-title: Alembic을 사용한 Database Migration
+title: Alembic을 사용한 Offline Database Migration
 date: "2022-07-06T01:21:37.121Z"
 template: "post"
 draft: false
-slug: "/fastapi/database-migration-with-alembic"
+slug: "/fastapi/offline-database-migration-with-alembic"
 category: "FastAPI"
 tags:
   - "FastAPI"
@@ -11,7 +11,8 @@ tags:
 description: "SQLAlchemy + Alembic을 활용한 데이터베이스 연동"
 ---
 
-이전포스트와 이어진다... 너무 길어져서 두개로 쪼갠다. 
+[이전포스트](https://jasonkang14.github.io/fastapi/database-using-mysql) 에서 이어진다... 
+지금은 MySQL + SQLAlchemy 설정까지는 끝났고, 오프라인 데이터베이스 마이그레이션을 하기위해 `alembic`을 설정하려고 한다.
 
 ```bash
 pip install alembic

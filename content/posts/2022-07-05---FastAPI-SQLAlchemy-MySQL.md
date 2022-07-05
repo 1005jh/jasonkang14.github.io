@@ -166,4 +166,4 @@ async def root():
 
 `get_db` 함수는 router에 선언된 함수들의 dependency로 추가 될 예정이다. 아마도 나중에 `dependencies.py`파일로 옮길 것 같다. 하지만 이상태로 서버를 실행하면 에러가 발생하는데, 바로 서버에 데이터베이스와 테이블 정보가 없기 때문이다. django에서 migration과 유사한 기능을 하는 파이썬 패키지가 필요하다. 검색하다가 SQLAlchemy와 관련이 있는 것 같은 [Alembic](https://alembic.sqlalchemy.org/en/latest/)을 사용하기로 한다. 
 
-여기는 다음 포스트에서 다뤄보도록 하겠다.
+`alembic`사용법은 [다음 포스트](https://jasonkang14.github.io/fastapi/offline-database-migration-with-alembic)에서 다뤄보도록 하겠다.
