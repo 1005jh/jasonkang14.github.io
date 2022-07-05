@@ -1,6 +1,6 @@
 ---
 title: Hello World from Fast API
-date: "2022-07-022T16:21:37.121Z"
+date: "2022-07-02T16:21:37.121Z"
 template: "post"
 draft: false
 slug: "/fastapi/hello-world"
