@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 05 Jul 2022 15:32:41 GMT</lastBuildDate><item><title><![CDATA[Alembic을 사용한 Offline Database Migration]]></title><description><![CDATA[SQLAlchemy + Alembic을 활용한 데이터베이스 연동]]></description><link>https://jasonkang14.github.io/fastapi/offline-database-migration-with-alembic</link><guid isPermaLink="false">https://jasonkang14.github.io/fastapi/offline-database-migration-with-alembic</guid><pubDate>Wed, 06 Jul 2022 01:21:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://jasonkang14.github.io/fastapi/database-using-mysql&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;이전포스트&lt;/a&gt; 에서 이어진다…
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 05 Jul 2022 16:01:21 GMT</lastBuildDate><item><title><![CDATA[Alembic을 사용한 Offline Database Migration]]></title><description><![CDATA[SQLAlchemy + Alembic을 활용한 데이터베이스 연동]]></description><link>https://jasonkang14.github.io/fastapi/offline-database-migration-with-alembic</link><guid isPermaLink="false">https://jasonkang14.github.io/fastapi/offline-database-migration-with-alembic</guid><pubDate>Wed, 06 Jul 2022 01:21:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://jasonkang14.github.io/fastapi/database-using-mysql&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;이전포스트&lt;/a&gt; 에서 이어진다…
 지금은 MySQL + SQLAlchemy 설정까지는 끝났고, 오프라인 데이터베이스 마이그레이션을 하기위해 &lt;code class=&quot;language-text&quot;&gt;alembic&lt;/code&gt;을 설정하려고 한다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;pip &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; alembic
 
 pip freeze &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; requirements.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;혼자 하는 프로젝트지만 나중에 dockerize해야하기 때문에 &lt;code class=&quot;language-text&quot;&gt;requirements.txt&lt;/code&gt;도 잘 관리해야 한다. 여담이지만 파이썬 레포를 생성하면 무조건 conda를 사용해서 가상환경부터 만드는 습관이 있다. 이제 alembic을 적용해본다. &lt;/p&gt;
-&lt;p&gt;그리고 alembic을 실행한다. &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;alembic init alembic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;그러면 아래와 같은 메세지가 나온다&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;  Creating directory /Users/byeongjinkang/personal/development/mukkang_server/alembic ...  done
@@ -15,18 +14,38 @@ pip freeze &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; requir
   Generating /Users/byeongjinkang/personal/development/mukkang_server/alembic.ini ...  done
   Please edit configuration/connection/logging settings in &amp;#39;/Users/byeongjinkang/personal/development/mukkang_server/alembic.ini&amp;#39;
   before proceeding.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 디렉토리 구조는 아래와 같이 바뀐다&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;app
+├── __init__.py
+├── main.py
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+├── alembic.ini
+├── routers
+│   ├── __init__.py
+│   └── users.py
+└── sql
+    ├── __init__.py
+    ├── crud.py
+    ├── database.py
+    ├── models.py
+    └── schemas.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;이제 위 메세지에서 나온 &lt;code class=&quot;language-text&quot;&gt;.ini&lt;/code&gt; 파일을 수정한다. 가장 먼저 &lt;code class=&quot;language-text&quot;&gt;database.py&lt;/code&gt;에 선언했던 데이터베이스 인터페이스 주소를 입력한다. &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# the output encoding used when revision files&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# are written from script.py.mako&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# output_encoding = utf-8&lt;/span&gt;
 
-sqlalchemy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; mysql&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;//&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;mysql@localhost&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3306&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;database&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+sqlalchemy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; mysql&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;mysqlconnector&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;//&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;password@localhost&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3306&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;database&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;나중에 환경변수화 해야겠지만 일단은 그냥 넣어둔다.
 장고에서 사용하는
-&lt;code class=&quot;language-text&quot;&gt;python manage.py makemigrations&lt;/code&gt;와 유사한 기능을 하는 명령어는
+&lt;code class=&quot;language-text&quot;&gt;python manage.py makemigrations&lt;/code&gt;
+와 유사한 기능을 하는 명령어는
 &lt;code class=&quot;language-text&quot;&gt;alembic revision --autogenerate -m &amp;quot;CUSTOM MESSAGE&amp;quot;&lt;/code&gt;
-이다.
-이를 하기 위해서 alembic 디렉토리 내 &lt;code class=&quot;language-text&quot;&gt;env.py&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;target_metadata&lt;/code&gt;라는 변수를 추가로 설정해줘야한다. 예제를 보면 &lt;code class=&quot;language-text&quot;&gt;model&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;Base&lt;/code&gt;를 import 하기 때문에, 기존에 &lt;code class=&quot;language-text&quot;&gt;database.py&lt;/code&gt; 에서 선언한 &lt;code class=&quot;language-text&quot;&gt;declarative_base&lt;/code&gt;를 &lt;code class=&quot;language-text&quot;&gt;models.py&lt;/code&gt;로 옮기고 &lt;code class=&quot;language-text&quot;&gt;env.py&lt;/code&gt;파일을 업데이트 한다&lt;/p&gt;
+이다. &lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;autogenerate&lt;/code&gt;를 사용하지 않으려면 revision파일을 만들고 일일이 테이블을 선언해줘야 하는데, 이러면 &lt;code class=&quot;language-text&quot;&gt;models.py&lt;/code&gt;에 작성한 내용을 포맷에 맞게 입력해야한다. 따라서 &lt;code class=&quot;language-text&quot;&gt;autogenerate&lt;/code&gt;를 사용하기 위해서 alembic 디렉토리 내 &lt;code class=&quot;language-text&quot;&gt;env.py&lt;/code&gt;의 &lt;code class=&quot;language-text&quot;&gt;target_metadata&lt;/code&gt;라는 변수를 추가로 설정해줘야한다.
+예제를 보면 &lt;code class=&quot;language-text&quot;&gt;model&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;Base&lt;/code&gt;를 import 한다. 따라서 기존에 &lt;code class=&quot;language-text&quot;&gt;database.py&lt;/code&gt; 에서 선언한 &lt;code class=&quot;language-text&quot;&gt;declarative_base&lt;/code&gt;를 &lt;code class=&quot;language-text&quot;&gt;models.py&lt;/code&gt;로 옮기고 &lt;code class=&quot;language-text&quot;&gt;env.py&lt;/code&gt;파일을 업데이트 한다&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# env.py&lt;/span&gt;
 
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; sql&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Base
@@ -169,19 +188,23 @@ Hello World!도 잘 찍힌다.
 &lt;img src=&quot;https://i.imgur.com/QtnQ1d7.png&quot; alt=&quot;hello-world&quot;&gt;
 이어서 다음 포스트에서는 회원가입을 다뤄보겠다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[FastAPI - SQLAlchemy & MySQL]]></title><description><![CDATA[SQLAlchemy를 사용해서 FastAPI를 MySQL과 연결하는 방법]]></description><link>https://jasonkang14.github.io/fastapi/database-using-mysql</link><guid isPermaLink="false">https://jasonkang14.github.io/fastapi/database-using-mysql</guid><pubDate>Tue, 05 Jul 2022 21:21:37 GMT</pubDate><content:encoded>&lt;p&gt;FastAPI 공식문서의 tutorial에서 &lt;a href=&quot;https://fastapi.tiangolo.com/tutorial/sql-databases/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;User Guide - SQL Databases&lt;/a&gt;항목을 참고한다. FastAPI 공식문서에 DB연동은 두가지 방법이 소개되어있다. 하나는 &lt;a href=&quot;https://www.sqlalchemy.org/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;SQLAlchemy&lt;/a&gt;를 사용하는 법이고 다른 하나는 &lt;a href=&quot;http://docs.peewee-orm.com/en/latest/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Peewee&lt;/a&gt;를 사용하는 방법이다. 둘중에 고민하다가 예전에 원티드+에서 봤던 영상에 따르면 원티드에서는 SQLAlchemy를 사용한다고 해서, SQLAlchemy로 연동하고자 한다. &lt;/p&gt;
 &lt;p&gt;공식문서에서 제시한 대로 파일들을 만들어서 정보를 입력할 생각이다. 차이가 있다면 여기는 &lt;code class=&quot;language-text&quot;&gt;sql_app&lt;/code&gt;이라는 디렉토리를 생성하는데, 나는 이미 &lt;code class=&quot;language-text&quot;&gt;app&lt;/code&gt; 이라는 디렉토리에 &lt;code class=&quot;language-text&quot;&gt;main.py&lt;/code&gt;가 존재하기 때문에, 기존의 &lt;code class=&quot;language-text&quot;&gt;app&lt;/code&gt; 디렉토리 안에 &lt;code class=&quot;language-text&quot;&gt;sql&lt;/code&gt;이라는 디렉토리를 만들어서 데이터베이스 연동과 관련된 코드들을 집어넣으려고 한다. 현재 디렉토리 tree는 아래와 같은 형태이다&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;.
-├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── routers
-│       ├── __init__.py
-│       └── users.py
-│   └── sql
-│       ├── __init__.py
-│       ├── crud.py
-│       ├── database.py
-│       ├── models.py
-│       └── schemas.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;app
+├── __init__.py
+├── main.py
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+├── alembic.ini
+├── routers
+│   ├── __init__.py
+│   └── users.py
+└── sql
+    ├── __init__.py
+    ├── crud.py
+    ├── database.py
+    ├── models.py
+    └── schemas.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;crud.py&lt;/code&gt;가 가장 위에 있지만 공식문서에 나와있는 순서대로 따라가보기로 한다. &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# database.py&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; sqlalchemy &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; create_engine
@@ -300,13 +323,12 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;include_router&
 &lt;p&gt;사이드에 사용하고자 하는 추천 모델이 python으로 구현되기 때문에, 언어는 python으로 정했다. 그리고 그동안 말만 들어봤던 FastAPI로 서버를 구현하려고 한다. 회사에 쿠버네티스를 구축하면서 Microservice Architecture를 적용하려고 하는데, 그 중에 FastAPI로 하나의 microservice를 구현할 예정이라서 일에도 도움이 될 것 같다. 모든 절차는 공식문서를 따른다 &lt;/p&gt;
 &lt;p&gt;그래도 나름 규모가 있는—장고를 기준으로 하면 앱이 여러개인—서비스를 만들 예정이기 때문에, 공식문서의 &lt;a href=&quot;https://fastapi.tiangolo.com/tutorial/bigger-applications/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Bigger Applications&lt;/a&gt;를 참고했다. 디렉토리 구조는 아래와 같이 가져갈 예정이다. 공식문서에 나온 구조에서 admin과 dependencies.py를 제외하고 따라해본다.&lt;/p&gt;
 &lt;p&gt;admin은 필요 없는 기능인 것 같고—지금 보기에는—dependencies 는 http 통신할 때 토큰을 가져오는 코드인데, 아직 로그인 구현도 안 된 상태에서 토큰을 가져오는 코드는 빌요 없는 것 같다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;.
-├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── routers
-│       ├── __init__.py
-│       └── users.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;app
+├── __init__.py
+├── main.py
+└── routers
+    ├── __init__.py
+    └── users.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;그리고 이제 시키는대로 세부 내용들을 작성한다. 우선 &lt;code class=&quot;language-text&quot;&gt;routers&lt;/code&gt; 부터 시작한다. 공식문서 중에서는 &lt;code class=&quot;language-text&quot;&gt;users.py&lt;/code&gt;를 작성한다. 추후에 DB연동할 때 사용자 테이블을 먼저 연동하고, 그와 관련된 회원가입//로그인 등의 기능을 먼저 구현하고 싶기 때문이다. 장고를 처음 접했던 때를 생각하면, 그렇게 하고나면 어느정도 구동 원리가 이해될 것이라고 생각한다. &lt;code class=&quot;language-text&quot;&gt;app&lt;/code&gt;과 &lt;code class=&quot;language-text&quot;&gt;routers&lt;/code&gt; 디렉토리 밑에 &lt;code class=&quot;language-text&quot;&gt;__init__.py&lt;/code&gt;가 있는 이유는, 파이썬 모듈마냥 사용하고 싶기 때문이다. &lt;/p&gt;
 &lt;p&gt;공식문서를 잘 따라서 &lt;code class=&quot;language-text&quot;&gt;main.py&lt;/code&gt;를 아래와 같이 구현한다. &lt;code class=&quot;language-text&quot;&gt;users.py&lt;/code&gt;는 공식문서대로 구현한다&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# main.py&lt;/span&gt;
