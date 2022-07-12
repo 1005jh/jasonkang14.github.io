@@ -21,9 +21,9 @@ description: "ContextAPI를 들어내고 React Query를 사용해본다"
 
 함수형 프로그래밍을 적용하면서, 자식 component에서 부모 component의 state를 바꾸지 않기 위해서 많은 변수들을 전역변수로--context로--옮겼고, [렌더링 효율이 개선되기는 했지만](https://jasonkang14.github.io/react/functional-programming-with-react-part-three)그래도 아직 기술 부채가 남아있다. 그래서 이참에 `Context API`를 들어내기로 했다. 
 
-다른 프로젝트에 적용되어 있는 [redux](https://redux.js.org/)를 써볼까 하다가, 이왕 하는거 새로운 걸 해보자는 팀원들의 의견에 따라 각자 기술검토를 시작했다. 물망에 오른 것은 메타에서 밀고있는 [Recoil](https://recoiljs.org/)과 [MobX](https://mobx.js.org/README.html)였다. 
+다른 프로젝트에 적용되어 있는 [redux](https://redux.js.org/)를 써볼까 하다가, 이왕 하는거 새로운 걸 해보자는 팀원들의 의견에 따라 각자 기술검토를 시작했다. 우리가 가진 선택지는 [Recoil](https://recoiljs.org/), [constate](https://github.com/diegohaz/constate), 그리고 [MobX](https://mobx.js.org/README.html)였다. 
 
-MobX는 [예전에 한 번 써봤는데](https://jasonkang14.github.io/posts/Request-to-Server-using-MobX) 보급형 리덕스 느낌이 강해서 내가 하지 말자고 제안했고, 그렇다면 남은 것은 `recoil`이었다. 그리고 recoil을 사용하는 김에 요즘 우아한형제들과 카카오에서 쓴다는 [react-query](https://react-query-v2.tanstack.com/)를 사용해보자는 의견이 있어서 같이 도입해보기로 했다. 
+MobX는 [예전에 한 번 써봤는데](https://jasonkang14.github.io/posts/Request-to-Server-using-MobX) 보급형 리덕스 느낌이라서 내가 하지 말자고 제안했다. 누군가는 납득하지 못 할 이유일 수 있지만, constate는 깃헙 레포의 fork와 star 수가 빈약하다. 그렇다면 남은 것은 `recoil`이었다. 메타에서 만든거니 리액트랑 잘 어울릴 것이라고 판단했따. 그리고 recoil을 사용하는 김에 요즘 우아한형제들과 카카오에서 쓴다는 [react-query](https://react-query-v2.tanstack.com/)를 사용해보자는 의견이 있어서 같이 도입해보기로 했다. 
 
 단순히 코드만 볼 때 `react-query`의 장점은, fetch 성공 실패 관리가 쉽다는 것이다. 기존에 `redux-saga`로 작업했을 때는, `reducer`에 값을 넘겨줘야 했기 때문에 각각의 request마다 success와 fail state를 사용했다(나중에 에러는 axios interceptor를 사용해서 모두 통합하긴 했지만). `react-query`를 사용하면 success와 error핸들링이 쉽다는 장점이 있을 것 같았다. 
 
@@ -117,6 +117,6 @@ export default function Login() {
 | :-------------------------------------------: |
 |                 react-query                   |
 
-`react-query`를 사용했을 때 렌더링 시간이 약 **1.7ms** 줄어들고 비율로 계산하면 약 **63%** 가량 개선된다.
+렌더링 시간이 약 **1.7ms** 줄어들고 비율로 계산하면 약 **63%** 가량 개선된다.
 
-이제 context api를 버리고 recoil을 사용해보도록 한다. 
+`react-query`를 사용할 이유는 충분히 증명된 것 같고, 다음 포스트에서 recoil의 타당성을 검토해보기로 한다

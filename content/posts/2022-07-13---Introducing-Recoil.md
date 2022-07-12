@@ -2,7 +2,7 @@
 title: Context API -> Recoil
 date: "2022-07-13T02:21:37.121Z"
 template: "post"
-draft: true
+draft: false
 slug: "/react/introducing-recoil"
 category: "React"
 tags:
@@ -15,108 +15,85 @@ description: "ContextAPI를 들어내고 Recoil을 사용해본다"
 
 ### React Query의 사용으로 store가 가벼워졌고, request 에러 핸들링이 간편해졌다.
 
-회사에 매우 간단한 과제가 있어서 빠르게 만들어서 제공하기 위해 [Context API](https://reactjs.org/docs/context.html)를 사용해서 빠르게 배포했다. 규모가 워낙 작아서 효율보다는 속도에 집중해서 작업했다. 하지만, 사업을 확장하게 되면서 간단한 기능만 가지고 있던 프로젝트에 코드를 추가하게 되었다. 자연스럽게 점점 더 `Context`가 추가되었고, `Context`의 단점을 강하게 겪을 수 있었다. 
+[이전 포스트](https://jasonkang14.github.io/react/introducing-react-query)에서 `react-query` 도입의 타당성은 찾았고, 이제 Recoil을 사용하면 좋은 이유에 대해 찾아본다. 
 
-`Context`의 가장 큰 단점은, 해당 context 내 store--정확히는 해당 context의 reducer의 state--의 값이 바뀌게 되면 그 context를 사용한다면, 지금 component에서 사용하지 않는 값이 변경되도 re-render가 일어난다는 것이다. 따라서 rendering효율을 고려하면 Context를 엄청 잘게 쪼개야한다. 
+[recoil 공식문서](https://recoiljs.org/ko/docs/introduction/motivation/)를 보면 리액트의 한계에 대해 설명하면서 왜 recoil을 개발했는지 잘 설명되어 있다. 
 
-함수형 프로그래밍을 적용하면서, 자식 component에서 부모 component의 state를 바꾸지 않기 위해서 많은 변수들을 전역변수로--context로--옮겼고, [렌더링 효율이 개선되기는 했지만](https://jasonkang14.github.io/react/functional-programming-with-react-part-three)그래도 아직 기술 부채가 남아있다. 그래서 이참에 `Context API`를 들어내기로 했다. 
+그럼 메타에서 어떻게 리액트스러운 상태관리 툴을 만들었는지 적용해보도록 한다. 
 
-다른 프로젝트에 적용되어 있는 [redux](https://redux.js.org/)를 써볼까 하다가, 이왕 하는거 새로운 걸 해보자는 팀원들의 의견에 따라 각자 기술검토를 시작했다. 물망에 오른 것은 메타에서 밀고있는 [Recoil](https://recoiljs.org/)과 [MobX](https://mobx.js.org/README.html)였다. 
+Recoil에는 `atom`과 `selector`가 있다. 
 
-MobX는 [예전에 한 번 써봤는데](https://jasonkang14.github.io/posts/Request-to-Server-using-MobX) 보급형 리덕스 느낌이 강해서 내가 하지 말자고 제안했고, 그렇다면 남은 것은 `recoil`이었다. 그리고 recoil을 사용하는 김에 요즘 우아한형제들과 카카오에서 쓴다는 [react-query](https://react-query-v2.tanstack.com/)를 사용해보자는 의견이 있어서 같이 도입해보기로 했다. 
+`atom`이 기존의 Context API reducer의 state와 유사한 개념이라고 보면 된다. 차이점은 Context API의 경우, context에 특정 값에 의존한다면, 의존하지 않는 값이 변할때도 렌더링이 일어난다. 하지만 `atom`의 경우에는 해당 값에 의존하는 경우에만 렌더링이 일어나기 때문에 훨씬 효율적이다. 
 
-단순히 코드만 볼 때 `react-query`의 장점은, fetch 성공 실패 관리가 쉽다는 것이다. 기존에 `redux-saga`로 작업했을 때는, `reducer`에 값을 넘겨줘야 했기 때문에 각각의 request마다 success와 fail state를 사용했다(나중에 에러는 axios interceptor를 사용해서 모두 통합하긴 했지만). `react-query`를 사용하면 success와 error핸들링이 쉽다는 장점이 있을 것 같았다. 
-
-위에서 언급한 프로젝트에서 로그인을 예로 들면, `Context API`의 경우 login이 provider에서 이루어지기 때문에, 자연스럽게 login 결과가 reducer의 state에 담기게 되고, login component에서만 사용되어도 되는 로그인 성공 여부에 관한 값이 전역변수로 관리되게 된다. 지금 프로젝트는 서버에서 받아오는 사용자의 permission에 따라 접근할 수 있는 화면들이 달라진다. 따라서 유저 타입에 따라 전역변수로 관리할 변수가 비례해서 증가하게 된다. 하지만 `react-query`의 경우 request를 component 내부에서 하기 때문에, store가 가벼워질 수 있는 장점이 있다. 그리고 자동으로 retry를 해주기 때문에, 간혹 예상치 못한 문제로 request가 실패했을 때에도 에러핸들링에 용이할 것 같았다. 예제를 통해 살펴본다 
+`select`는 `atom`에 있는 값을 변경할 때 사용된다. 지금 느끼기에는 component에서 할 작업들을 `select`에서 해주는 정도로만 느껴진다. 예제 코드를 보고 조금 더 잘 이해해보도록 하자. 우선 Context API를 사용해서 작성된 코드를 본다. 
 
 ```typescript
-// Login.tsx
+// provider.tsx
 
-export default function Login() {
-	const navigate = useNavigate();
-	const {
-		requestLogin,
-		userTypeA,
-		userTypeB,
-		userTypeC,
-		userTypeD,
-	} = useAuth(); 
-		// custom hook의 syntax를 위해 useContext(AuthContext)를 useAuth()로 export한다.
+export default function Provider() {
+  const handleRemoteUser = (remoteUsers) => {
+    dispatch({
+      type: 'SET_REMOTE_USER',
+      paylaod: remoteUsers
+    })
+  }
+}
 
-	const handleLoginBtnClick = () => {
-		requestLogin({username, password}) 
-		// context의 provider에서 request가 이루어지고, 값은 reducer에 저장된다.
-	}
+// MediaContent.tsx
+export default function MediaContent() {
+  const { remoteUsers } = useCall();
+  // custom hook syntax를위해 useContext(CallContext) 를 useCall로 export()한다.
 
-	useEffect(() => {
-		if (!userTypeA) return;
-		navigate('/routeA');
-	}, [userTypeA])
+  const rtcUsers = remoteUsers.filter((user) => user.uid !== 'screen');
 
-	useEffect(() => {
-		if (!userTypeB) return;
-		navigate('/routeB');
-	}, [userTypeB])
-
-	useEffect(() => {
-		if (!userTypeC) return;
-		navigate('/routeC');
-	}, [userTypeC])
-
-	useEffect(() => {
-		if (!userTypeD) return;
-		navigate('/routeD');
-	}, [userTypeD])
+  return (
+    <>
+      {rtcUsers.map((rtcUser) => <>{rtcUser}</>)}
+    </>
+  )
 }
 ```
 
-예제코드를 `react-query`로 바꾸면 아래와 같이 사용 가능하다 
+비대면 진료 프로젝트이기 때문에 화상연결이 필수인데, 새로운 사용자가 연결될 때마다 렌더링이 일어난다. 하지만 여기의 문제는 `remoteUsers`라는 값은 화상연결된 사용자를 보여주는 component만 다시 렌더하면 되는데, `CallContext`를 사용하는 다른 component들에서도 새로운 사용자가 나타날 때마다 렌더된다는 문제가 있다. 또한 화면공유를 위해 사용되는 RTCPeerConnection을 예외처리 하기 위해 `filter`라는 연산을 하게된다. 가장 확실한 것은 시간을 측정하는 것이니 Profiler를 사용해서 rendering 시간을 측정하도록 한다.
+
+![context-api](https://i.imgur.com/8oPGB2L.png)
+
+Context API를 사용하면 화상연결 Component를 렌더링하는데 약 11.3ms가 소요된다. 스크린샷에 나오지는 않았지만 Context가 업데이트 되면서, Context.Provider에서도 추가로 22.7ms가 소요되었다. 사용자가 한 명 입장하고, 그 영상을 렌더링하는데 **34ms**가 소요된다. remote user의 video component만 렌더되는데는 **5.3ms** 소요됐다
+
+이제 recoil의 `atom`을 사용해서 `remoteUsers`라는 값을 관리해보도록 한다. 기존 provider.tsx에서 변수를 reducer를 사용하지 않고 `atom`을 사용해서 업데이트한다.
 
 ```typescript
-// Login.tsx
+// provider.tsx
+export const remoteUserState = atom({
+  key: 'remoteUserState',
+  default: null,
+});
 
-export default function Login() {
-	const navigate = useNavigate();
+export default function Provider() {
+  const setRemoteUsers = useSetRecoilState(remoteUserState);
 
-	const handleLoginBtnClick = () => {
-		const { mutate, isLoading } = useMutation(requestLogin, {
-			onSuccess: (data) => {
-				if (data.userTypeA) {
-					navigate('/routeA');
-				}
-				if (data.userTypeB) {
-					navigate('/routeB');
-				}
-				if (data.userTypeA) {
-					navigate('/routeC');
-				}
-				if (data.userTypeA) {
-					navigate('/routeD');
-				}
-			},
-			onError: () => {
-				alert('login failed');
-			},
-		});
-	}
+  const handleRemoteUser = (remoteUsers) => {
+    setRemoteUsers(remoteUsers);
+  }
+}
+
+// MediaContent.tsx
+export default function MediaContent() {
+  const [remoteUsers, setRemoteUsers] = useRecoilState(remoteUserState);
+  // custom hook syntax를위해 useContext(CallContext) 를 useCall로 export()한다.
+
+  const rtcUsers = remoteUsers.filter((user) => user.uid !== 'screen');
+
+  return (
+    <>
+      {rtcUsers.map((rtcUser) => <>{rtcUser}</>)}
+    </>
+  )
 }
 ```
 
-`react-query`를 사용하면서 다양한 장점을 경험할 수 있는데, 
-1. context로 관리되는 변수가 줄어들었기 때문에, AuthContext를 사용하는 다른 component에서의 불필요한 rendering을 막을 수 있다. 
-2. loading 상태 관리가 수월하다. 기존에 context라면 loading state가 바뀔 때 다른 component에서 불필요한 렌더링이 일어났을 것이다.
-3. retry수를 default options에 설정하면 알 수 없는 이유로 로그인이 실패할 때, 사용자가 재시도하지 않아도 request를 다시 전송하기 때문에 UX 측면에서도 유리하다고 생각했다. 
+![recoil](https://i.imgur.com/FXPKInC.png)
 
-그렇다면 진짜 효율적인지 [Profiler](https://reactjs.org/docs/profiler.html)를 통해 확인해보도록 한다.
+사용자 한 명이 늘어나고, 그 영상을 렌더링하는데 **6.8ms** 소요된다. remote user의 video component만 렌더되는데는 **4.7ms** 소요됐다. 스크린샷을 비교하면 rendering이 일어난 최상단의 component가 다른 것을 확인할 수 있다. Recoil에서 제공하는 `atom`을 사용하면 MediaContent.tsx에서만 렌더링이 일어나지만, Context API를 사용하면 MediaContent.tsx 컴포넌트의 부모 component와 해당 Context의 값에 의존하는 다른 component들에서 렌더링이 일어나기 때문이다. 
 
-|![context-api](https://i.imgur.com/UXdARpb.png)|
-| :-------------------------------------------: |
-|                 context-api                   |
-
-|![react-query](https://i.imgur.com/zCAjc69.png)|
-| :-------------------------------------------: |
-|                 react-query                   |
-
-`react-query`를 사용했을 때 렌더링 시간이 약 **1.7ms** 줄어들고 비율로 계산하면 약 **63%** 가량 개선된다.
-
-이제 context api를 버리고 recoil을 사용해보도록 한다. 
+단순히 시간만 측정한다고 해도, Context API를 들어내면 렌더링 시간이 **27.2ms** 감소하고, 비율로 측정하면 약 **80%** 개선된다. 앞으로 Context API는 사용하지 말아야겠다. 
