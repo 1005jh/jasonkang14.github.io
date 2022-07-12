@@ -8,12 +8,12 @@ category: "React"
 tags:
   - "React"
 
-description: "ContextAPI를 들어내고 Recoil을 사용해본다"
+description: "Context API를 들어내고 Recoil을 사용해본다"
 ---
 
 # TL;DR
 
-### React Query의 사용으로 store가 가벼워졌고, request 에러 핸들링이 간편해졌다.
+### Recoil의 사용으로 불필요한 rendering이 줄어들어 효율이 개선되었다.
 
 [이전 포스트](https://jasonkang14.github.io/react/introducing-react-query)에서 `react-query` 도입의 타당성은 찾았고, 이제 Recoil을 사용하면 좋은 이유에 대해 찾아본다. 
 

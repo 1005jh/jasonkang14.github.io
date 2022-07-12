@@ -8,7 +8,7 @@ category: "React"
 tags:
   - "React"
 
-description: "ContextAPI를 들어내고 React Query를 사용해본다"
+description: "Context API를 들어내고 React Query를 사용해본다"
 ---
 
 # TL;DR
@@ -119,4 +119,4 @@ export default function Login() {
 
 렌더링 시간이 약 **1.7ms** 줄어들고 비율로 계산하면 약 **63%** 가량 개선된다.
 
-`react-query`를 사용할 이유는 충분히 증명된 것 같고, 다음 포스트에서 recoil의 타당성을 검토해보기로 한다
+`react-query`를 사용할 이유는 충분히 증명된 것 같고, [다음 포스트](https://jasonkang14.github.io/react/introducing-recoil)에서 recoil의 타당성을 검토해보기로 한다
