@@ -24,16 +24,17 @@ module.exports = {
         }
       ],
       author: {
-        name: 'Test name',
+        name: 'Jason Kang',
         photo: '/test.jpg',
-        bio: 'Test bio',
+        bio: 'I believe software engineers can change the world',
         contacts: {
           email: '#',
           telegram: '#',
           twitter: '#',
-          github: '#',
+          github: 'jasonkang14',
           rss: '#',
-          vkontakte: '#'
+          vkontakte: '#',
+          instagram: 'jkang14',
         }
       }
     }
