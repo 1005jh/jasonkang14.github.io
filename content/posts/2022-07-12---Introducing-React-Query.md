@@ -17,9 +17,9 @@ description: "Context API를 들어내고 React Query를 사용해본다"
 
 회사에 매우 간단한 과제가 있어서 빠르게 만들어서 제공하기 위해 [Context API](https://reactjs.org/docs/context.html)를 사용해서 빠르게 배포했다. 규모가 워낙 작아서 효율보다는 속도에 집중해서 작업했다. 하지만, 사업을 확장하게 되면서 간단한 기능만 가지고 있던 프로젝트에 코드를 추가하게 되었다. 자연스럽게 점점 더 `Context`가 추가되었고, `Context`의 단점을 강하게 겪을 수 있었다. 
 
-`Context`의 가장 큰 단점은, 해당 context 내 store--정확히는 해당 context의 reducer의 state--의 값이 바뀌게 되면 그 context를 사용한다면, 지금 component에서 사용하지 않는 값이 변경되도 re-render가 일어난다는 것이다. 따라서 rendering효율을 고려하면 Context를 엄청 잘게 쪼개야한다. 
+`Context`의 가장 큰 단점은, 해당 context 내 store(정확히는 해당 context의 reducer의 state)의 값이 바뀌게 되면 그 context를 사용한다면, 지금 component에서 사용하지 않는 값이 변경되도 re-render가 일어난다는 것이다. 따라서 rendering효율을 고려하면 Context를 엄청 잘게 쪼개야한다. 
 
-함수형 프로그래밍을 적용하면서, 자식 component에서 부모 component의 state를 바꾸지 않기 위해서 많은 변수들을 전역변수로--context로--옮겼고, [렌더링 효율이 개선되기는 했지만](https://jasonkang14.github.io/react/functional-programming-with-react-part-three)그래도 아직 기술 부채가 남아있다. 그래서 이참에 `Context API`를 들어내기로 했다. 
+함수형 프로그래밍을 적용하면서, 자식 component에서 부모 component의 state를 바꾸지 않기 위해서 많은 변수들을 전역변수로(context로)옮겼고, [렌더링 효율이 개선되기는 했지만](https://jasonkang14.github.io/react/functional-programming-with-react-part-three)그래도 아직 기술 부채가 남아있다. 그래서 이참에 `Context API`를 들어내기로 했다. 
 
 다른 프로젝트에 적용되어 있는 [redux](https://redux.js.org/)를 써볼까 하다가, 이왕 하는거 새로운 걸 해보자는 팀원들의 의견에 따라 각자 기술검토를 시작했다. 우리가 가진 선택지는 [Recoil](https://recoiljs.org/), [constate](https://github.com/diegohaz/constate), 그리고 [MobX](https://mobx.js.org/README.html)였다. 
 

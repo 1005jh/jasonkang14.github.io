@@ -58,7 +58,7 @@ export default function MediaContent() {
 
 ![context-api](https://i.imgur.com/8oPGB2L.png)
 
-Context API를 사용하면 화상연결 Component를 렌더링하는데 약 11.3ms가 소요된다. 스크린샷에 나오지는 않았지만 Context가 업데이트 되면서, Context.Provider에서도 추가로 22.7ms가 소요되었다. 사용자가 한 명 입장하고, 그 영상을 렌더링하는데 **34ms**가 소요된다. remote user의 video component만 렌더되는데는 **5.3ms** 소요됐다
+Context API를 사용하면 화상연결 Component를 렌더링하는데 약 **11.3ms**가 소요된다. 스크린샷에 나오지는 않았지만 Context가 업데이트 되면서, Context.Provider에서도 추가로 **22.7ms**가 소요되었다. 사용자가 한 명 입장하고, 그 영상을 렌더링하는데 **34ms**가 소요된다. remote user의 video component만 렌더되는데는 **5.3ms** 소요됐다
 
 이제 recoil의 `atom`을 사용해서 `remoteUsers`라는 값을 관리해보도록 한다. 기존 provider.tsx에서 변수를 reducer를 사용하지 않고 `atom`을 사용해서 업데이트한다.
 
