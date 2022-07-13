@@ -102,7 +102,7 @@ void function() {
 <p>Mesh</p>
 <ul>
 <li>1:1 연결과 유사하게 모든 <code class="language-text">RTCPeerConnection</code>을 1:1로 연결시키는 것이다.
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c575cffa-a6e6-4a64-8429-7a598a615c3b/Screen_Shot_2022-06-24_at_5.38.11_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&#x26;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&#x26;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&#x26;X-Amz-Date=20220625T053336Z&#x26;X-Amz-Expires=86400&#x26;X-Amz-Signature=6f87b739b1bcff4deafc0fcf2823c0312f4c79cdded3a022da3221706856ae54&#x26;X-Amz-SignedHeaders=host&#x26;response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-24%2520at%25205.38.11%2520PM.png%22&#x26;x-id=GetObject" alt="WebRTC Mesh"></li>
+<img src="https://i.imgur.com/z9NOhzf.png" alt="webrtc-mesh"></li>
 </ul>
 </li>
 </ol>
@@ -113,7 +113,7 @@ void function() {
 <p>MCU(Multipoint Control Unit)</p>
 <ul>
 <li>서버가 모든 stream을 받고, 각각의 영상/음성 stream을 하나로 mix해서 클라이언트에게 보내주는 방식
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2f108c50-3cc7-498e-8d03-ad2696005c86/Screen_Shot_2022-06-24_at_5.39.52_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&#x26;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&#x26;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&#x26;X-Amz-Date=20220625T053839Z&#x26;X-Amz-Expires=86400&#x26;X-Amz-Signature=9a951ea10c39f09bc6972e34c9258ebb26caba79ed4f29259505980fe03a9a81&#x26;X-Amz-SignedHeaders=host&#x26;response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-24%2520at%25205.39.52%2520PM.png%22&#x26;x-id=GetObject" alt="WebRTC MCU"></li>
+<img src="https://i.imgur.com/L4OaCg4.png" alt="webrtc-mcu"></li>
 </ul>
 </li>
 </ol>
@@ -122,7 +122,7 @@ void function() {
 <ol start="3">
 <li>SFU(Selective Forwarding Unit)</li>
 <li>서버가 모든 stream을 받고, remote peers 들의 steam을 사용자들에게 전달한다.
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d9b46d9f-df0f-487c-86ac-e6fca264ba4c/Screen_Shot_2022-06-24_at_5.42.05_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&#x26;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&#x26;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&#x26;X-Amz-Date=20220625T054202Z&#x26;X-Amz-Expires=86400&#x26;X-Amz-Signature=628c945252ff0266418c2e29069d42683bc4c960e26cf46fcc0c7d37f4817cb3&#x26;X-Amz-SignedHeaders=host&#x26;response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-24%2520at%25205.42.05%2520PM.png%22&#x26;x-id=GetObject" alt="WebRTC SFU"></li>
+<img src="https://i.imgur.com/EkQnjdD.png" alt="webrtc-sfu"></li>
 </ol>
 <p>서버에 uplink stream을 보낸다는 측면에서는 MCU와 동일하다. 하지만 차이가 있다면 MCU가 모든 stream을 하나로 합치는 과정을 거친다면, SFU는 stream을 forwarding 하기만 한다. 따라서 서버에서 별도의 데이터 가공을 하지 않기 때문에, 서버에 오버헤드가 감소하고 MCU와 비교했을 때 실시간성이 유지된다.</p>
 <p>하지만 클라이언트 입장에서는 downlink stream의 숫자가 늘어나기 때문에, 클라이언트에 조금 부하가 생길 수 있다.</p>
