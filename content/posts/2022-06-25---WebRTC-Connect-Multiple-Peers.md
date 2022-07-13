@@ -22,7 +22,7 @@ Peer-to-Peer connection이라서 signaling server 에는 큰 부담이 없다. �
 1. Mesh
 
    - 1:1 연결과 유사하게 모든 `RTCPeerConnection`을 1:1로 연결시키는 것이다.
-     ![WebRTC Mesh](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c575cffa-a6e6-4a64-8429-7a598a615c3b/Screen_Shot_2022-06-24_at_5.38.11_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220625T053336Z&X-Amz-Expires=86400&X-Amz-Signature=6f87b739b1bcff4deafc0fcf2823c0312f4c79cdded3a022da3221706856ae54&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-24%2520at%25205.38.11%2520PM.png%22&x-id=GetObject)
+     ![webrtc-mesh](https://i.imgur.com/z9NOhzf.png)
 
 1:1 연결과 유사하게 signaling server는 처음 SDP교환만 담당하기 때문에, 서버에 부하는 그렇게 크지 않다. 또한 별도의 서버를 거치지 않고(TURN server가 Relay 해주지 않는다면) 직접 연결되기 때문에 실시간성이 보장된다.
 
@@ -30,7 +30,7 @@ Peer-to-Peer connection이라서 signaling server 에는 큰 부담이 없다. �
 
 2. MCU(Multipoint Control Unit)
    - 서버가 모든 stream을 받고, 각각의 영상/음성 stream을 하나로 mix해서 클라이언트에게 보내주는 방식
-     ![WebRTC MCU](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2f108c50-3cc7-498e-8d03-ad2696005c86/Screen_Shot_2022-06-24_at_5.39.52_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220625T053839Z&X-Amz-Expires=86400&X-Amz-Signature=9a951ea10c39f09bc6972e34c9258ebb26caba79ed4f29259505980fe03a9a81&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-24%2520at%25205.39.52%2520PM.png%22&x-id=GetObject)
+     ![webrtc-mcu](https://i.imgur.com/L4OaCg4.png)
 
 서버가 모든 stream을 받은 후, 처리해서 모든 client들에게 뿌려주기 때문에, 각각의 `RTCPeerConnection`이 1:1로 연결되는 Mesh와 비교했을 때, 각 클라이언트가 1개의 uplink와 1개의 downlink만 유지한다. 관리해야 할 stream의 갯수가 고정된다는 장점이 있다. 따라서 client에 부하가 걸리지 않는다는 장점이 있다.
 
@@ -39,7 +39,7 @@ Peer-to-Peer connection이라서 signaling server 에는 큰 부담이 없다. �
 3. SFU(Selective Forwarding Unit)
 
 - 서버가 모든 stream을 받고, remote peers 들의 steam을 사용자들에게 전달한다.
-  ![WebRTC SFU](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d9b46d9f-df0f-487c-86ac-e6fca264ba4c/Screen_Shot_2022-06-24_at_5.42.05_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220625%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220625T054202Z&X-Amz-Expires=86400&X-Amz-Signature=628c945252ff0266418c2e29069d42683bc4c960e26cf46fcc0c7d37f4817cb3&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-06-24%2520at%25205.42.05%2520PM.png%22&x-id=GetObject)
+  ![webrtc-sfu](https://i.imgur.com/EkQnjdD.png)
 
 서버에 uplink stream을 보낸다는 측면에서는 MCU와 동일하다. 하지만 차이가 있다면 MCU가 모든 stream을 하나로 합치는 과정을 거친다면, SFU는 stream을 forwarding 하기만 한다. 따라서 서버에서 별도의 데이터 가공을 하지 않기 때문에, 서버에 오버헤드가 감소하고 MCU와 비교했을 때 실시간성이 유지된다.
 
