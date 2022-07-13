@@ -146,7 +146,6 @@ void function() {
 <span class="token comment">// MediaContent.tsx</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">MediaContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>remoteUsers<span class="token punctuation">,</span> setRemoteUsers<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useRecoilState</span><span class="token punctuation">(</span>remoteUserState<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment">// custom hook syntax를위해 useContext(CallContext) 를 useCall로 export()한다.</span>
 
   <span class="token keyword">const</span> rtcUsers <span class="token operator">=</span> remoteUsers<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token operator">=></span> user<span class="token punctuation">.</span>uid <span class="token operator">!==</span> <span class="token string">'screen'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
