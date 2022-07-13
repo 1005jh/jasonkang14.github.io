@@ -80,7 +80,6 @@ export default function Provider() {
 // MediaContent.tsx
 export default function MediaContent() {
   const [remoteUsers, setRemoteUsers] = useRecoilState(remoteUserState);
-  // custom hook syntax를위해 useContext(CallContext) 를 useCall로 export()한다.
 
   const rtcUsers = remoteUsers.filter((user) => user.uid !== 'screen');
 
