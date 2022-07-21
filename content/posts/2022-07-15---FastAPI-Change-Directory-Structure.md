@@ -42,6 +42,7 @@ FastAPI 공식문서의 튜토리얼을 따라해보면 알겠지만, 각 섹션
 ├── requirements.txt
 ├── routers
 │   ├── __init__.py
+│   ├── deps.py
 │   ├── router.py
 │   └── user.py
 ├── run.sh
@@ -66,6 +67,7 @@ FastAPI 공식문서의 튜토리얼을 따라해보면 알겠지만, 각 섹션
 4. routers 
     - controller에 해당한다고 보면 되겠다.
     - interface를 규정하고, 적절하게 crud를 실시한다.
+    - database dependency를 `deps.py`에 선언한다
 
 5. schemas  
     - database로 연결하는 schema들을 선언한다.
