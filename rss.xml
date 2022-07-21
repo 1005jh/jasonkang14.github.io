@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 13 Jul 2022 05:54:57 GMT</lastBuildDate><item><title><![CDATA[Context API -> Recoil]]></title><description><![CDATA[Context API를 들어내고 Recoil을 사용해본다]]></description><link>https://jasonkang14.github.io/react/introducing-recoil</link><guid isPermaLink="false">https://jasonkang14.github.io/react/introducing-recoil</guid><pubDate>Wed, 13 Jul 2022 02:21:37 GMT</pubDate><content:encoded>&lt;h1 id=&quot;tldr&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tldr&quot; aria-label=&quot;tldr permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;TL;DR&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 21 Jul 2022 15:20:35 GMT</lastBuildDate><item><title><![CDATA[FastAPI - 디렉토리 구조 변경]]></title><description><![CDATA[FastAPI 디렉토리 구조를 재설정한다]]></description><link>https://jasonkang14.github.io/fastpi/directory-structure</link><guid isPermaLink="false">https://jasonkang14.github.io/fastpi/directory-structure</guid><pubDate>Fri, 15 Jul 2022 12:21:37 GMT</pubDate><content:encoded>&lt;p&gt;FastAPI 공식문서의 튜토리얼을 따라해보면 알겠지만, 각 섹션이 모여서 거대한 하나의 어플리케이션을 만드는게 아니라, 모든 파트가 나눠져있다.
+따라서 이들은 모든 코드를 main.py안에서 해결한다. &lt;/p&gt;
+&lt;p&gt;하지만 실제 프로그램은 그렇게 돌아가지 않는다. 적절히 분산해서 import해서 사용하는 것이 일반적이다. &lt;/p&gt;
+&lt;p&gt;디렉토리 구조를 고민하던 와중에, 그동안 작성했던 &lt;a href=&quot;https://jasonkang14.github.io/tag/fast-api&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;FastAPI 시리즈&lt;/a&gt;를 보신 CTO님께서 회사에서 진행하는 신규 프로젝트에서 FastAPI를 적용해보자고 하셨다. 직장인 특성상 회사일을 하게되면 개인 프로젝트보다 조금 더 열심히 하게되는 특성이 있다. 열심히 구글링했고, 결국 FastAPI maintainer가 공개한 프로젝트 구조 예제를 찾았다. 그를 기반으로 조금 확장해서 디렉토리 구조를 아래와 같이 변경했다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+├── README.md
+├── alembic
+│   ├── README
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+├── alembic.ini
+├── core
+│   ├── __init__.py
+│   ├── auth.py
+│   └── config.py
+├── crud
+│   ├── __init__.py
+│   └── user.py
+├── database
+│   ├── __init__.py
+│   ├── models.py
+│   └── session.py
+├── main.py
+├── requirements.txt
+├── routers
+│   ├── __init__.py
+│   ├── router.py
+│   └── user.py
+├── run.sh
+└── schemas
+    ├── __init__.py
+    └── user.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;alembic - database migration을 담당한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;하나의 database에 여러명이 migration 하는 경우 &lt;code class=&quot;language-text&quot;&gt;alembic_version&lt;/code&gt; table을 확인해서 에러를 수정해야 한다.&lt;/li&gt;
+&lt;li&gt;또한 &lt;code class=&quot;language-text&quot;&gt;versions&lt;/code&gt; 디렉토리 내의 파일을 수정해서 에러를 해결할 수도 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;core&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주요 기능(?) 들을 넣는다&lt;/li&gt;
+&lt;li&gt;일단은 인증/인가를 관장하는 &lt;code class=&quot;language-text&quot;&gt;auth.py&lt;/code&gt;와 환경변수를 담당하는 &lt;code class=&quot;language-text&quot;&gt;config.py&lt;/code&gt;를 생성했다.&lt;/li&gt;
+&lt;li&gt;나중에 firebase와 관련된 기능들도 추가할 예정이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;crud&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;database manipulation을 담당한다&lt;/li&gt;
+&lt;li&gt;Create, Read, Update, Delete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;routers &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;controller에 해당한다고 보면 되겠다.&lt;/li&gt;
+&lt;li&gt;interface를 규정하고, 적절하게 crud를 실시한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;schemas  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;database로 연결하는 schema들을 선언한다.&lt;/li&gt;
+&lt;li&gt;회사에서 프로젝트 진행하면서 확인하니 &lt;code class=&quot;language-text&quot;&gt;pydantic&lt;/code&gt;의 &lt;code class=&quot;language-text&quot;&gt;BaseModel&lt;/code&gt;을 사용하지 않으면 해당 값을 request body로 인식하지 못하고 query parameter로 받아들이는 문제가 있다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Context API -> Recoil]]></title><description><![CDATA[Context API를 들어내고 Recoil을 사용해본다]]></description><link>https://jasonkang14.github.io/react/introducing-recoil</link><guid isPermaLink="false">https://jasonkang14.github.io/react/introducing-recoil</guid><pubDate>Wed, 13 Jul 2022 02:21:37 GMT</pubDate><content:encoded>&lt;h1 id=&quot;tldr&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tldr&quot; aria-label=&quot;tldr permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;TL;DR&lt;/h1&gt;
 &lt;h3 id=&quot;recoil의-사용으로-불필요한-rendering이-줄어들어-효율이-개선되었다&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#recoil%EC%9D%98-%EC%82%AC%EC%9A%A9%EC%9C%BC%EB%A1%9C-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-rendering%EC%9D%B4-%EC%A4%84%EC%96%B4%EB%93%A4%EC%96%B4-%ED%9A%A8%EC%9C%A8%EC%9D%B4-%EA%B0%9C%EC%84%A0%EB%90%98%EC%97%88%EB%8B%A4&quot; aria-label=&quot;recoil의 사용으로 불필요한 rendering이 줄어들어 효율이 개선되었다 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Recoil의 사용으로 불필요한 rendering이 줄어들어 효율이 개선되었다.&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://jasonkang14.github.io/react/introducing-react-query&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;이전 포스트&lt;/a&gt;에서 &lt;code class=&quot;language-text&quot;&gt;react-query&lt;/code&gt; 도입의 타당성은 찾았고, 이제 Recoil을 사용하면 좋은 이유에 대해 찾아본다. &lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://recoiljs.org/ko/docs/introduction/motivation/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;recoil 공식문서&lt;/a&gt;를 보면 리액트의 한계에 대해 설명하면서 왜 recoil을 개발했는지 잘 설명되어 있다. &lt;/p&gt;
