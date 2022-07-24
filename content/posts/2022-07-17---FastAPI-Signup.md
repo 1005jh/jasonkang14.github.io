@@ -3,7 +3,7 @@ title: FastAPI - 회원가입
 date: "2022-07-17T21:21:37.121Z"
 template: "post"
 draft: false
-slug: "/fastpi/signup-view"
+slug: "/fastapi/signup-view"
 category: "FastAPI"
 tags:
   - "FastAPI"
