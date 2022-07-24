@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 24 Jul 2022 05:05:34 GMT</lastBuildDate><item><title><![CDATA[Database Concurrency Problems]]></title><description><![CDATA[Database concurrency는 어떤 문제들을 야기할 수 있는가]]></description><link>https://jasonkang14.github.io/database/what-are-database-concurrency-problems</link><guid isPermaLink="false">https://jasonkang14.github.io/database/what-are-database-concurrency-problems</guid><pubDate>Sun, 24 Jul 2022 12:44:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/bwsa7kv.png&quot; alt=&quot;database-concurrency&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 24 Jul 2022 18:40:26 GMT</lastBuildDate><item><title><![CDATA[Database Concurrency Problems]]></title><description><![CDATA[Database concurrency는 어떤 문제들을 야기할 수 있는가]]></description><link>https://jasonkang14.github.io/database/what-are-database-concurrency-problems</link><guid isPermaLink="false">https://jasonkang14.github.io/database/what-are-database-concurrency-problems</guid><pubDate>Sun, 24 Jul 2022 12:44:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/bwsa7kv.png&quot; alt=&quot;database-concurrency&quot;&gt;&lt;/p&gt;
 &lt;p&gt;최근 회사에서 신규 프로젝트를 시작했다. 데이터베이스 구조에 대해서 이야기하고, 서버 &amp;#x3C;-&gt; 클라이언트 간 통신을 어떻게 할지 고민중에 내 생각을 전달했더니 CTO님께서 database concurrency 이슈가 있을 것 같다고 하셨다. 단어 뜻만 들어보고 &lt;code class=&quot;language-text&quot;&gt;write가 끝나지 않은 상태에서 read를 해서 그런가?&lt;/code&gt; 라고 생각만 하고 넘어갔다. 생각해보면 그 때 바로 뭔지 질문할 걸 그랬다.&lt;/p&gt;
 &lt;p&gt;용어 자체에 답이 숨겨져 있을 것 같아서 단어 뜻을 찾아봤다. 구글에 검색하니 &lt;code class=&quot;language-text&quot;&gt;여러가지 일이 동시에 일어나는 것&lt;/code&gt;이라고 하고, computing에 &lt;code class=&quot;language-text&quot;&gt;한정짓자면 여러가지 task를 동시에 실행시키는 것&lt;/code&gt;이라고 한다. 구글의 친절한 검색엔진 덕분에 &lt;a href=&quot;https://web.mit.edu/6.005/www/fa14/classes/17-concurrency/#:~:text=Concurrency%20means%20multiple%20computations%20are,cores%20on%20a%20single%20chip&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;MIT자료&lt;/a&gt;를 찾았는데, concurrency는 여러가지 계산이 동시에 일어나는 것이라고 한다. &lt;/p&gt;
 &lt;p&gt;단어 뜻만 보면 내가 생각한게 맞는 것 같다. 이제 구체적으로 database concurrency에 대해 알아본다. &lt;/p&gt;
@@ -43,7 +43,76 @@ Unrepeatable Read Problem은 같은 사용자가 두 번 READ할 때 보다는, 
 &lt;h4 id=&quot;5-phantom-read-problem&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-phantom-read-problem&quot; aria-label=&quot;5 phantom read problem permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Phantom Read Problem&lt;/h4&gt;
 &lt;p&gt;한 번 READ를 시도하고 같은 값을 다시 READ를 시도하는 사이에 해당 값이 지워지는 경우이다.
 &lt;img src=&quot;https://i.imgur.com/eUW9xkw.png&quot; alt=&quot;phantom-read-problem&quot;&gt;&lt;/p&gt;
-&lt;p&gt;글 처음에 CTO님께서 언급한 database concurrency 문제는 Temporary Update Problem인 것 같다. 업데이트가 마무리 되기 전 사용자가 값을 read할 수 있는 문제가 발생할 수 있다. 지금 생각으로는 pub/sub을 통해서 sub이 일어나기 전에는 read할 수 없게 하려고 하는데 이게 맞는 방향인지는 조금 더 고민이 필요하다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[FastAPI - 회원가입]]></title><description><![CDATA[FastAPI로 회원가입을 진행한다]]></description><link>https://jasonkang14.github.io/fastpi/signup-view</link><guid isPermaLink="false">https://jasonkang14.github.io/fastpi/signup-view</guid><pubDate>Sun, 17 Jul 2022 21:21:37 GMT</pubDate><content:encoded>&lt;p&gt;디렉토리 구조도 잡았으니 이제 본격적으로 API를 만들어본다.
+&lt;p&gt;글 처음에 CTO님께서 언급한 database concurrency 문제는 Temporary Update Problem인 것 같다. 업데이트가 마무리 되기 전 사용자가 값을 read할 수 있는 문제가 발생할 수 있다. 지금 생각으로는 pub/sub을 통해서 sub이 일어나기 전에는 read할 수 없게 하려고 하는데 이게 맞는 방향인지는 조금 더 고민이 필요하다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hello World from Next.js]]></title><description><![CDATA[Next.js로 Hello World!]]></description><link>https://jasonkang14.github.io/nextjs/hello-world</link><guid isPermaLink="false">https://jasonkang14.github.io/nextjs/hello-world</guid><pubDate>Tue, 19 Jul 2022 11:21:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://jasonkang14.github.io/fastapi/signup-view&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;서버에서 회원가입 api&lt;/a&gt;를 만들었으니, 이제 클라이언트를 만들어본다. &lt;/p&gt;
+&lt;p&gt;모바일 앱으로 하려다가, 개발자 등록 비용도 지불해야하고, 승인하는 절차도 오래걸리니 웹으로 일단 만들어 보려고 한다. 하는김에 &lt;a href=&quot;https://developers.google.com/search/docs/beginner/seo-starter-guide&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;SEO&lt;/a&gt;에 유리하도록 Server-Side Rendering을 하기 위해 &lt;a href=&quot;https://nextjs.org/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Next.js&lt;/a&gt;를 선택했다. Next.js를 선택한 또 다른 이유는 배포가 매우 쉽기 때문인데, Vercel에 깃헙 레포만 등록해주면 자동으로 CI/CD 까지 다 해준다. &lt;/p&gt;
+&lt;p&gt;이제 본격적으로 시키는 대로 init을 해본다. 언어는 TypeScript를 사용하려고 하는데, 그 이유는 University College London과 마이크로소프트가 발표한 &lt;a href=&quot;https://earlbarr.com/publications/typestudy.pdf&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;논문&lt;/a&gt;에 따르면, 타입스크립트를 사용하면 버그가 15%정도 줄어든다고 한다. 성격상 놓치는 부분이 많을거라서, 언어의 힘을 빌려본다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;npx create-next-app mukkang_client --typescript&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 명령어를 실행하면 아래와 같은 구조의 tree가 생성된다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;.
+├── README.md
+├── next-env.d.ts
+├── next.config.js
+├── node_modules
+├── package-lock.json
+├── package.json
+├── pages
+│   ├── _app.tsx
+│   ├── api
+│   │   └── hello.ts
+│   └── index.tsx
+├── public
+│   ├── favicon.ico
+│   └── vercel.svg
+├── styles
+│   ├── Home.module.css
+│   └── globals.css
+└── tsconfig.json&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;예전에 사이드 프로젝트를 하기 위해서 받아놓은 디자인이 있어서, 그 디자인을 활용하려고 한다. 같이 진행하기로 했던 친구한테 허락도 받았다. 스타일은… 뭐 이것저것 써보려다가 그냥 styled-component로 간다. 패키지를 설치하고 디자이너분이 주셨던 컬러와 폰트 크기들을 미리 세팅한다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --save styled-components &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --save-dev @types/styled-components&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;폰트는 &lt;a href=&quot;https://fontsource.org/fonts/noto-sans-kr&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;fontsource&lt;/a&gt;에서 다운받았다. 직접 .otf와 같은 파일을 다운받아서 적용하는 것보다 용량이 많이 세이브 된다.
+&lt;img src=&quot;https://i.imgur.com/bYp4Gtr.png&quot; alt=&quot;fontsource vs localfile&quot;&gt;
+회사에 적용하려고 스크린샷 찍어둔게 있었다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --save @fontsource/noto-sans-kr&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이미 있는 &lt;code class=&quot;language-text&quot;&gt;styles&lt;/code&gt; 디렉토리에 &lt;code class=&quot;language-text&quot;&gt;fonts.ts&lt;/code&gt;를 추가하고, &lt;code class=&quot;language-text&quot;&gt;globals.css&lt;/code&gt;에 컬러들을 추가한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// fonts.ts&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; css &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;styled-components&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; Bold &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; css&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;
+  font-weight: bold;
+&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; Regular &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; css&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;
+  font-weight: regular;
+&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;H1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; css&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;Bold&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;
+  font-size: 30px;
+&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;css&quot;&gt;&lt;pre class=&quot;language-css&quot;&gt;&lt;code class=&quot;language-css&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/* global.css */&lt;/span&gt;
+
+&lt;span class=&quot;token selector&quot;&gt;html,
+body&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 0&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 0&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Noto Sans KR&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; sans-serif&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token selector&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;box-sizing&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; border-box&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token selector&quot;&gt;:root&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--primary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #1D2745&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--sub-100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #1de5d4&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--sub-200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #f52c50&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--white&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #ffffff&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--mono-100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #f1f1f1&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--mono-200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #bebebe&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;--error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; #d01e1e&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;npm run dev&lt;/code&gt;를 통해 화면이 잘 나오는 것을 확인할 수 있다. 절대경로 사용을 선호하기 때문에 &lt;code class=&quot;language-text&quot;&gt;tsconfig.json&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;baseUrl&lt;/code&gt;을 설정해주고 싶은데, 아직은 어떤식으로 디렉토리 구조를 설정할지 결정하지 못했기 때문에 일단은 여기까지만 하도록 한다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[FastAPI - 회원가입]]></title><description><![CDATA[FastAPI로 회원가입을 진행한다]]></description><link>https://jasonkang14.github.io/fastapi/signup-view</link><guid isPermaLink="false">https://jasonkang14.github.io/fastapi/signup-view</guid><pubDate>Sun, 17 Jul 2022 21:21:37 GMT</pubDate><content:encoded>&lt;p&gt;디렉토리 구조도 잡았으니 이제 본격적으로 API를 만들어본다.
 &lt;a href=&quot;https://jasonkang14.github.io/fastpi/directory-structure&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;FastAPI 디렉토리 구조&lt;/a&gt;에서 언급한 것처럼, &lt;code class=&quot;language-text&quot;&gt;pydantic&lt;/code&gt;의 &lt;code class=&quot;language-text&quot;&gt;BaseModel&lt;/code&gt;만 request body로 인식하기 때문에, &lt;code class=&quot;language-text&quot;&gt;schemas/user.py&lt;/code&gt;에서 request body의 type을 먼저 설정한다&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# schemas/user.py&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; pydantic &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; BaseModel
