@@ -1,4 +1,132 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 24 Jul 2022 18:43:04 GMT</lastBuildDate><item><title><![CDATA[Database Concurrency Problems]]></title><description><![CDATA[Database concurrency는 어떤 문제들을 야기할 수 있는가]]></description><link>https://jasonkang14.github.io/database/what-are-database-concurrency-problems</link><guid isPermaLink="false">https://jasonkang14.github.io/database/what-are-database-concurrency-problems</guid><pubDate>Sun, 24 Jul 2022 12:44:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/bwsa7kv.png&quot; alt=&quot;database-concurrency&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byeongjin Jason Kang]]></title><description><![CDATA[I believe software engineers can change the world]]></description><link>https://jasonkang14.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 27 Jul 2022 17:03:28 GMT</lastBuildDate><item><title><![CDATA[Reactjs 프로젝트 Nextjs로 이관]]></title><description><![CDATA[React로 이루어진 프로젝트를 Next.js로 이관한다]]></description><link>https://jasonkang14.github.io/nextjs/migrating-from-react</link><guid isPermaLink="false">https://jasonkang14.github.io/nextjs/migrating-from-react</guid><pubDate>Thu, 28 Jul 2022 01:41:37 GMT</pubDate><content:encoded>&lt;p&gt;회사에서 새로운 프로젝트를 하는데, 기획에 대시보드가 생겼다.
+대시보드는 특성상 그래프가 많이 들어가서 서버에서 불러온 데이터를 화면에서 보여주는데 시간이 많이 걸릴 것 같았다.
+&lt;a href=&quot;https://medium.com/myrealtrip-product/%EC%83%81%ED%99%A9%EC%97%90-%EB%A7%9E%EB%8A%94-%EB%A1%9C%EB%94%A9-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-2018af51c197&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;마이리얼트립 블로그&lt;/a&gt;에서 본 Skeleton UI를 적용할 까 고민하다가, 서버사이드 렌더링이 해결책이 될 수 있을 것 같았다. &lt;/p&gt;
+&lt;p&gt;Next.js는 사이드 프로젝트 목적으로 공부중이기도 하고, 사실 지금 private repo에 완성된 프로젝트들도 있어서, 생각보다 쉽게 Next.js로 전환할 수 있을 것 같았다.
+지금 React로 이루어진 웹 클라이언트의 구조는 아래와 같다 &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;tree&quot;&gt;&lt;pre class=&quot;language-tree&quot;&gt;&lt;code class=&quot;language-tree&quot;&gt;.
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+├── src
+│   ├── App.tsx
+│   ├── hooks
+│   ├── index.tsx
+│   ├── libs
+│   │   └── axios
+│   ├── pages
+│   │   ├── Login
+│   │   │   ├── index.tsx
+│   │   │   └── queries
+│   │   │       └── useLoginQuery.ts
+│   │   └── recoil
+│   │       └── auth
+│   │           ├── atom.ts
+│   │           └── index.ts
+│   ├── react-app-env.d.ts
+│   ├── setupTests.ts
+│   ├── styles
+│   ├── types
+│   └── utils
+└── tsconfig.json&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;상세한 파일 컴포넌트 명들은 생략했다.
+디렉토리 구조 상 React.js와 Next.js의 차이는, Next.js에는 &lt;code class=&quot;language-text&quot;&gt;pages&lt;/code&gt;라는 디렉토리가 &lt;code class=&quot;language-text&quot;&gt;src&lt;/code&gt;의 밖에 위치하며, &lt;code class=&quot;language-text&quot;&gt;pages&lt;/code&gt; 디렉토리 내의 sub-directory들의 이름으로 routing이 이루어진다는 것이다. &lt;/p&gt;
+&lt;p&gt;따라서 지금 React.js 프로젝트에서 &lt;code class=&quot;language-text&quot;&gt;App.tsx&lt;/code&gt; 내에서 &lt;a href=&quot;https://v5.reactrouter.com/web/guides/quick-start&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;react-router&lt;/a&gt;로 import해서 사용하는 &lt;code class=&quot;language-text&quot;&gt;src/pages&lt;/code&gt; 내의 컴포넌트들을 &lt;code class=&quot;language-text&quot;&gt;pages/login&lt;/code&gt;과 같은 디렉토리에서 import해서 사용해주면 필요한 패키지가 모두 설치되어있다는 전제하에 정상적으로 작동해야한다. &lt;/p&gt;
+&lt;p&gt;일단 create-next-app을 사용해서 프로젝트를 init한다&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;npx create-next-app PROJECT_NAME --typescript&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;자바스크립트 사용 프로젝트는 항상 타입스크립트를 사용한다. 블로그에서 여러번 언급했지만, University College London과 마이크로소프트가 발표한 &lt;a href=&quot;https://earlbarr.com/publications/typestudy.pdf&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;논문&lt;/a&gt;에 따르면, 자바스크립트 기준으로 볼 때 타입스크립트를 사용하면 버그가 15%정도 줄어든다고 한다. 회원가입(CREATE) 기준으로 작성한다. 놓치는 버그들을 잡는데 유리하고, 타입스크립트를 사용하면(any를 남발하지 않는다는 전제하에) 프로젝트 규모가 커졌을 때 용이하다. any를 남발하지 않기위해 &lt;code class=&quot;language-text&quot;&gt;tsconfig.json&lt;/code&gt;에서 항상 &lt;code class=&quot;language-text&quot;&gt;&amp;quot;noImplicitAny&amp;quot;: true&lt;/code&gt;로 설정하고 프로젝트를 진행한다. &lt;/p&gt;
+&lt;p&gt;처음 생성된 Next.js 프로젝트의 디렉토리 구조는 아래와 같다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;tree&quot;&gt;&lt;pre class=&quot;language-tree&quot;&gt;&lt;code class=&quot;language-tree&quot;&gt;.
+├── README.md
+├── next-env.d.ts
+├── next.config.js
+├── package.json
+├── pages
+│   ├── _app.tsx
+│   ├── api
+│   │   └── hello.ts
+│   └── index.tsx
+├── styles
+│   ├── Home.module.css
+│   └── globals.css
+├── tsconfig.json
+└── yarn.lock&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 React.js 프로젝트의 &lt;code class=&quot;language-text&quot;&gt;src&lt;/code&gt; 디렉토리를 옮긴다. 스타일은 React.js프로젝트에 적용되어있던 것을 사용할 것이기 때문에 &lt;code class=&quot;language-text&quot;&gt;styles&lt;/code&gt; 디렉토리는 삭제한다. 그럼 아래와 같이 구조가 변경된다&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;tree&quot;&gt;&lt;pre class=&quot;language-tree&quot;&gt;&lt;code class=&quot;language-tree&quot;&gt;.
+├── README.md
+├── next-env.d.ts
+├── next.config.js
+├── package.json
+├── pages
+│   ├── _app.tsx
+│   ├── api
+│   │   └── hello.ts
+│   └── index.tsx
+├── src
+│   ├── App.tsx
+│   ├── hooks
+│   ├── index.tsx
+│   ├── libs
+│   │   └── axios
+│   ├── pages
+│   │   ├── Login
+│   │   │   ├── index.tsx
+│   │   │   └── queries
+│   │   │       └── useLoginQuery.ts
+│   │   └── recoil
+│   │       └── auth
+│   │           ├── atom.ts
+│   │           └── index.ts
+│   ├── react-app-env.d.ts
+│   ├── setupTests.ts
+│   ├── styles
+│   ├── types
+│   └── utils
+├── tsconfig.json
+└── yarn.lock&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;next에 필요없는 파일들을 삭제하면 구조는 아래와 같이 바뀐다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;tree&quot;&gt;&lt;pre class=&quot;language-tree&quot;&gt;&lt;code class=&quot;language-tree&quot;&gt;.
+├── README.md
+├── next-env.d.ts
+├── next.config.js
+├── package.json
+├── pages
+│   └── login
+│       └── index.tsx
+│   ├── _app.tsx
+│   ├── api
+│   │   └── hello.ts
+│   └── index.tsx
+├── src
+│   ├── hooks
+│   ├── index.tsx
+│   ├── libs
+│   │   └── axios
+│   ├── pages
+│   │   ├── Login
+│   │   │   ├── index.tsx
+│   │   │   └── queries
+│   │   │       └── useLoginQuery.ts
+│   │   └── recoil
+│   │       └── auth
+│   │           ├── atom.ts
+│   │           └── index.ts
+│   ├── styles
+│   ├── types
+│   └── utils
+├── tsconfig.json
+└── yarn.lock&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 &lt;code class=&quot;language-text&quot;&gt;pages&lt;/code&gt; 디렉토리 아래에 &lt;code class=&quot;language-text&quot;&gt;login&lt;/code&gt; 디렉토리를 만들고, 해당 디렉토리 내의 &lt;code class=&quot;language-text&quot;&gt;index.tsx&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;src/pages/Login&lt;/code&gt;의 component를 import한다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Login &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;pages/Login&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;LoginPage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Login &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;절대경로를 사용한 것을 볼 수 있는데. 개인적으로 절대경로를 선호한다. 리팩토링 하거나 프로젝트 구조를 변경할 때 절대경로를 사용하면 에러가 덜 나기 때문이다. TypeScript에서 절대경로를 사용하려면 &lt;code class=&quot;language-text&quot;&gt;tsconfig.json&lt;/code&gt;에서 &lt;code class=&quot;language-text&quot;&gt;baseUrl: &amp;quot;./src&amp;quot;&lt;/code&gt;로 해주면된다. &lt;/p&gt;
+&lt;p&gt;이제 실행해서 확인한다 &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;아래와 같이 잘 보이는 것을 확인할 수 있다.
+&lt;img src=&quot;https://i.imgur.com/w4Be4er.png&quot; alt=&quot;login-with-nextjs&quot;&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Database Concurrency Problems]]></title><description><![CDATA[Database concurrency는 어떤 문제들을 야기할 수 있는가]]></description><link>https://jasonkang14.github.io/database/what-are-database-concurrency-problems</link><guid isPermaLink="false">https://jasonkang14.github.io/database/what-are-database-concurrency-problems</guid><pubDate>Sun, 24 Jul 2022 12:44:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/bwsa7kv.png&quot; alt=&quot;database-concurrency&quot;&gt;&lt;/p&gt;
 &lt;p&gt;최근 회사에서 신규 프로젝트를 시작했다. 데이터베이스 구조에 대해서 이야기하고, 서버 &amp;#x3C;-&gt; 클라이언트 간 통신을 어떻게 할지 고민중에 내 생각을 전달했더니 CTO님께서 database concurrency 이슈가 있을 것 같다고 하셨다. 단어 뜻만 들어보고 &lt;code class=&quot;language-text&quot;&gt;write가 끝나지 않은 상태에서 read를 해서 그런가?&lt;/code&gt; 라고 생각만 하고 넘어갔다. 생각해보면 그 때 바로 뭔지 질문할 걸 그랬다.&lt;/p&gt;
 &lt;p&gt;용어 자체에 답이 숨겨져 있을 것 같아서 단어 뜻을 찾아봤다. 구글에 검색하니 &lt;code class=&quot;language-text&quot;&gt;여러가지 일이 동시에 일어나는 것&lt;/code&gt;이라고 하고, computing에 &lt;code class=&quot;language-text&quot;&gt;한정짓자면 여러가지 task를 동시에 실행시키는 것&lt;/code&gt;이라고 한다. 구글의 친절한 검색엔진 덕분에 &lt;a href=&quot;https://web.mit.edu/6.005/www/fa14/classes/17-concurrency/#:~:text=Concurrency%20means%20multiple%20computations%20are,cores%20on%20a%20single%20chip&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;MIT자료&lt;/a&gt;를 찾았는데, concurrency는 여러가지 계산이 동시에 일어나는 것이라고 한다. &lt;/p&gt;
 &lt;p&gt;단어 뜻만 보면 내가 생각한게 맞는 것 같다. 이제 구체적으로 database concurrency에 대해 알아본다. &lt;/p&gt;
