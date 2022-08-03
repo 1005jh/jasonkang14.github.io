@@ -12,7 +12,7 @@ description: "FastAPI로 회원가입을 진행한다"
 ---
 
 디렉토리 구조도 잡았으니 이제 본격적으로 API를 만들어본다. 
-[FastAPI 디렉토리 구조](https://jasonkang14.github.io/fastpi/directory-structure)에서 언급한 것처럼, `pydantic`의 `BaseModel`만 request body로 인식하기 때문에, `schemas/user.py`에서 request body의 type을 먼저 설정한다
+[FastAPI 디렉토리 구조](https://jasonkang14.github.io/fastapi/directory-structure)에서 언급한 것처럼, `pydantic`의 `BaseModel`만 request body로 인식하기 때문에, `schemas/user.py`에서 request body의 type을 먼저 설정한다
 
 ```python
 # schemas/user.py
