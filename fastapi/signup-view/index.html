@@ -104,7 +104,7 @@ void function() {
   setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
 }()
     </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">FastAPI - 회원가입</h1><div class="Content-module--content__body--2TrQ-"><p>디렉토리 구조도 잡았으니 이제 본격적으로 API를 만들어본다.
-<a href="https://jasonkang14.github.io/fastpi/directory-structure" target="_blank" rel="nofollow noopener noreferrer">FastAPI 디렉토리 구조</a>에서 언급한 것처럼, <code class="language-text">pydantic</code>의 <code class="language-text">BaseModel</code>만 request body로 인식하기 때문에, <code class="language-text">schemas/user.py</code>에서 request body의 type을 먼저 설정한다</p>
+<a href="https://jasonkang14.github.io/fastapi/directory-structure" target="_blank" rel="nofollow noopener noreferrer">FastAPI 디렉토리 구조</a>에서 언급한 것처럼, <code class="language-text">pydantic</code>의 <code class="language-text">BaseModel</code>만 request body로 인식하기 때문에, <code class="language-text">schemas/user.py</code>에서 request body의 type을 먼저 설정한다</p>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># schemas/user.py</span>
 <span class="token keyword">from</span> pydantic <span class="token keyword">import</span> BaseModel
 
