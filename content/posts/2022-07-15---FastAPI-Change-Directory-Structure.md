@@ -3,10 +3,10 @@ title: FastAPI - 디렉토리 구조 변경
 date: "2022-07-15T12:21:37.121Z"
 template: "post"
 draft: false
-slug: "/fastpi/directory-structure"
+slug: "/fastapi/directory-structure"
 category: "FastAPI"
 tags:
-  - "FastAPIP"
+  - "FastAPI"
 
 description: "FastAPI 디렉토리 구조를 재설정한다"
 ---
