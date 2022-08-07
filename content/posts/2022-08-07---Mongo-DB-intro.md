@@ -4,9 +4,9 @@ date: "2022-08-07T21:41:37.121Z"
 template: "post"
 draft: false
 slug: "/database/explaing-mongo-db"
-category: "database"
+category: "Database"
 tags:
-  - "database"
+  - "Database"
 
 description: "NoSQL중 MongoDB에 대해 알아본다"
 ---

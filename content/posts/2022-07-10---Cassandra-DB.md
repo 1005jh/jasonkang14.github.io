@@ -4,9 +4,9 @@ date: "2022-07-10T18:21:37.121Z"
 template: "post"
 draft: false
 slug: "/database/cassandra-db"
-category: "database"
+category: "Database"
 tags:
-  - "database"
+  - "Database"
 
 description: "NoSQL중 하나인 CassandraDB에 대해 알아본다"
 ---
