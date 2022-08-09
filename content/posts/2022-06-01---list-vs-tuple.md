@@ -13,7 +13,7 @@ description: "Data Structure - list vs tuple"
 
 # TL;DR
 
-### The major difference between the two is that tuples are immutable while lists are mutable. This means that you can change lists but you cannot change tuples.
+### The major difference between the two is that tuples are immutable while lists are mutable. 
 
 I started to watch MITOpenCourseWork in order to study some basics of computer science. Today, I got to look into the difference between list and tuple.
 
@@ -69,5 +69,5 @@ It may not be the best comparison, but you can see that iteration over the tuple
 
 ## Conclusion
 
-1. Lists and tuples have similarities but their nature makes lists more efficient in terms of memory.
+1. Lists and tuples have similarities but their nature makes tuples more efficient in terms of memory.
 2. However, it looks like it’s more of a personal choice in terms of which one to use
