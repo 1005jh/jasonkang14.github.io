@@ -12,14 +12,14 @@ tags:
 description: "Understanding jobs in deploytoAksCluster.yml"
 ---
 
-I have been trying really hard to deploy my project using Azure Kubernetes. When I created a Azure Kubernetes(AKS) cluster, it looked really easy to integrate my Github repository to implement CI/CD.
-
-![integrating-github-repository-with-AKS](https://i.imgur.com/vEQa9bL.png)
+I have been trying to deploy my project using Azure Kubernetes. When I created a Azure Kubernetes(AKS) cluster, it looked really easy to integrate my Github repository to implement CI/CD.
+![selecting-github](https://i.imgur.com/GgQfBOp.png)
+![integrating-github](https://i.imgur.com/k7wu6Rx.png)
 
 
 It seemed successful. I got to see the Dockerfile I had written
 
-![dockerfile-found](https://i.imgur.com/S7HYhBq.png)
+![dockerfile-found](https://i.imgur.com/8e0zYmA.png)
 
 The Github Action was successful.
 
