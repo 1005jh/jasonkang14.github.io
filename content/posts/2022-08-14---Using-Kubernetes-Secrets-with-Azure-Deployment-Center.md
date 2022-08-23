@@ -44,6 +44,12 @@ kubectl apply -f mysecret.yaml
 위의 `mysecret.yml`파일에 대해 설명하면, `data`가 내가 사용하고자 하는 secret, 즉 환경변수 들인데 base64로 인코딩 해서 넣어준 값이다. 
 `kind`를 `Secret`으로 해주어야 Kubernetes Secret으로 인식하고 쿠버네티스 클러스터에서 사용할 수 있게 된다. 
 
+base64로 인코딩 시 `-n` 옵션을 꼭 넣어줘야 하는데, 해당 옵션을 넣어주지 않으면 디코딩된 값에 `\n`이 들어가서 에러가 발생한다. 
+
+```bash
+echo -n 'KUBERNETES_SECRET' | base64
+```
+
 그리고 metadata 정보 중에서 `name`과 `namespace`가 중요하다. 별도의 설정을 하지 않는다면 같은 `namespace`내의 pod만 해당 secret에 접근이 가능하기 때문이다. `namespace`를 따로 지정해주지 않으면 `default`라는 `namespace`가 할당된다. Azure Kubernetes Deployment Center와 연동할 때 namespace를 입력하게 되어있는데, 여기에 `default`를 입력하지 않았다면, `namespace`를 지정해 줄 필요가 있다. 
 
 기존 Azure 쿠버네티스 deployment center에서 생성해준 workflow 파일에서, `azure/k8s-deploy@v1.2`라는 workflow가 배포를 담당한다.
