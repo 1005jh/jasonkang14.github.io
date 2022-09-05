@@ -67,7 +67,7 @@ StackOverflow나 github issue들에서 성공했다는 모든것들(?)을 시도
 
 그리고 [static ip](https://docs.microsoft.com/en-us/azure/aks/static-ip#create-a-static-ip-address)를 사용하기위해 발급받아서 추가로 설정해줬다. 
 
-##### 공식문서를 보는 것은 좋지만, 생각없이 따라하면 오늘처럼 6시간을 날릴 수 있다. 
+### 공식문서를 보는 것은 좋지만, 생각없이 따라하면 오늘처럼 6시간을 날릴 수 있다. 
 
 이제 예시에 나온 것처럼 ingress controller yml파일을 생성해본다. 
 ```yml
