@@ -39,8 +39,6 @@ export default function Page() {
 
 ```typescript
 export async function getServerSideProps({ req }: { req: NextApiRequest; res: NextApiResponse }) {
-  const token = await getToken({ req, raw: true });
-
   const queryClient = new QueryClient();
 
   const fetchSummary = async () => {
