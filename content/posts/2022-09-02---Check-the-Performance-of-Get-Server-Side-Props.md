@@ -1,5 +1,5 @@
 ---
-title: getServerSideProps의 효율 측정
+title: getServerSideProps로 Next.js 효율 개선
 date: "2022-09-02T21:41:37.121Z"
 template: "post"
 draft: false
