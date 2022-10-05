@@ -21,7 +21,15 @@ HDFS는 `저렴한 하드웨어`를 사용해서 `큰 파일`을 `streaming을 �
 1. 저렴한 하드웨어 
     - 하둡은 고성능의 하드웨어를 필요로 하지 않는다. 
     - 저렴한 하드웨어들은 클러스터 안의 node 에서 불량이 발생할 가능성이 높다.
-    - 하둡은 이러한 불량이 발생했을 때 사용자드르이 불편함을 느끼지 못하도록 설계되어 있다. 
+    - 하둡은 이러한 불량이 발생했을 때 사용자들이 불편함을 느끼지 못하도록 설계되어 있다. 
+
+저렴한 하드웨어가 정확히 뭔지 찾아보았다 
+
+![hardware-spec](https://i.imgur.com/jIHi2bN.png) 
+
+출처: [Hadoop Cluster Hardware Recommendation](https://docs.informatica.com/data-engineering/data-engineering-integration/h2l/1415-tuning-and-sizing-guidelines-for-data-engineering-integrati/tuning-and-sizing-guidelines-for-data-engineering-integration--1/sizing-recommendations/hadoop-cluster-hardware-recommendations.html)       
+
+공식문서에 따르면 [RAM 4GB도 충분하도록 설계되었다](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html#The+Persistence+of+File+System+Metadata)고 한다     
 
 2. 큰 파일
     - 테라바이트, 심지어 페타바이트 크기의 파일들도 저장함
@@ -29,12 +37,10 @@ HDFS는 `저렴한 하드웨어`를 사용해서 `큰 파일`을 `streaming을 �
 3. streaming을 통한 접근
     - HDFS는 한번 write하고 여러번 read하는 패턴을 따른다. 
     - 일반적으로 데이터는 한 번 write하면 다양한 사람들이 read해서 분석하기 때문이다. 
-    - 각각의 분석은 꽤나 많이 read를 해야하기 때문에, 첫번째 node를 얼마나 빨리 읽어내느냐보다 모든 데이터들을 얼마나 빨리 읽어내느냐가 중요하다. 
+    - 데이터 분석은 모든 node를 필요로 하기 때문에, 첫번째 node를 얼마나 빨리 읽어내느냐보다 모든 데이터들을 얼마나 빨리 읽어내느냐가 중요하다. 
 
-<br/>
-
-따라서 아래와 같은 상황에서는 HDFS가 적합하지 않을 수 있다. 
-1. 데이터를 읽어들이는데 10ms정도 소요되는 경우
+### <ins>따라서 아래와 같은 상황에서는 HDFS가 적합하지 않을 수 있다.</ins>
+1. 데이터를 읽어들이는데 10ms정도 소요되는 경우 (매우 짧다는 뜻)
 2. 작은 크기의 파일 여러개를 읽어들이는 경우
     - HDFS의 namenode가 데이터가 datanode들에 어떻게 저장되어 있는지에 대한 metadata를 메모리에 저장해서 가지고 있는데, 파일이 여러개면 메모리가 엄청 커야하는 문제가 있음
 3. write가 빈번한 경우
@@ -42,18 +48,20 @@ HDFS는 `저렴한 하드웨어`를 사용해서 `큰 파일`을 `streaming을 �
 # HDFS Concepts
 
 ### Blocks
-HDFS는 데이터를 `128MB 사이즈의 block` 단위로 저장한다. 다른 파일 시스템과 다르게 저장되는 파일의 크기가 128MB보다 작은 경우에는 128MB를 모두 차지하지 않는다.
+HDFS는 데이터를 `128MB 사이즈의 block` 단위로 저장한다. 저장되는 파일의 크기가 128MB보다 작은 경우에는 디스크에서 128MB를 모두 차지하지 않는다.
 
 일반적으로 disk 에서 block의 크기는 512bytes 수준이기 때문에 128MB가 너무 크다고 생각할 수도 있다. HDFS는 데이터를 찾는 시간을 줄이기 위해 큰 block 사이즈를 선택했다. 
+
 책에 나와있지는 않지만 하둡의 등장 배경이 read가 오래 걸리기 때문에 분산저장을 한다고 했는데, 어차피 read하는 속도는 100MB/s 수준이니까, 분산저장되는 node의 숫자를 줄여서 빠르게 찾아내서 전송하는 것을 택한 것 같다. 
-128MB는 default이고, 더 크게 설정하는 경우도 많다고한다.
+128MB는 default이고, 더 크게 설정하는 경우도 많다고 한다.
 
 Block Abstraction이 가져오는 장점은 여러가지가 있는데
 1. 파일이 디스크보다 커도 된다는 것
     - 하나의 파일의 block들이 같은 클러스터에 저장될 필요가 없기 때문에 어떠한 용량의 파일도 저장이 가능함
 2. Abstraction을 파일 단위가 아니라 block단위로 하면서 시스템이 더 간단해 진다는 것
     - block은 용량이 고정되어 있기 때문에 디스크에 몇 개의 block이 저장될 수 있는지 계산하기 쉽고
-    - 파일의 metadata는 block과 같이 저장될 필요가 없기 때문(?)
+    - permission과 같은 파일의 기타 metadata는 block과 같이 저장될 필요가 없기 때문
+    - 다른 metadata는 다른데서 관리함 -> 파일 저장이 쉬워진다는 뜻인 것 같음
 3. replication에 유리하다는 것 
     - block이 corrupt되는 것과 각종 에러에 대비하기 위해 block은 일반적으로 3개씩 replicate되어 저장됨
     - 특정 block에 접근할 수 없게 되면, replicate된 다른 block에 접근할 수 있음 
@@ -62,30 +70,31 @@ Block Abstraction이 가져오는 장점은 여러가지가 있는데
 ### Namenodes and Datanodes
 HDFS는 master 역할을 하는 `namenode`와 worker 역할을 하는 `datanode`로 이루어져 있음
 
-`namenode`는 `namespace image`와 `edit log`의 형태로 filesystem tree와 각 파일들의 metadata를 저장한다. 그리고 특정 파일의 block들이 어떤 `datanode`에 저장되어 있는지에 대한 정보도 가지고 있다. 하지만 block의 위치는 바뀌기 때문에, 이 정보를 peristent하게 저장하지는 않는다. 
+`namenode`는 `namespace image`와 `edit log`의 형태로 filesystem tree와 각 파일들의 metadata를 저장한다. 그리고 특정 파일의 block들이 어떤 `datanode`에 저장되어 있는지에 대한 정보도 가지고 있다. 하지만 `datanode`의 정보는 memory에서 관리한다. HDFS가 재가동되면, `namenode`는 `edit log`를 기반으로 만들어진 `namespace image`에서 block들의 정보를 가져오고, 빠지는 정보들만 `datanode`와 소통해서 다시 채운다. `edit log`는 `namespace image`가 업데이트 될 때마다 버려진다 
 
-`datanode`는 block들을 저장하고, 요청이 들어오면 그 block들을 client에 전달한다. 그리고 block들을 저장하게되면 주기적으로 `namenode`에 자신들이 저장하고 있는 block 정보들을 전달한다.
+`datanode`는 block들을 저장하고, 요청이 들어오면 그 block들을 client에 전달한다. 그리고 주기적으로 `namenode`에 자신들이 저장하고 있는 block 정보들을 전달한다.
 
-`namenode`가 HDFS내에 파일이 어떻게 저장되어있는지에 대한 정보를 가지고 있기 때문에, `namenode`가 날아가면 시스템을 다시 구축할 수 없다. 그래서 하둡은 `namenode`가 내려가는 것에 대비해서 두가지 방식을 구현한다.
+`namenode`가 HDFS내에 파일이 어떻게 저장되어있는지에 대한 정보를 가지고 있기 때문에, `namenode`가 날아가면 시스템을 다시 구축할 수 없다. 그래서 하둡은 `namenode`가 내려가는 것에 대비해서 두가지 방식을 구현한다.(뒤에 나오는 HA까지 하면 사실 3가지)
 
-1. filesystem metadata를 백업하는 것 
-    - `namenode`는 persistent state를 local disk나 remote NFS에 저장할 수 있다. 
-    - secondary namenode와 다르게, 죽으면 백업된 metadata를 사용해서 기존의 primary를 다시 올린다는 것 같다
-
-2. secondary namenode
+1. secondary namenode
     - 주기적으로 `edit log`가 너무 커지기 전에 `namespace image`를 merge함
+        - 도커에서 이미지 커밋하는거랑 비슷한 것 같음
     - `namespace image`를 merge하는데 CPU를 많이 사용하기 때문에 일반적으로 primary namenode와 다른 기기에서 구동됨
-    - 하지만 주기적으로 merge가 이루어지기 때문에 primary node와 완전히 똑같지는 않음 
+    - 주기적으로 merge가 이루어지기 때문에 primary node와 완전히 똑같지는 않음 
     - 따라서 primary node가 완전히 죽으면 data loss는 불가피함 
     - primary node가 죽으면 NFS에 백업된 metadata를 사용해서 secondary node를 primary로 전환해서 구동하는 것이 일반적임
 
+2. filesystem metadata를 백업하는 것 
+    - `namenode`는 persistent state(`edit log`)를 local disk나 remote NFS에 저장할 수 있다. 
+    - secondary namenode와 다르게, 죽으면 백업된 metadata를 사용해서 기존의 primary를 다시 올린다는 것 같다
+
 ### Block Caching
-일반적으로 `datanode`는 disk에서 block을 읽어오는데, 자주 접근하는 block들은 `off-heap block cache`에 저장할 수 있다. default는 단 하나의 `datanode`의 메모리에 cache하는 것이다(파일마다 설정을 다르게 할 수는 있음). `MapReduce`나 `Spark` JobScheduler들은 cache를 활용해서 빠른 read를 통해 효율을 높일 수 있다. `cache directive`나 `cache pool`을 설정해서 어떤 파일을 얼마나 오랫동안 `cache`할지 지정할 수 있다. 
+일반적으로 `datanode`는 disk에서 block을 읽어오는데, 자주 접근하는 block들은 `off-heap block cache`에 저장할 수 있다. default는 하나의 `block`을 하나의 `datanode`의 메모리에 cache하는 것이다(파일마다 설정을 다르게 할 수는 있음). `MapReduce`나 `Spark` JobScheduler들은 cache를 활용해서 빠른 read를 통해 효율을 높일 수 있다. `cache directive`를 `cache pool`에 추가해서 어떤 파일을 얼마나 오랫동안 `cache`할지 지정할 수 있다. 
 
 ### HDFS Federation
-`namenode`가 파일시스템에 대한 metadata를 메모리에 저장하기 때문에, 엄청 많은 파일들을 저장하는 클러스터의 경우에는 memory 크기 때문에 scalability가 떨어질 수 있다. 하둡 2.X대 버전부터 HDFS  Federation이라는 컨셉을 도입했는데, 클러스터가 namenode를 추가해서 scaling할 수 있도록 하는 방식이다. 예를들면 namenode 1은 /user에 저장된 파일들의 metadata를 관리하고 namenode 2는 /share에 저장된 파일들의 metadata를 관리하는 식.
+`namenode`가 파일시스템에 대한 metadata를 메모리에 저장하기 때문에, 엄청 많은 파일들을 저장하는 클러스터의 경우에는 memory 크기 때문에 scalability가 떨어질 수 있다. 그래서 하둡 2.X대 버전부터 HDFS Federation이라는 컨셉을 도입했는데, 클러스터가 namenode를 추가해서 scaling할 수 있도록 하는 방식이다. 예를들면 namenode 1은 /user에 저장된 파일들의 metadata를 관리하고 namenode 2는 /share에 저장된 파일들의 metadata를 관리하는 식.
 
-그렇다면 사용자가 HDFS에 접근할 때 어떤 namenode를 통해 데이터를 불러와야 하는지에 대한 정보를 어딘가 또 저장해야하는데, 이거는 client에서 저장해서 가지고있다.
+그렇다면 사용자가 HDFS에 접근할 때 어떤 namenode를 통해 데이터를 불러와야 하는지에 대한 정보를 어딘가 또 저장해야하는데, 이거는 client에서 file-path와 `namenode`를 mapping한 테이블을 저장해서 가지고있다.
 
 ### HDFS High Availability
 `namenode` 하나를 active standby로 두고, primary로 구동되는 것이 죽으면 바로 교체하는 방식. secondary namenode를 사용할 경우 다시 올라갈 때까지 데이터 write가 불가하다던지 하는 문제가 있는데 이를 해결한다. active standby는 primary와 storage와 `edit log`를 같이 사용한다. 따라서 primary가 죽어서 active standby가 구동될 때, 이 `edit log`를 활용해서 기존에 돌고있던 primary와 같은 configuration을 가지고 돌아가게 된다. 
@@ -160,30 +169,34 @@ hadoop fs -ls .
 #### C
 `libhdfs`라는 C library를 사용해서 하둡에 접근할 수 있다. `libhdfs` 라이브러리는 Java의 `FileSystem` interface와 매우 유사하다.
 
-#### NFS
+#### NFS(Network FileSystem)
 HDFS를 로컬 클라이언트의 filesystem에 NFSv3 gateway를 사용해서 mount시킬 수 있다. read와 write가 가능하다. append를 통한 파일 수정은 가능한데, HDFS가 파일의 끝에만 write만 가능하도록 디자인 되어있기 때문에 랜덤으로 수정하는 것은 불가능하다. 
 
 #### FUSE
-Filesystem in Userspace의 약자. Unix filesystem처럼 user space에 구현된 filesystem이다(무슨말인지?). HDFS를 local filesystem처럼 mount시킬 수 있는 방법이다. NFS가 FUSE보다 안정적이기 때문에 가능하면 안쓰는걸 추천한다.
+Filesystem in Userspace의 약자. Unix filesystem처럼 user space에 구현된 filesystem이다. (kernerl에 파일을 write할 수 있는 기능??) HDFS를 local filesystem처럼 mount시킬 수 있는 방법이다. NFS가 FUSE보다 안정적이기 때문에 가능하면 안쓰는걸 추천한다.
+# Java 예제
+DataFlow에 예제 코드로 추가했다
 
 # Data Flow
 ### File Read
 ![how-to-read-from-hdfs](https://i.imgur.com/Ii0s5lg.png)
 
 1. `FileSytem` object에서 `.open()`을 호출한다
-```Java
+
+```java
 public class FileSystemCat {
     public static void main(String[] args) throws Exception {
-    String uri = args[0];
-    Configuration conf = new Configuration();
-    FileSystem fs = FileSystem.get(URI.create(uri), conf); // 이 파일시스템을 사용해서
-    InputStream in = null;
-    try {
-        in = fs.open(new Path(uri));  // 여기 호출! FSDataInputStream을 return함
-        IOUtils.copyBytes(in, System.out, 4096, false);
-        // 4096은 buffer size이고 true/false는 데이터 read가 끝나면 연결을 끊을지/말지 결정하는 것
-    } finally {
-        IOUtils.closeStream(in);
+        String uri = args[0];
+        Configuration conf = new Configuration();
+        FileSystem fs = FileSystem.get(URI.create(uri), conf); // 이 파일시스템을 사용해서
+        InputStream in = null;
+        try {
+            in = fs.open(new Path(uri));  // 여기 호출! FSDataInputStream을 return함
+            IOUtils.copyBytes(in, System.out, 4096, false);
+            // 4096은 buffer size이고 true/false는 데이터 read가 끝나면 연결을 끊을지/말지 결정하는 것
+        } finally {
+            IOUtils.closeStream(in);
+        }
     }
 }
 ```
