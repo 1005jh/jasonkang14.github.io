@@ -89,7 +89,11 @@ HDFS는 master 역할을 하는 `namenode`와 worker 역할을 하는 `datanode`
     - secondary namenode와 다르게, 죽으면 백업된 metadata를 사용해서 기존의 primary를 다시 올린다는 것 같다
 
 ### Block Caching
-일반적으로 `datanode`는 disk에서 block을 읽어오는데, 자주 접근하는 block들은 `off-heap block cache`에 저장할 수 있다. default는 하나의 `block`을 하나의 `datanode`의 메모리에 cache하는 것이다(파일마다 설정을 다르게 할 수는 있음). `MapReduce`나 `Spark` JobScheduler들은 cache를 활용해서 빠른 read를 통해 효율을 높일 수 있다. `cache directive`를 `cache pool`에 추가해서 어떤 파일을 얼마나 오랫동안 `cache`할지 지정할 수 있다. 
+일반적으로 `datanode`는 disk에서 block을 읽어오는데, 자주 접근하는 block들은 `off-heap block cache`에 저장할 수 있다. default는 하나의 `block`을 하나의 `datanode`의 메모리에 cache하는 것이다(파일마다 설정을 다르게 할 수는 있음). `MapReduce`나 `Spark` JobScheduler들은 cache를 활용해서 빠른 read를 통해 효율을 높일 수 있다. cache를 원하는 클라이언트는 `cache directive`를 `cache pool`에 추가해서 어떤 파일을 얼마나 오랫동안 `cache`할지 지정할 수 있다. 
+
+![how-hdfs-cache-works](https://i.imgur.com/DgUmbuy.png)
+
+`cache directive`는 cache에 저장하고자 하는 경로이다. cache는 재귀형식이 아니라서 해당 경로에 있는 파일들만 cache된다. 하위 디렉토리의 파일들은 cache에 저장되지 않는다 `cache pool`은 `cache directive`와 permission을 모아둔 그룹정도로 이해하면 된다. `cache pool`은 resource 관리도 가능한데, pool에 모인 directive들의 최대 용량을 제한할 수 있다. HDFS 내에 따로 cache를 위해 따로 배정된 메모리가 있는데, 디폴트는 최대로 다 쓰는건데, 설정해서 줄일 수 있다.
 
 ### HDFS Federation
 `namenode`가 파일시스템에 대한 metadata를 메모리에 저장하기 때문에, 엄청 많은 파일들을 저장하는 클러스터의 경우에는 memory 크기 때문에 scalability가 떨어질 수 있다. 그래서 하둡 2.X대 버전부터 HDFS Federation이라는 컨셉을 도입했는데, 클러스터가 namenode를 추가해서 scaling할 수 있도록 하는 방식이다. 예를들면 namenode 1은 /user에 저장된 파일들의 metadata를 관리하고 namenode 2는 /share에 저장된 파일들의 metadata를 관리하는 식.
@@ -193,19 +197,22 @@ public class FileSystemCat {
         try {
             in = fs.open(new Path(uri));  // 여기 호출! FSDataInputStream을 return함
             IOUtils.copyBytes(in, System.out, 4096, false);
-            // 4096은 buffer size이고 true/false는 데이터 read가 끝나면 연결을 끊을지/말지 결정하는 것
+            // IOUtils는 하둡에서 제공
+            // 4096은 buffer size이고 
+            // true/false는 데이터 read가 끝나면 연결을 끊을지/말지 결정하는 것
         } finally {
             IOUtils.closeStream(in);
         }
     }
 }
 ```
+
 2. `DistributedFileSystem`이 `namenode`에 접근해서 요청하는 파일의 block 위치를 읽어온다
     - `namenode`는 처음 block들이 어떤 `datanode`에 저장되어 있는지 `client`와 가까운 순서대로 sorting해서 정보를 제공한다.
     - `MapReduce`등의 케이스로 client가 datanode라면 client는 local datanode에서 데이터를 read한다. 
     - `DistributedFileSystem`은 `FSDataInputStream`을 return한다
 
-3. `FSDataInputStream`에 `.read()` 호출
+3. `client`가 `FSDataInputStream`에 `.read()` 호출
 
 ```Java
 public class FSDataInputStream extends DataInputStream
@@ -226,7 +233,7 @@ public interface PositionedReadable {
 }
 ```
 
-`read()`를 호출하면, position에서부터 데이터를 읽어들이기 시작함. 읽어드린 bytes를 `int`로 리턴한다. `readFully()`호출하면 다 읽어들이는 듯
+`read()`를 호출하면, position에서부터 데이터를 read하기 시작함. 읽어드린 bytes를 `int`로 리턴한다. `readFully()`호출하면 다 read함
 `DFSInputStream`이 가지고 있는 client로부터 가장 가까운 datanode의 주소를 사용해서 `client`는 `datanode`와 연결한다.
 
 4. `DFSInputStream`이 `datanode`에 `.read()`호출해서 데이터를 read함. 
@@ -242,8 +249,10 @@ public interface PositionedReadable {
 
 6. read가 끝나면 `FSDataInputStream`에 `.close()`호출
     - `IOUtils`는 하둡에서 제공
+    - [API 문서](https://hadoop.apache.org/docs/r2.6.3/api/org/apache/hadoop/io/IOUtils.html)가 나름 친절한편
 
 HDFS에서는 클라이언트가 `namenode`가 제공하는 정보를 바탕으로 `datanode`에 직접적으로 연결한다. 따라서 traffic이 각각의 datanode로 분산되기 때문에 여러 사용자들이 동시에 접근해도 문제없이 요청을 처리할 수 있다는 장점이 있다. 
+
 ### File Write
 ![hdfs-write](https://i.imgur.com/02uyjyh.png)
 
@@ -272,21 +281,23 @@ public class FileCopyWithProgress {
     - `namenode`는 client가 생성하고자 하는 파일이 존재 하지 않는 것을 확인하고,
     - client가 write permission이 있는지 확인하고, 
     - 새로운 파일이 생성된다는 것을 기록한다. 
+    - 어떤 `datanode`에 write를 시작할지도 정보를 전달함
 
 3. client가 write를 시작한다
-    - `DFSOutputStream`이 파일을 packet으로 나누고, `data queue`라는 internal queue에 저장한다. 
+    - `DFSOutputStream`이 파일을 packet으로 나눔
+    - internal queue인 `data queue`와 `ack queue`에 저장한다. 
 
 4. `DataStreamer`는 `namenode`로 부터 데이터를 저장할 `datanode`를 받아와서 `data queue`에서 packet을 꺼내서 `datanode`에 전달한다
     - replication level에 따라 `datanode`는 packet을 write한 후에 relaction할 다음 `datanode`들로 packet을 전달한다.
 
-5. `DFSOutputStream`은 `ack queue`를 활영해서 `data queue`에서 나간 packet들이 `datanode`에 제대로 write됐는지 관리한다
-    - 모든 `datanode`들에 packet이 write된 것을 확인하면 `ack queue`에서 해당 packet을 제거한다.
+5. `DFSOutputStream`은 `ack queue`를 활용해서 `data queue`에서 나간 packet들이 `datanode`에 제대로 write됐는지 관리한다
+    - 모든 `datanode`들에 packet이 write된 것을 확인하면 `ack queue`에서 해당 packet을 제거한다.(replication 확인)
     - `datanode`가 패킷을 제대로 write하지 못한 경우 아래와 같이 해결한다
         - write pipeline이 닫힌다
         - `datanode`들이 남김없이 packet을 write하기 위해 `ack queue`에 남아있는 패킷들은 `data queue`의 앞으로 옮겨진다.
         - write에 실패한 `datanode`의 `block`들은 제거된다. 
         - 정상적으로 작동하는 `datanode`는 `block`의 상태를 `namenode`에 전달하고, 이 `datanode`를 기반으로 새로운 pipeline이 작동하기 시작한다. 
-        - `namenode`는 replication이 replication level만큼 이루어지지 않은 경우 추가 replication을 진행한다. 
+        - replication이 replication level만큼 이루어지지 않은 경우 추가 replication을 진행한다. 
 
 6. write가 끝나면 client는 `.close()`를 호출한다.
     - datanode pipeline에 packet이 남아있다면 flush하고
