@@ -1,14 +1,14 @@
 ---
-title: YARN이 hadoop을 관리하는 방식
+title: Hadoop I/O
 date: "2022-10-19T23:35:37.121Z"
 template: "post"
 draft: false
-slug: "/hadoop/how-yarn-manages-resources"
+slug: "/hadoop/data-in-out"
 category: "Hadoop"
 tags:
   - "Hadoop"
 
-description: "YARN이 hadoop cluster를 관리하기위해 하는 노력(?)들"
+description: "Hadoop이 데이터를 쓰고 읽는 법"
 ---
 
 # Data Integrity
