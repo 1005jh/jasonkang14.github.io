@@ -15,9 +15,7 @@ description: "Hadoop에서 Avro가 필요한 이유"
 
 Avro schema는 주로 JSON으로 작성된다. 데이터 인코딩에는 다양한 방식이 있지만 일반적으로 binary format으로 인코딩 된다. C와 같은 언어로 schema를 작성할 수 있는 Avro IDL이라는 상위 언어가 있고, 프로토타입과 디버깅에 편리한 JSON-based data encoder도 있다.
 
-`Avro specification`은 binary format을 비롯한 feature들에 관한 내용인데, 다양한 언어를 지원하기 위한 특성 때문인지 API에 관한 내용은 포함하지 않는다. 또한 `schema resolution`이 장점인데, read에 필요한 schema와 write에 필요한 schema가 일치하지 않아도 된다. 예전 schema로 작성된 데이터가 있고, 거기에 새로운 field가 추가됐다고 할 때, 같은 데이터에 old schema를 사용해서 read하고, new schema를 사용해서 write를 할 수 있는 장점이 있다. 만약 old schema를 가진 클라이언트가 해당 데이터를 read한다면, new schema에 해당하는 값들은 읽어올 수 없지만 에러가 발생하지는 않는다.
-
-Avro는 `object container format`도 명시한다. Hadoop의 sequence file과 유사하게--순서대로 읽어들이는 것을 말하는듯?--object들의 sequence를 정의한다고 보면 된다. `Avro datafile`이 schema가 저장된 곳의 metadata를 가지고 있고, `MapReduce` job에 중요한 compression과 split을 가능하게 한다. 그리고 compression과 split은 다른 데이터 processing에서도 사용할 수 있다.
+`Avro specification`은 `avro` 사용 설명서라고 이해하면 된다. 가장 큰 장점은 `schema resolution`인데, read에 필요한 schema와 write에 필요한 schema가 일치하지 않아도 된다. 예전 schema로 작성된 데이터가 있고, 거기에 새로운 field가 추가됐다고 할 때, 같은 데이터에 old schema를 사용해서 read하고, new schema를 사용해서 write를 할 수 있는 장점이 있다. 만약 old schema를 가진 클라이언트가 해당 데이터를 read한다면, new schema에 해당하는 값들은 읽어올 수 없지만 에러가 발생하지는 않는다. 아래에 예제로 첨무되어 있다.
 
 # Avro Data Types and Schemas
 
@@ -31,8 +29,28 @@ complex type이 있다.
 
 스크린샷 이외에 Union도 있는데, 다양한 schema들이 섞인거라고 보면 된다. JSON array이고, array의 각 element들은 독립적인 schema를 가진다
 
+complex type에서는 `record`가 가장 흔한 것으로 보이는데(예제가 record로 되어있어서),
+
+1. 필수항목
+
+   - name: `record`의 이름을 나타냄
+   - fields: schema값들을 나타내는 JSON array. 여기서도 name은 필수인데 나버지는 옵셔널
+
+2. 선택항목
+   - namespace:
+   - doc: schema 사용자의 정보를 나타내는 JSON string
+   - aliases: `record`의 별칭
+
 ```json
-["null", "string", { "type": "map", "values": "string" }]
+{
+  "type": "record",
+  "name": "LongList",
+  "aliases": ["LinkedLongs"],
+  "fields": [
+    { "name": "value", "type": "long" },
+    { "name": "next", "type": ["null", "LongList"] }
+  ]
+}
 ```
 
 각각의 `Avro Language API`는 각 언어에 맞는 Avro type을 갖는다. `Avro double`은, C, C++, Java에서는 `double`이지만 python에서는 `float`이다.
@@ -173,7 +191,40 @@ assertThat(result.getRight(), is("R"));
 
 Avro의 object container file format은 avro object들의 sequence를 저장하기 위해서 사용된다. Hadoop의 sequence file format과 매우 유사한데 차이점이 있다면 avro는 다양한 언어를 지원한다는 것이다. 예를 들면 python으로 Write하고 C로 read 할 수 있다.
 
-`datafile`의 헤더는 avro schema, serialize된 avro object들의 block 정보들을 가진 `sync marker`등을 저장하는 metadata로 이루어져 있다. block들은 각 파일별로 unique한 `sync marker`로 나눠져있고, 이 marker의 정보는 헤더에 저장되어 있다. 또한 marker는 파일의 arbitrary point를 seek한 후에 block boundary와의 resynchronization을 빠르게 한다는 장점이 있다. 따라서 `MapReduce`를 효율적으로 하기 위해 avro datafile 자체를 split할 수도 있다.
+`datafile`는 header와 file data block으로 구성된다.
+
+header는
+
+1. 4bytes, ASCII 'O','b', 'j', 1 이들어있고
+2. schema 정보를 포함한 metadata
+3. 16byte random-generated `sync marker` 로 이루어져있다.
+
+살짝 이런느낌
+
+```json
+{ "type": "map", "values": "bytes" }
+```
+
+data block은
+
+1. block안에 object를 count 하는 `long`
+2. `codec` 이 적용된 후에 현재 block에 serialized된 object들의 크기를 나타내는 `long`
+3. serialized objects. codec이 적용되어있으면 codec으로 압축됨
+4. 파일의 16-byte sync marker 로 구성되어 있다.
+
+codec은 required codec과 optional codec으로 나누어지는데
+
+1. Required Codecs
+
+- null : 데이터를 압축하지 않음
+- deflate RFC 1951에 나오는 defalte 알고리즘을 사용해서 data block을 write함. 일반적으로 zlib library사용
+
+2. Optional Codecs
+
+- bzip2
+- snappy: 구글의 Snappy compression library 사용. 각각의 압축된 block들은 4-byte big-endian CRC32 checksum으로 구분됨
+- xz
+- zstandard: 페이스북(메타)의 Zstandard compression library 사용
 
 object를 `datafile`에 write하는 것은 stream에 write하는 것과 유사하다. `DatumWriter`를 사용하는 것 까지는 같은데, `Encoder`대신 `DataFileWriter`를 사용한다. 새로운 `datafile`을 생성하고, object를 append하는 방식으로 write한다. object는 파일의 schema를 따르지 않으면 exception이 발생한다.
 
