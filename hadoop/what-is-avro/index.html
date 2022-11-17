@@ -105,15 +105,40 @@ void function() {
 }()
     </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">하둡 Avro</h1><div class="Content-module--content__body--2TrQ-"><p><code class="language-text">Avro</code>는 언어와 무관하게 사용할 수 있는 data serialization 시스템이다. 하둡은 다양한 언어를 지원하지 않는다는 단점이 있는데, Avro는 이 단점을 보완하기 위해 만들어졌다. 따라서 Avro는 언어와 독립적인 schema를 사용하고, 코드를 작성하지 않고서도 데이터를 read하고 write할 수 있다. 코드를 작성하지 않기 때문에 Avro는 read하거나 write할 때 모두 schema를 필요로 한다.</p>
 <p>Avro schema는 주로 JSON으로 작성된다. 데이터 인코딩에는 다양한 방식이 있지만 일반적으로 binary format으로 인코딩 된다. C와 같은 언어로 schema를 작성할 수 있는 Avro IDL이라는 상위 언어가 있고, 프로토타입과 디버깅에 편리한 JSON-based data encoder도 있다.</p>
-<p><code class="language-text">Avro specification</code>은 binary format을 비롯한 feature들에 관한 내용인데, 다양한 언어를 지원하기 위한 특성 때문인지 API에 관한 내용은 포함하지 않는다. 또한 <code class="language-text">schema resolution</code>이 장점인데, read에 필요한 schema와 write에 필요한 schema가 일치하지 않아도 된다. 예전 schema로 작성된 데이터가 있고, 거기에 새로운 field가 추가됐다고 할 때, 같은 데이터에 old schema를 사용해서 read하고, new schema를 사용해서 write를 할 수 있는 장점이 있다. 만약 old schema를 가진 클라이언트가 해당 데이터를 read한다면, new schema에 해당하는 값들은 읽어올 수 없지만 에러가 발생하지는 않는다.</p>
-<p>Avro는 <code class="language-text">object container format</code>도 명시한다. Hadoop의 sequence file과 유사하게—순서대로 읽어들이는 것을 말하는듯?—object들의 sequence를 정의한다고 보면 된다. <code class="language-text">Avro datafile</code>이 schema가 저장된 곳의 metadata를 가지고 있고, <code class="language-text">MapReduce</code> job에 중요한 compression과 split을 가능하게 한다. 그리고 compression과 split은 다른 데이터 processing에서도 사용할 수 있다.</p>
+<p><code class="language-text">Avro specification</code>은 <code class="language-text">avro</code> 사용 설명서라고 이해하면 된다. 가장 큰 장점은 <code class="language-text">schema resolution</code>인데, read에 필요한 schema와 write에 필요한 schema가 일치하지 않아도 된다. 예전 schema로 작성된 데이터가 있고, 거기에 새로운 field가 추가됐다고 할 때, 같은 데이터에 old schema를 사용해서 read하고, new schema를 사용해서 write를 할 수 있는 장점이 있다. 만약 old schema를 가진 클라이언트가 해당 데이터를 read한다면, new schema에 해당하는 값들은 읽어올 수 없지만 에러가 발생하지는 않는다. 아래에 예제로 첨무되어 있다.</p>
 <h1 id="avro-data-types-and-schemas" style="position:relative;"><a href="#avro-data-types-and-schemas" aria-label="avro data types and schemas permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Avro Data Types and Schemas</h1>
 <p>Avro에는 primitive type과</p>
 <p><img src="https://i.imgur.com/4XdyBY3.png" alt="avro-primitive-type"></p>
 <p>complex type이 있다.</p>
 <p><img src="https://i.imgur.com/9K0Inqv.png" alt="avro-complex-type"></p>
 <p>스크린샷 이외에 Union도 있는데, 다양한 schema들이 섞인거라고 보면 된다. JSON array이고, array의 각 element들은 독립적인 schema를 가진다</p>
-<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><span class="token string">"null"</span><span class="token punctuation">,</span> <span class="token string">"string"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"map"</span><span class="token punctuation">,</span> <span class="token property">"values"</span><span class="token operator">:</span> <span class="token string">"string"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre></div>
+<p>complex type에서는 <code class="language-text">record</code>가 가장 흔한 것으로 보이는데(예제가 record로 되어있어서),</p>
+<ol>
+<li>
+<p>필수항목</p>
+<ul>
+<li>name: <code class="language-text">record</code>의 이름을 나타냄</li>
+<li>fields: schema값들을 나타내는 JSON array. 여기서도 name은 필수인데 나버지는 옵셔널</li>
+</ul>
+</li>
+<li>
+<p>선택항목</p>
+<ul>
+<li>namespace:</li>
+<li>doc: schema 사용자의 정보를 나타내는 JSON string</li>
+<li>aliases: <code class="language-text">record</code>의 별칭</li>
+</ul>
+</li>
+</ol>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"record"</span><span class="token punctuation">,</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"LongList"</span><span class="token punctuation">,</span>
+  <span class="token property">"aliases"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"LinkedLongs"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"fields"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">,</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"long"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"next"</span><span class="token punctuation">,</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"null"</span><span class="token punctuation">,</span> <span class="token string">"LongList"</span><span class="token punctuation">]</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>각각의 <code class="language-text">Avro Language API</code>는 각 언어에 맞는 Avro type을 갖는다. <code class="language-text">Avro double</code>은, C, C++, Java에서는 <code class="language-text">double</code>이지만 python에서는 <code class="language-text">float</code>이다.</p>
 <p>만약 런타임에 schema를 파악할 수 없다면 dynamic mapping을 사용한다. Java에서는 <code class="language-text">Generic</code> mapping이라고 부른다.</p>
 <p>추가로 Java나 C++로 구현할 경우, Avro schema에 맞게 작성할 수 있다. 코드를 generate하는 것을 Java에서는 <code class="language-text">Specific</code> mapping이라고 부른다. 이것은 <code class="language-text">Generic</code> mapping과는 다르게 schema를 갖고 있는 경우에 사용된다. schema를 가지고 있기 때문에 <code class="language-text">Generic</code>보다 더 domain-oriented된 API를 제공한다.</p>
@@ -211,7 +236,33 @@ out<span class="token punctuation">.</span><span class="token function">close</s
 <span class="token function">assertThat</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">is</span><span class="token punctuation">(</span><span class="token string">"R"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h3 id="avro-datafiles" style="position:relative;"><a href="#avro-datafiles" aria-label="avro datafiles permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Avro Datafiles</h3>
 <p>Avro의 object container file format은 avro object들의 sequence를 저장하기 위해서 사용된다. Hadoop의 sequence file format과 매우 유사한데 차이점이 있다면 avro는 다양한 언어를 지원한다는 것이다. 예를 들면 python으로 Write하고 C로 read 할 수 있다.</p>
-<p><code class="language-text">datafile</code>의 헤더는 avro schema, serialize된 avro object들의 block 정보들을 가진 <code class="language-text">sync marker</code>등을 저장하는 metadata로 이루어져 있다. block들은 각 파일별로 unique한 <code class="language-text">sync marker</code>로 나눠져있고, 이 marker의 정보는 헤더에 저장되어 있다. 또한 marker는 파일의 arbitrary point를 seek한 후에 block boundary와의 resynchronization을 빠르게 한다는 장점이 있다. 따라서 <code class="language-text">MapReduce</code>를 효율적으로 하기 위해 avro datafile 자체를 split할 수도 있다.</p>
+<p><code class="language-text">datafile</code>는 header와 file data block으로 구성된다.</p>
+<p>header는</p>
+<ol>
+<li>4bytes, ASCII ‘O’,‘b’, ‘j’, 1 이들어있고</li>
+<li>schema 정보를 포함한 metadata</li>
+<li>16byte random-generated <code class="language-text">sync marker</code> 로 이루어져있다.</li>
+</ol>
+<p>살짝 이런느낌</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"map"</span><span class="token punctuation">,</span> <span class="token property">"values"</span><span class="token operator">:</span> <span class="token string">"bytes"</span> <span class="token punctuation">}</span></code></pre></div>
+<p>data block은</p>
+<ol>
+<li>block안에 object를 count 하는 <code class="language-text">long</code></li>
+<li><code class="language-text">codec</code> 이 적용된 후에 현재 block에 serialized된 object들의 크기를 나타내는 <code class="language-text">long</code></li>
+<li>serialized objects. codec이 적용되어있으면 codec으로 압축됨</li>
+<li>파일의 16-byte sync marker 로 구성되어 있다.</li>
+</ol>
+<p>codec은 required codec과 optional codec으로 나누어지는데</p>
+<ol>
+<li>Required Codecs</li>
+<li>null : 데이터를 압축하지 않음</li>
+<li>deflate RFC 1951에 나오는 defalte 알고리즘을 사용해서 data block을 write함. 일반적으로 zlib library사용</li>
+<li>Optional Codecs</li>
+<li>bzip2</li>
+<li>snappy: 구글의 Snappy compression library 사용. 각각의 압축된 block들은 4-byte big-endian CRC32 checksum으로 구분됨</li>
+<li>xz</li>
+<li>zstandard: 페이스북(메타)의 Zstandard compression library 사용</li>
+</ol>
 <p>object를 <code class="language-text">datafile</code>에 write하는 것은 stream에 write하는 것과 유사하다. <code class="language-text">DatumWriter</code>를 사용하는 것 까지는 같은데, <code class="language-text">Encoder</code>대신 <code class="language-text">DataFileWriter</code>를 사용한다. 새로운 <code class="language-text">datafile</code>을 생성하고, object를 append하는 방식으로 write한다. object는 파일의 schema를 따르지 않으면 exception이 발생한다.</p>
 <div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token class-name">File</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"data.avro"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">DatumWriter</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GenericRecord</span><span class="token punctuation">></span></span> writer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GenericDatumWriter</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GenericRecord</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>schema<span class="token punctuation">)</span><span class="token punctuation">;</span>
