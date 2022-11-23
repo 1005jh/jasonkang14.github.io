@@ -29,7 +29,7 @@ complex type이 있다.
 
 스크린샷 이외에 Union도 있는데, 다양한 schema들이 섞인거라고 보면 된다. JSON array이고, array의 각 element들은 독립적인 schema를 가진다
 
-complex type에서는 `record`가 가장 흔한 것으로 보이는데(예제가 record로 되어있어서),
+complex type에서는 `record`가 가장 흔한 것으로 보이는데,
 
 1. 필수항목
 
