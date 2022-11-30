@@ -1,6 +1,6 @@
 ---
 title: 하둡 Parquet
-date: "2022-11-13T19:35:37.121Z"
+date: "2022-11-23T19:35:37.121Z"
 template: "post"
 draft: false
 slug: "/hadoop/what-is-parquet"
