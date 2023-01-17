@@ -3,7 +3,7 @@ title: Nest.js 의 Controller
 date: "2023-01-10T14:35:37.121Z"
 template: "post"
 draft: false
-slug: "/nestjs/basics-of-nestjs"
+slug: "/nestjs/what-is-controller"
 category: "Nestjs"
 tags:
   - "Nestjs"
