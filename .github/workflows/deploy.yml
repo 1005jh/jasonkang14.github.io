@@ -1,0 +1,25 @@
+name: Deploy New Posts
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build_and_deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.1
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '13.x'
+      
+      - name: Install Project Dependencies
+        run: yarn install
+      
+      - name: Deploy
+        run: yarn deploy
