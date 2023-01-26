@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 'use strict';
 
 const siteConfig = require('./config.js');
@@ -34,13 +36,6 @@ module.exports = {
       options: {
         path: `${__dirname}/content`,
         name: 'pages'
-      }
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/static/media`,
-        name: 'media'
       }
     },
     {
